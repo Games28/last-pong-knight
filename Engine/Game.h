@@ -24,6 +24,8 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "BackGround.h"
+#include "Vec2.h"
+#include "Character.h"
 
 class Game
 {
@@ -35,6 +37,7 @@ public:
 private:
 	void ComposeFrame();
 	void UpdateModel();
+	Vec2 GetMoveDirection(float moveAmount);
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -42,6 +45,7 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	BackGround back;
+	Character player;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

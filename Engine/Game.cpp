@@ -24,7 +24,8 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	player(Vec2(300,470), Vec2(345,420), Vec2(300,400)) //Character(Vec2& loc,Vec2& saber, Vec2& head );
 {
 }
 
@@ -38,9 +39,30 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	float movementspeed = 10.0f;
+			Vec2 moveAmount = GetMoveDirection(movementspeed);
+			player.Move(moveAmount);
+
+}
+
+Vec2 Game::GetMoveDirection(float moveAmount)
+{
+	Vec2 finalMoveAmount = Vec2(0.0f, 0.0f);
+
+	
+	if (wnd.kbd.KeyIsPressed('A'))
+	{
+		finalMoveAmount += Vec2(-moveAmount, 0);
+	}
+	if (wnd.kbd.KeyIsPressed('D'))
+	{
+		finalMoveAmount += Vec2(moveAmount, 0);
+	}
+	return finalMoveAmount;
 }
 
 void Game::ComposeFrame()
 {
 	back.Draw(gfx);
+	player.Draw(gfx,wnd.kbd);
 }
