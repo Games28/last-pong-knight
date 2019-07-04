@@ -16,6 +16,6 @@ public:
 	static constexpr int stepMax = nstepsAcross * nstepsdown;
 	Square steps[stepMax];
 	Vec2 loc;
-	Character jediStatue[4];
+	ArtCharacter jediStatue[4];
 	
 };

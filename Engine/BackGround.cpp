@@ -1,4 +1,5 @@
 #include "BackGround.h"
+#include "ArtCharacter.h"
 
 
 
@@ -23,13 +24,13 @@ void BackGround::Draw(Graphics & gfx)
 	Vec2 shadow4(700, 350);
 	gfx.DrawRectDim((int)shadow4.x, (int)shadow4.y, 100, 10, Colors::Black);
 	Vec2 Statue1(20, 30);
-	jediStatue[0].Loc.ArtCh.Statue((int)Statue1.x, (int)Statue1.y, gfx);
+	jediStatue[0].Statue((int)Statue1.x, (int)Statue1.y, gfx);
 	Vec2 Statue2(20, 230);
-	jediStatue[1].Loc.ArtCh.Statue((int)Statue2.x, (int)Statue2.y, gfx);
+	jediStatue[1].Statue((int)Statue2.x, (int)Statue2.y, gfx);
 	Vec2 Statue3(720, 30);
-	jediStatue[2].Loc.ArtCh.Statue((int)Statue3.x, (int)Statue3.y, gfx);
+	jediStatue[2].Statue((int)Statue3.x, (int)Statue3.y, gfx);
 	Vec2 Statue4(720, 230);
-	jediStatue[3].Loc.ArtCh.Statue((int)Statue4.x, (int)Statue4.y, gfx);
+	jediStatue[3].Statue((int)Statue4.x, (int)Statue4.y, gfx);
 
 	const Color colors[7] = { Colors::MakeRGB(180, 150, 70),
 								Colors::MakeRGB(190,50,0) ,

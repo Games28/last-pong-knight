@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{8b6c92a8-f65d-451e-80e3-d65773602b92}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Art">
+      <UniqueIdentifier>{dfdbc27d-10d1-4c7e-a0ce-794b7c5208a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -63,14 +66,20 @@
     <ClInclude Include="Character.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ArtCharacter.h">
+    <ClInclude Include="Laser.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArtCharacter.h">
+      <Filter>Art</Filter>
     </ClInclude>
     <ClInclude Include="Arthead.h">
-      <Filter>Header Files</Filter>
+      <Filter>Art</Filter>
+    </ClInclude>
+    <ClInclude Include="ArtLaser.h">
+      <Filter>Art</Filter>
     </ClInclude>
     <ClInclude Include="ArtSaber.h">
-      <Filter>Header Files</Filter>
+      <Filter>Art</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -110,14 +119,20 @@
     <ClCompile Include="Character.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ArtCharacter.cpp">
+    <ClCompile Include="Laser.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ArtCharacter.cpp">
+      <Filter>Art</Filter>
     </ClCompile>
     <ClCompile Include="Arthead.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Art</Filter>
+    </ClCompile>
+    <ClCompile Include="ArtLaser.cpp">
+      <Filter>Art</Filter>
     </ClCompile>
     <ClCompile Include="ArtSaber.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Art</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

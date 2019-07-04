@@ -138,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="ArtCharacter.h" />
     <ClInclude Include="Arthead.h" />
+    <ClInclude Include="ArtLaser.h" />
     <ClInclude Include="ArtSaber.h" />
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Character.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Keyboard.h" />
+    <ClInclude Include="Laser.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="RectF.h" />
@@ -158,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="ArtCharacter.cpp" />
     <ClCompile Include="Arthead.cpp" />
+    <ClCompile Include="ArtLaser.cpp" />
     <ClCompile Include="ArtSaber.cpp" />
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Character.cpp" />
@@ -165,6 +168,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Keyboard.cpp" />
+    <ClCompile Include="Laser.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Mouse.cpp" />
