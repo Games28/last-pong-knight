@@ -27,7 +27,7 @@ public:
 		Vec2  ArtSaber;
 		Vec2 collider;
 	};
-	//void(Arthead::*DrawHead)(int, int, Graphics&);
+	void(Arthead::*DrawHead)(int, int, Graphics&);
 	Collider collider;
 	ArtCharacter artcharacter;
 	Arthead arthead;

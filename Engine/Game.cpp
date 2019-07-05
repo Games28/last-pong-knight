@@ -25,7 +25,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	player(Vec2(300, 470), Vec2(345, 420), Vec2(300, 400))//Character(Vec2& loc,Vec2& saber, Vec2& head );
+	player(Vec2(300, 470), Vec2(345, 420), Vec2(328, 470))//Character(Vec2& loc,Vec2& saber, Vec2& head );
 
 {
 	
@@ -58,11 +58,11 @@ void Game::UpdateModel()
 			}
 			if (wnd.kbd.KeyIsPressed('F'))
 			{
-				headselect == PlayerSelect::FEMALE;
+				headselect = PlayerSelect::FEMALE;
 		     }
 			if (wnd.kbd.KeyIsPressed('M'))
 			{
-				headselect == PlayerSelect::MALE;
+				headselect = PlayerSelect::MALE;
 			}
 			
 
@@ -89,25 +89,25 @@ void Game::SaberColorSelect()
 	unsigned char ColorValue = 127;
 	if (wnd.kbd.KeyIsPressed('1'))
 	{
-		
-		player.color[0] = Color{ 0,0,ColorValue };
+		player.color[0] = Color{ 0,0,0 };
+		player.color[1] = Color{ 0,0,ColorValue };
 	}
 	if (wnd.kbd.KeyIsPressed('2'))
 	{
-		
-		player.color[0] = Color{ 0,ColorValue,0 };
+		player.color[0] = Color{ 0,0,0 };
+		player.color[1] = Color{ 0,ColorValue,0 };
 		
 	}
 	if (wnd.kbd.KeyIsPressed('3'))
 	{
-		
-		player.color[0] = Color{ ColorValue,0,0 };
+		player.color[0] = Color{ 0,0,0 };
+		player.color[1] = Color{ ColorValue,0,0 };
 		
 	}
 	if (wnd.kbd.KeyIsPressed('4'))
 	{
-		
-		player.color[0] = Color{ ColorValue,0,ColorValue };
+		player.color[0] = Color{ 0,0,0 };
+		player.color[1] = Color{ ColorValue,0,ColorValue };
 		
 	}
 }
@@ -115,7 +115,11 @@ void Game::SaberColorSelect()
 void Game::ComposeFrame()
 {
 	back.Draw(gfx);
-	player.Draw(gfx,wnd.kbd);
+	if (player.DrawHead != NULL)
+	{
+		player.Draw(gfx, wnd.kbd);
+	}
+
 	Vec2 trooper(105, 20);
 	int i = 0;
 	for (int y = 0; y < nTrooperDown; y++)
@@ -127,13 +131,14 @@ void Game::ComposeFrame()
 		i++;
 	}
 	SaberColorSelect();
-	//if (headselect == PlayerSelect::FEMALE)
-	//{
-	//	player.DrawHead = &Arthead::FemaleHead;
-	//}
-	//if (headselect == PlayerSelect::MALE)
-	//{
-	//	player.DrawHead = &Arthead::MaleHead;
-	//}
+	player.SaberBackColorChange();
+	if (headselect == PlayerSelect::FEMALE)
+	{
+		player.DrawHead = &Arthead::FemaleHead;
+	}
+	if (headselect == PlayerSelect::MALE)
+	{
+		player.DrawHead = &Arthead::MaleHead;
+	}
 
 }

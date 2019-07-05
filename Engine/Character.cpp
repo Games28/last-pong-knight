@@ -16,12 +16,12 @@ Character::Character(Vec2& loc, Vec2& saber, Vec2& head)
 	Loc.Artcharacter = loc;
 	Loc.ArtSaber = saber;
 	Loc.Arthead = head;
-	
+	DrawHead = 0;
 }
 
 void Character::Draw(Graphics & gfx,Keyboard & kbd)
 {
-	//(gfx.head.*(DrawHead))((int)Loc.Arthead.x, (int)Loc.Arthead.y, gfx);
+	
 	
 	if (kbd.KeyIsPressed('A'))
 	{
@@ -38,6 +38,8 @@ void Character::Draw(Graphics & gfx,Keyboard & kbd)
 		artsaber.SaberFront((int)Loc.ArtSaber.x, (int)Loc.ArtSaber.y,color, gfx);
 		artcharacter.RobeFront((int)Loc.Artcharacter.x, (int)Loc.Artcharacter.y, gfx);
 	}
+	(gfx.head.*(DrawHead))((int)Loc.Arthead.x, (int)Loc.Arthead.y, gfx);
+
 	collider.DrawBox(gfx, Colors::Blue);
 }
 
@@ -51,36 +53,36 @@ void Character::Move(Vec2 & MoveAmount)
 
 void Character::SaberBackColorChange()
 {
-	float Red = 1.0f / (255.0f / (1 + color[0].GetR()));
-	float Blue = 1.0f / (255.0f / (1 + color[0].GetB()));
-	float Green = 1.0f / (255.0f / (1 + color[0].GetG()));
+	float Red = 1.0f / (255.0f / (1 + color[1].GetR()));
+	float Blue = 1.0f / (255.0f / (1 + color[1].GetB()));
+	float Green = 1.0f / (255.0f / (1 + color[1].GetG()));
 	char increase = 3;
 	char MAX = 127;
 	if (ColorIncreasing)
 	{
 
-		if (color[1].GetR() >= MAX || color[1].GetB() >= MAX || color[1].GetG() >= MAX)
+		if (color[0].GetR() >= MAX || color[0].GetB() >= MAX || color[0].GetG() >= MAX)
 		{
 			ColorIncreasing = false;
 		}
 		else
 		{
 
-			Color blend = color[1];
-			color[1] = Color(blend.GetR() + Red * increase, blend.GetG() + Green * increase, blend.GetB() + Blue * increase);
+			Color blend = color[0];
+			color[0] = Color(blend.GetR() + Red * increase, blend.GetG() + Green * increase, blend.GetB() + Blue * increase);
 		}
 
 	}
 	else
 	{
-		if (color[1].GetR() <= 0 && color[1].GetB() <= 0 && color[1].GetG() <= 0)
+		if (color[0].GetR() <= 0 && color[0].GetB() <= 0 && color[0].GetG() <= 0)
 		{
 			ColorIncreasing = true;
 		}
 		else
 		{
-			Color blend = color[1];
-			color[1] = Color(blend.GetR() - Red * increase, blend.GetG() - Green * increase, blend.GetB() - Blue * increase);
+			Color blend = color[0];
+			color[0] = Color(blend.GetR() - Red * increase, blend.GetG() - Green * increase, blend.GetB() - Blue * increase);
 		}
 
 	}

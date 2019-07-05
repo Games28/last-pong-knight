@@ -1,4 +1,5 @@
 #include "Arthead.h"
+#include "Graphics.h"
 
 void Arthead::FemaleHead(int x, int y, Graphics & gfx)
 {
