@@ -26,6 +26,8 @@
 #include "BackGround.h"
 #include "Vec2.h"
 #include "Character.h"
+#include "CollisionManager.h"
+//#include "Collider.h"
 
 class Game
 {
@@ -45,7 +47,16 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	BackGround back;
+	
 	Character player;
+	CollisionManager collidemanager;
+	static constexpr float trooperwidth = 82.0f;
+	static constexpr float trooperheight = 82.0f;
+	static constexpr int nTrooperAcross = 7;
+	static constexpr int nTrooperDown = 3;
+	static constexpr int trooperMax = nTrooperAcross * nTrooperDown; 
+	Character troopers[trooperMax];
+
 	/********************************/
 	/*  User Variables              */
 	/********************************/

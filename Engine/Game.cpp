@@ -21,12 +21,14 @@
 #include "MainWindow.h"
 #include "Game.h"
 
-Game::Game( MainWindow& wnd )
+Game::Game(MainWindow& wnd)
 	:
-	wnd( wnd ),
-	gfx( wnd ),
-	player(Vec2(300,470), Vec2(345,420), Vec2(300,400)) //Character(Vec2& loc,Vec2& saber, Vec2& head );
+	wnd(wnd),
+	gfx(wnd),
+	player(Vec2(300, 470), Vec2(345, 420), Vec2(300, 400))//Character(Vec2& loc,Vec2& saber, Vec2& head );
+
 {
+	
 }
 
 void Game::Go()
@@ -42,6 +44,18 @@ void Game::UpdateModel()
 	float movementspeed = 10.0f;
 			Vec2 moveAmount = GetMoveDirection(movementspeed);
 			player.Move(moveAmount);
+			
+			Vec2 Playerboxpos = player.Loc.Artcharacter - Vec2( 40,  10 );
+			Vec2 Playerboxsize = player.charactersize;
+			player.collider.Init(Playerboxpos, Playerboxsize);
+			Vec2 BackBoxpos = Vec2(1, 1);
+			Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
+			back.collider.Init(BackBoxpos, BackBoxsize);
+			Vec2 reflection = collidemanager.GetInnerReflection(player.collider, back.collider);
+			if (reflection.GetLengthSq())
+			{
+				player.Move(reflection);
+			}
 
 }
 
@@ -65,4 +79,15 @@ void Game::ComposeFrame()
 {
 	back.Draw(gfx);
 	player.Draw(gfx,wnd.kbd);
+	Vec2 trooper(105, 40);
+	int i = 0;
+	for (int y = 0; y < nTrooperDown; y++)
+	{
+		for (int x = 0; x < nTrooperAcross; x++)
+		{
+			troopers[i].artcharacter.StormTrooper(x  * trooperwidth, y* trooperheight, gfx);
+		}
+		i++;
+	}
+	//
 }

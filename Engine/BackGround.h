@@ -3,9 +3,11 @@
 #include "Graphics.h"
 #include "Square.h"
 #include "Character.h"
+#include "Collider.h"
+
 class BackGround
 {
-public:
+ public:
 	BackGround() = default;
 	void Draw(Graphics& gfx);
 public:
@@ -17,5 +19,5 @@ public:
 	Square steps[stepMax];
 	Vec2 loc;
 	ArtCharacter jediStatue[4];
-	
+	Collider collider;
 };

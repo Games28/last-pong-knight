@@ -57,4 +57,5 @@ void BackGround::Draw(Graphics & gfx)
 	{
 		S.Draw(gfx);
 	}
+	collider.DrawBox(gfx, Colors::Green);
 }
