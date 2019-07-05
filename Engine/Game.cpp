@@ -56,6 +56,15 @@ void Game::UpdateModel()
 			{
 				player.Move(reflection);
 			}
+			if (wnd.kbd.KeyIsPressed('F'))
+			{
+				headselect == PlayerSelect::FEMALE;
+		     }
+			if (wnd.kbd.KeyIsPressed('M'))
+			{
+				headselect == PlayerSelect::MALE;
+			}
+			
 
 }
 
@@ -75,19 +84,56 @@ Vec2 Game::GetMoveDirection(float moveAmount)
 	return finalMoveAmount;
 }
 
+void Game::SaberColorSelect()
+{
+	unsigned char ColorValue = 127;
+	if (wnd.kbd.KeyIsPressed('1'))
+	{
+		
+		player.color[0] = Color{ 0,0,ColorValue };
+	}
+	if (wnd.kbd.KeyIsPressed('2'))
+	{
+		
+		player.color[0] = Color{ 0,ColorValue,0 };
+		
+	}
+	if (wnd.kbd.KeyIsPressed('3'))
+	{
+		
+		player.color[0] = Color{ ColorValue,0,0 };
+		
+	}
+	if (wnd.kbd.KeyIsPressed('4'))
+	{
+		
+		player.color[0] = Color{ ColorValue,0,ColorValue };
+		
+	}
+}
+
 void Game::ComposeFrame()
 {
 	back.Draw(gfx);
 	player.Draw(gfx,wnd.kbd);
-	Vec2 trooper(105, 40);
+	Vec2 trooper(105, 20);
 	int i = 0;
 	for (int y = 0; y < nTrooperDown; y++)
 	{
 		for (int x = 0; x < nTrooperAcross; x++)
 		{
-			troopers[i].artcharacter.StormTrooper(x  * trooperwidth, y* trooperheight, gfx);
+			troopers[i].artcharacter.StormTrooper(trooper.x +(x  * trooperwidth),trooper.y + (y* trooperheight), gfx);
 		}
 		i++;
 	}
-	//
+	SaberColorSelect();
+	//if (headselect == PlayerSelect::FEMALE)
+	//{
+	//	player.DrawHead = &Arthead::FemaleHead;
+	//}
+	//if (headselect == PlayerSelect::MALE)
+	//{
+	//	player.DrawHead = &Arthead::MaleHead;
+	//}
+
 }

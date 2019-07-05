@@ -24,6 +24,7 @@
 #include "ChiliException.h"
 #include "Colors.h"
 #include "RectF.h"
+//#include "Arthead.h"
 
 class Graphics
 {
@@ -72,7 +73,7 @@ public:
 	void DrawX(Vec2& loc, int width, Color c);
 	void DrawY(Vec2& loc, int height, Color c);
 	
-	
+	//Arthead head;
 	void PstartPosition(int x, int y);
 
 	~Graphics();

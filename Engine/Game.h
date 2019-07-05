@@ -27,10 +27,12 @@
 #include "Vec2.h"
 #include "Character.h"
 #include "CollisionManager.h"
+#include "PlayerSelect.h"
 //#include "Collider.h"
 
 class Game
 {
+	
 public:
 	Game( class MainWindow& wnd );
 	Game( const Game& ) = delete;
@@ -40,6 +42,7 @@ private:
 	void ComposeFrame();
 	void UpdateModel();
 	Vec2 GetMoveDirection(float moveAmount);
+	void SaberColorSelect();
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -47,7 +50,7 @@ private:
 	MainWindow& wnd;
 	Graphics gfx;
 	BackGround back;
-	
+	PlayerSelect headselect;
 	Character player;
 	CollisionManager collidemanager;
 	static constexpr float trooperwidth = 82.0f;
