@@ -1,4 +1,5 @@
 #include "ArtLaser.h"
+#include "Graphics.h"
 
 void ArtLaser::DrawLaserUp(int x, int y, Graphics & gfx)
 {

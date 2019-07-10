@@ -1,5 +1,5 @@
 #pragma once
-#include "Graphics.h"
+class Graphics;
 class ArtLaser
 {
 public:

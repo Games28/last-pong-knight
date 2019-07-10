@@ -15,6 +15,7 @@ public:
 	Character(Vec2& loc);
 	Character(Vec2& loc, Vec2& saber, Vec2& head);
 	void Draw(Graphics& gfx, Keyboard& kbd);
+	void DrawTrooper(Graphics& gfx);
 	void Move(Vec2& MoveAmount);
 	void SaberBackColorChange();
 public:

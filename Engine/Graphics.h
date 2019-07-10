@@ -25,6 +25,7 @@
 #include "Colors.h"
 #include "RectF.h"
 #include "Arthead.h"
+#include "ArtLaser.h"
 
 class Graphics
 {
@@ -74,6 +75,7 @@ public:
 	void DrawY(Vec2& loc, int height, Color c);
 	
 	Arthead head;
+	ArtLaser laser;
 	void PstartPosition(int x, int y);
 
 	~Graphics();

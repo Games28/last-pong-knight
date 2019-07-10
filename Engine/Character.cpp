@@ -25,13 +25,13 @@ void Character::Draw(Graphics & gfx,Keyboard & kbd)
 	
 	if (kbd.KeyIsPressed('A'))
 	{
-		artcharacter.RobeLeft((int)Loc.Artcharacter.x, (int)Loc.Artcharacter.y, gfx);
+		artcharacter.RobeLeft((int)Loc.Artcharacter.x -5, (int)Loc.Artcharacter.y -10, gfx);
 		artsaber.SaberLeft((int)Loc.ArtSaber.x- 70, (int)Loc.ArtSaber.y+52, color, gfx);
 
 	}
 	else if (kbd.KeyIsPressed('D'))
 	{
-		artcharacter.RobeRight((int)Loc.Artcharacter.x, (int)Loc.Artcharacter.y, gfx);
+		artcharacter.RobeRight((int)Loc.Artcharacter.x -5, (int)Loc.Artcharacter.y -10, gfx);
 		artsaber.SaberRight((int)Loc.ArtSaber.x, (int)Loc.ArtSaber.y + 52,color, gfx);
 	}
 	else {
@@ -41,6 +41,11 @@ void Character::Draw(Graphics & gfx,Keyboard & kbd)
 	(gfx.head.*(DrawHead))((int)Loc.Arthead.x, (int)Loc.Arthead.y, gfx);
 
 	collider.DrawBox(gfx, Colors::Blue);
+}
+
+void Character::DrawTrooper(Graphics& gfx)
+{
+	artcharacter.StormTrooper(loc.x, loc.y, gfx);
 }
 
 void Character::Move(Vec2 & MoveAmount)

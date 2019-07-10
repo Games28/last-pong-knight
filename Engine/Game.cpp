@@ -25,10 +25,24 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	player(Vec2(300, 470), Vec2(345, 420), Vec2(328, 470))//Character(Vec2& loc,Vec2& saber, Vec2& head );
+	player(Vec2(300, 470), Vec2(345, 420), Vec2(327, 470))
+	//trooper(Vec2(105, 40))
 
 {
+	Vec2 T(105, 40);
+	int i = 0;
+	for (int y = 0; y < nTrooperDown; y++)
+	{
+
+		for (int x = 0; x < nTrooperAcross; x++)
+		{
+			troopers[i].loc = Vec2(T.x + (x * trooperwidth), T.y + (y * trooperheight));
+			i++;
+		}
+		
+	}
 	
+	//laser(Vec2(220, 200), Vec2(280, 200), Vec2(350, 200));
 }
 
 void Game::Go()
@@ -64,7 +78,14 @@ void Game::UpdateModel()
 			{
 				headselect = PlayerSelect::MALE;
 			}
-			
+			//Vec2 laserloc(Vec2(220, 200));
+			//int i = 0;
+			//for (int y = 0; y < lasermax; y++)
+			//{
+			//	laser[i].Init(Vec2(laserloc.x + (y * laserseparation), laserloc.y));
+			//	i++;
+			//	laser[i].Update();
+			//}
 
 }
 
@@ -120,16 +141,14 @@ void Game::ComposeFrame()
 		player.Draw(gfx, wnd.kbd);
 	}
 
-	Vec2 trooper(105, 20);
-	int i = 0;
-	for (int y = 0; y < nTrooperDown; y++)
+	
+	
+	for (int i = 0; i < trooperMax; i++)
 	{
-		for (int x = 0; x < nTrooperAcross; x++)
-		{
-			troopers[i].artcharacter.StormTrooper(trooper.x +(x  * trooperwidth),trooper.y + (y* trooperheight), gfx);
-		}
-		i++;
-	}
+		troopers[i].DrawTrooper(gfx);
+   }
+		
+	
 	SaberColorSelect();
 	player.SaberBackColorChange();
 	if (headselect == PlayerSelect::FEMALE)
@@ -141,4 +160,11 @@ void Game::ComposeFrame()
 		player.DrawHead = &Arthead::MaleHead;
 	}
 
+	
+	//int l = 0;
+	//for (int y = 0; y < lasermax; y++)
+	//{
+	//	laser[i].Draw(gfx);
+	//	i++;
+	//}
 }
