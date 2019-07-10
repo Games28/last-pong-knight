@@ -25,7 +25,8 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	player(Vec2(300, 470), Vec2(345, 420), Vec2(327, 470))
+	player(Vec2(300, 470), Vec2(345, 420), Vec2(327, 470)),
+	rng(std::random_device()())
 	//trooper(Vec2(105, 40))
 
 {
@@ -37,6 +38,8 @@ Game::Game(MainWindow& wnd)
 		for (int x = 0; x < nTrooperAcross; x++)
 		{
 			troopers[i].loc = Vec2(T.x + (x * trooperwidth), T.y + (y * trooperheight));
+			troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth, trooperheight) * 0.5f;
+			troopers[i].Bolt.Init(troopers[i].loc, rng);
 			i++;
 		}
 		
@@ -78,15 +81,18 @@ void Game::UpdateModel()
 			{
 				headselect = PlayerSelect::MALE;
 			}
-			//Vec2 laserloc(Vec2(220, 200));
-			//int i = 0;
-			//for (int y = 0; y < lasermax; y++)
-			//{
-			//	laser[i].Init(Vec2(laserloc.x + (y * laserseparation), laserloc.y));
-			//	i++;
-			//	laser[i].Update();
-			//}
+			reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
+			for (int i = 0; i < trooperMax; i++)
+			{
 
+				troopers[i].Bolt.Update();
+				reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
+				if (reflection.GetLengthSq())
+				{
+					troopers[i].Bolt.vel = reflection;
+				}
+			}
+			
 }
 
 Vec2 Game::GetMoveDirection(float moveAmount)
@@ -139,6 +145,7 @@ void Game::ComposeFrame()
 	if (player.DrawHead != NULL)
 	{
 		player.Draw(gfx, wnd.kbd);
+
 	}
 
 	

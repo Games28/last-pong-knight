@@ -21,9 +21,12 @@ void Laser::Draw(Graphics & gfx)
 	collider.DrawBox(gfx, Colors::Magenta);
 }
 
-void Laser::Init(Vec2& loc)
+void Laser::Init(Vec2& loc, std::mt19937& rng)	
 {
-	this->loc = loc;
+	collider.loc = loc; 
+	collider.size = Vec2(15, 40);
+	Respawn(loc, rng);
+	DrawLaser = 0;
 }
 
 void Laser::Respawn(Vec2& loc, std::mt19937& rng)
@@ -33,16 +36,13 @@ void Laser::Respawn(Vec2& loc, std::mt19937& rng)
 	float RightDown = Pi * 7.0f * 0.25f;
 
 	this->loc = loc;
-	float cosLeft = cos(LeftDown);
-	float sinLeft = sin(LeftDown);
-	float cosRight = cos(RightDown);
-	float sinRight = sin(RightDown);
+	
 	std::uniform_real_distribution<float> Angle;
 	Angle = std::uniform_real_distribution<float>(LeftDown, RightDown);
 	float angle = Angle(rng);
 	Vec2 newVel;
 	newVel.x = cos(angle);
-	newVel.y = sin(angle);
+	newVel.y = -sin(angle);
 
 	vel = newVel;
 	loc += vel;
@@ -58,14 +58,16 @@ void Laser::Move(Vec2& MoveAmount)
 
 void Laser::Update()
 {
-	loc += vel * 5.0f;
-	if (vel.x < 0.0f)
+	
+	loc += vel ;
+	if (vel.y < 0.0f)
 	{
 		DrawLaser = &ArtLaser::DrawLaserUp;
 	}
 	else {
 		DrawLaser = &ArtLaser::DrawLaserDown;
 	}
+	collider.loc = loc;
 }
 
 

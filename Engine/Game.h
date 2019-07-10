@@ -29,6 +29,7 @@
 #include "CollisionManager.h"
 #include "PlayerSelect.h"
 #include "Laser.h"
+#include <random>
 //#include "Collider.h"
 
 class Game
@@ -50,6 +51,7 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	std::mt19937 rng;
 	BackGround back;
 	PlayerSelect headselect;
 	Character player;

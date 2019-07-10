@@ -14,7 +14,7 @@ public:
 	Laser(Vec2& loc);
 	Laser(Vec2& loc, std::mt19937& rng);
 	void Draw(Graphics& gfx);
-	void Init(Vec2& loc);
+	void Init(Vec2& loc, std::mt19937& rng);
 	void Respawn(Vec2& loc, std::mt19937& rng);
 	void Move(Vec2& MoveAmount);
 	void Update();

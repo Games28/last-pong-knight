@@ -46,6 +46,7 @@ void Character::Draw(Graphics & gfx,Keyboard & kbd)
 void Character::DrawTrooper(Graphics& gfx)
 {
 	artcharacter.StormTrooper(loc.x, loc.y, gfx);
+	Bolt.Draw(gfx); 
 }
 
 void Character::Move(Vec2 & MoveAmount)
@@ -54,6 +55,7 @@ void Character::Move(Vec2 & MoveAmount)
 	Loc.Arthead += MoveAmount;
 	Loc.ArtSaber += MoveAmount;
 	collider.Move(MoveAmount);
+	
 }
 
 void Character::SaberBackColorChange()

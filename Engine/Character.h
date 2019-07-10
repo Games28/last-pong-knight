@@ -7,6 +7,7 @@
 #include "Keyboard.h"
 #include "Collider.h"
 #include "Colors.h"
+#include "Laser.h"
 
 class Character
 {
@@ -36,6 +37,7 @@ public:
 	ArtLoc Loc;
 	Vec2 loc;
 	Color color[2];
+	Laser Bolt;
 
 	bool ColorIncreasing = false;
 };
