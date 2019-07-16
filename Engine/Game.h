@@ -25,7 +25,9 @@
 #include "Graphics.h"
 #include "BackGround.h"
 #include "Vec2.h"
-#include "Character.h"
+//#include "Character.h"
+#include "Jedi.h"
+#include "Trooper.h"
 #include "CollisionManager.h"
 #include "PlayerSelect.h"
 #include "Laser.h"
@@ -45,6 +47,7 @@ private:
 	void UpdateModel();
 	Vec2 GetMoveDirection(float moveAmount);
 	void SaberColorSelect();
+	void GenderSelect();
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -54,7 +57,7 @@ private:
 	std::mt19937 rng;
 	BackGround back;
 	PlayerSelect headselect;
-	Character player;
+	Jedi player;
 	
 	
 	CollisionManager collidemanager;
@@ -66,7 +69,7 @@ private:
 	static constexpr int nTrooperAcross = 7;
 	static constexpr int nTrooperDown = 2;
 	static constexpr int trooperMax = nTrooperAcross * nTrooperDown; 
-	Character troopers[trooperMax];
+	Trooper troopers[trooperMax];
 	Laser bolt;
 	
 	

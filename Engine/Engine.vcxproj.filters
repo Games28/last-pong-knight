@@ -90,6 +90,12 @@
     <ClInclude Include="PlayerSelect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Jedi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Trooper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -150,6 +156,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="PlayerSelect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Jedi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Trooper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

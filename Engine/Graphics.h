@@ -26,6 +26,8 @@
 #include "RectF.h"
 #include "Arthead.h"
 #include "ArtLaser.h"
+#include "ArtCharacter.h"
+#include "Character.h"
 
 class Graphics
 {
@@ -76,6 +78,8 @@ public:
 	
 	Arthead head;
 	ArtLaser laser;
+	ArtSaber saber;
+	ArtCharacter character;
 	void PstartPosition(int x, int y);
 
 	~Graphics();

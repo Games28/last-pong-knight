@@ -1,4 +1,5 @@
 #include "Character.h"
+#include "Graphics.h"
 
 
 
@@ -9,39 +10,17 @@ Character::Character(Vec2& loc)
 	Loc.Artcharacter - loc;
 }
 
-Character::Character(Vec2& loc, Vec2& saber, Vec2& head)
+/*Character::Character(Vec2& loc, Vec2& saber, Vec2& head)
 	:
 	color{ { 0,0,0 },{ 0,0,0 } }
 {
 	Loc.Artcharacter = loc;
 	Loc.ArtSaber = saber;
 	Loc.Arthead = head;
-	DrawHead = 0;
-}
-
-void Character::Draw(Graphics & gfx,Keyboard & kbd)
-{
 	
-	
-	if (kbd.KeyIsPressed('A'))
-	{
-		artcharacter.RobeLeft((int)Loc.Artcharacter.x -5, (int)Loc.Artcharacter.y -10, gfx);
-		artsaber.SaberLeft((int)Loc.ArtSaber.x- 70, (int)Loc.ArtSaber.y+52, color, gfx);
+}*/
 
-	}
-	else if (kbd.KeyIsPressed('D'))
-	{
-		artcharacter.RobeRight((int)Loc.Artcharacter.x -5, (int)Loc.Artcharacter.y -10, gfx);
-		artsaber.SaberRight((int)Loc.ArtSaber.x, (int)Loc.ArtSaber.y + 52,color, gfx);
-	}
-	else {
-		artsaber.SaberFront((int)Loc.ArtSaber.x, (int)Loc.ArtSaber.y,color, gfx);
-		artcharacter.RobeFront((int)Loc.Artcharacter.x, (int)Loc.Artcharacter.y, gfx);
-	}
-	(gfx.head.*(DrawHead))((int)Loc.Arthead.x, (int)Loc.Arthead.y, gfx);
 
-	collider.DrawBox(gfx, Colors::Blue);
-}
 
 void Character::DrawTrooper(Graphics& gfx)
 {

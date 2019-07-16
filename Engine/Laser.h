@@ -28,7 +28,6 @@ public:
 	Vec2 loc;
 	Vec2 vel;
 	Collider collider;
-	ArtCharacter artch;
 	ArtLaser Alaser;
 };
 

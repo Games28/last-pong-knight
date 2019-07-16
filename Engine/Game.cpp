@@ -27,7 +27,7 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	player(Vec2(300, 470), Vec2(345, 420), Vec2(327, 470)),
 	rng(std::random_device()())
-	//trooper(Vec2(105, 40))
+	
 
 {
 	Vec2 T(105, 40);
@@ -44,8 +44,13 @@ Game::Game(MainWindow& wnd)
 		}
 		
 	}
+	Vec2 Playerboxpos = player.Loc.Artcharacter - Vec2(40, 10);
+	Vec2 Playerboxsize = player.charactersize;
+	player.collider.Init(Playerboxpos, Playerboxsize);
+	Vec2 BackBoxpos = Vec2(1, 1);
+	Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
+	back.collider.Init(BackBoxpos, BackBoxsize);
 	
-	//laser(Vec2(220, 200), Vec2(280, 200), Vec2(350, 200));
 }
 
 void Game::Go()
@@ -62,25 +67,15 @@ void Game::UpdateModel()
 			Vec2 moveAmount = GetMoveDirection(movementspeed);
 			player.Move(moveAmount);
 			
-			Vec2 Playerboxpos = player.Loc.Artcharacter - Vec2( 40,  10 );
-			Vec2 Playerboxsize = player.charactersize;
-			player.collider.Init(Playerboxpos, Playerboxsize);
-			Vec2 BackBoxpos = Vec2(1, 1);
-			Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
-			back.collider.Init(BackBoxpos, BackBoxsize);
+			player.GenderSelect();
+			player.Update(gfx, wnd.kbd);
+			
 			Vec2 reflection = collidemanager.GetInnerReflection(player.collider, back.collider);
 			if (reflection.GetLengthSq())
 			{
 				player.Move(reflection);
 			}
-			if (wnd.kbd.KeyIsPressed('F'))
-			{
-				headselect = PlayerSelect::FEMALE;
-		     }
-			if (wnd.kbd.KeyIsPressed('M'))
-			{
-				headselect = PlayerSelect::MALE;
-			}
+			
 			reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
 			for (int i = 0; i < trooperMax; i++)
 			{
@@ -139,16 +134,26 @@ void Game::SaberColorSelect()
 	}
 }
 
+void Game::GenderSelect()
+{
+	if (wnd.kbd.KeyIsPressed('F'))
+	{
+		headselect = PlayerSelect::FEMALE;
+	}
+	if (wnd.kbd.KeyIsPressed('M'))
+	{
+		headselect = PlayerSelect::MALE;
+	}
+}
+
 void Game::ComposeFrame()
 {
 	back.Draw(gfx);
-	if (player.DrawHead != NULL)
-	{
-		player.Draw(gfx, wnd.kbd);
-
-	}
-
 	
+	player.Draw(gfx);
+	
+	
+	//player.Draw(gfx);
 	
 	for (int i = 0; i < trooperMax; i++)
 	{
@@ -158,14 +163,15 @@ void Game::ComposeFrame()
 	
 	SaberColorSelect();
 	player.SaberBackColorChange();
-	if (headselect == PlayerSelect::FEMALE)
-	{
-		player.DrawHead = &Arthead::FemaleHead;
-	}
-	if (headselect == PlayerSelect::MALE)
-	{
-		player.DrawHead = &Arthead::MaleHead;
-	}
+	//player.GenderSelect();
+	//if (headselect == PlayerSelect::FEMALE)
+	//{
+	//	player.DrawHead = &Arthead::FemaleHead;
+	//}
+	//if (headselect == PlayerSelect::MALE)
+	//{
+	//	player.DrawHead = &Arthead::MaleHead;
+	//}
 
 	
 	//int l = 0;

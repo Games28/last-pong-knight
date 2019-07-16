@@ -59,7 +59,7 @@ void Laser::Move(Vec2& MoveAmount)
 void Laser::Update()
 {
 	
-	loc += vel ;
+	loc += vel * 3.0f;
 	if (vel.y < 0.0f)
 	{
 		DrawLaser = &ArtLaser::DrawLaserUp;
