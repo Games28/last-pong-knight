@@ -1,4 +1,5 @@
 #include "ArtSaber.h"
+#include "Graphics.h"
 
 void ArtSaber::SaberHiltLeft(int x, int y, Graphics & gfx)
 {

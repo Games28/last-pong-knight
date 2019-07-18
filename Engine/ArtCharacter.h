@@ -1,6 +1,7 @@
 #pragma once
-#include "graphics.h"
+class Graphics;
 #include "Vec2.h"
+#include "Colors.h"
 class ArtCharacter
 {
 public:

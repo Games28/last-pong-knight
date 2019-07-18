@@ -1,5 +1,5 @@
 #pragma once
-#include"Graphics.h"
+class Graphics;
 #include "Colors.h"
 
 class ArtSaber

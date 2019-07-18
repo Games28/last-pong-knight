@@ -1,5 +1,5 @@
 #pragma once
-#include "Graphics.h"
+class Graphics;
 #include "Vec2.h"
 #include "ArtLaser.h"
 #include <random>

@@ -1,4 +1,6 @@
 #include "ArtCharacter.h"
+#include "Graphics.h"
+
 
 
 void ArtCharacter::Statue(int x, int y, Graphics & gfx) 
