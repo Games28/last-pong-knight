@@ -15,7 +15,7 @@ void Jedi::Draw(Graphics& gfx)
 {
 	
 	(gfx.head.*(DrawHead))((int)Loc.Arthead.x, (int)Loc.Arthead.y, gfx);
-	(gfx.character.*(DrawRobe))((int)loc.x, (int)loc.y, gfx);
+	(gfx.character.*(DrawRobe))((int)Loc.Artcharacter.x, (int)Loc.Artcharacter.y, gfx);
 	(gfx.saber.*(DrawSaber))((int)Loc.ArtSaber.x, (int)Loc.ArtSaber.y,color, gfx);
 
 	collider.DrawBox(gfx, Colors::Blue);

@@ -1,7 +1,7 @@
 #pragma once
 #include "Vec2.h"
 class Graphics;
-class color;
+#include "Colors.h"
 
 
 class Collider

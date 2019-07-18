@@ -1,5 +1,6 @@
 #pragma once
 class Graphics;
+#include "Colors.h"
 #include "Vec2.h"
 #include "ArtLaser.h"
 #include <random>

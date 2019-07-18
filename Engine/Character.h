@@ -4,11 +4,11 @@
 #include "Arthead.h"
 #include "ArtSaber.h"
 #include "Keyboard.h"
-#include "Collider.h"
+class collider;
 #include "Colors.h"
 #include "Laser.h"
 #include "PlayerSelect.h"
-class Graphics;
+#include "Graphics.h"
 
 class Character
 {
