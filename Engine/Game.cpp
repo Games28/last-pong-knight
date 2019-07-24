@@ -32,9 +32,10 @@ Game::Game(MainWindow& wnd)
 {
 	Vec2 T(105, 40);
 	int i = 0;
+	//inits the troopers
 	for (int y = 0; y < nTrooperDown; y++)
 	{
-
+		
 		for (int x = 0; x < nTrooperAcross; x++)
 		{
 			troopers[i].loc = Vec2(T.x + (x * trooperwidth), T.y + (y * trooperheight));
@@ -44,7 +45,10 @@ Game::Game(MainWindow& wnd)
 		}
 		
 	}
-	Vec2 Playerboxpos = player.Loc.Artcharacter - Vec2(40, 10);
+	Vec2 Playersaberboxpos = player.ArtPosiition.ArtSaber;
+	Vec2 Playersaberboxsize = player.Sabersize;
+	player.SaberCollider.Init(Playersaberboxpos, Playersaberboxsize);
+	Vec2 Playerboxpos = player.ArtPosiition.Artcharacter - Vec2(40, 10);
 	Vec2 Playerboxsize = player.charactersize;
 	player.collider.Init(Playerboxpos, Playerboxsize);
 	Vec2 BackBoxpos = Vec2(1, 1);
@@ -76,15 +80,25 @@ void Game::UpdateModel()
 				player.Move(reflection);
 			}
 			
-			reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
+			//reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
 			for (int i = 0; i < trooperMax; i++)
 			{
 
 				troopers[i].Bolt.Update();
 				reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
+				
 				if (reflection.GetLengthSq())
 				{
-					troopers[i].Bolt.vel = reflection;
+					//troopers[i].Bolt.vel = reflection;
+					troopers[i].Bolt.Move(reflection);
+					if (reflection.x)
+					{
+						troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+					}
+					if (reflection.y)
+					{
+						troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+					}
 				}
 			}
 			

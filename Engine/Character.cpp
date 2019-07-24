@@ -8,7 +8,7 @@
 
 Character::Character(Vec2& loc)
 {
-	Loc.Artcharacter - loc;
+	ArtPosiition.Artcharacter - loc;
 }
 
 /*Character::Character(Vec2& loc, Vec2& saber, Vec2& head)
@@ -31,10 +31,11 @@ void Character::DrawTrooper(Graphics& gfx)
 
 void Character::Move(Vec2 & MoveAmount)
 {
-	Loc.Artcharacter += MoveAmount;
-	Loc.Arthead += MoveAmount;
-	Loc.ArtSaber += MoveAmount;
+	ArtPosiition.Artcharacter += MoveAmount;
+	ArtPosiition.Arthead += MoveAmount;
+	ArtPosiition.ArtSaber += MoveAmount;
 	collider.Move(MoveAmount);
+	SaberCollider.Move(MoveAmount);
 	
 }
 

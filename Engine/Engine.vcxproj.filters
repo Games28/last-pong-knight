@@ -19,6 +19,9 @@
     <Filter Include="Art">
       <UniqueIdentifier>{dfdbc27d-10d1-4c7e-a0ce-794b7c5208a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="objects">
+      <UniqueIdentifier>{8f9b4563-e1a3-48b3-bc67-6ef702939229}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChiliWin.h">
@@ -63,12 +66,6 @@
     <ClInclude Include="Square.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Laser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ArtCharacter.h">
       <Filter>Art</Filter>
     </ClInclude>
@@ -87,14 +84,20 @@
     <ClInclude Include="CollisionManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerSelect.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Laser.h">
+      <Filter>objects</Filter>
     </ClInclude>
     <ClInclude Include="Jedi.h">
-      <Filter>Header Files</Filter>
+      <Filter>objects</Filter>
     </ClInclude>
     <ClInclude Include="Trooper.h">
-      <Filter>Header Files</Filter>
+      <Filter>objects</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerSelect.h">
+      <Filter>objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -131,12 +134,6 @@
     <ClCompile Include="Square.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Laser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ArtCharacter.cpp">
       <Filter>Art</Filter>
     </ClCompile>
@@ -155,14 +152,20 @@
     <ClCompile Include="CollisionManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerSelect.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Laser.cpp">
+      <Filter>objects</Filter>
     </ClCompile>
     <ClCompile Include="Jedi.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSelect.cpp">
+      <Filter>objects</Filter>
     </ClCompile>
     <ClCompile Include="Trooper.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

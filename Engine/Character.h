@@ -36,11 +36,11 @@ public:
 	ArtCharacter artcharacter;
 	Arthead arthead;
 	ArtSaber artsaber;
-	ArtLoc Loc;
+	ArtLoc ArtPosiition;
 	Vec2 loc;
 	Color color[2];
 	Laser Bolt;
-
+	Collider SaberCollider;
 	bool ColorIncreasing = false;
 };
 

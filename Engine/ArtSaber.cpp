@@ -1072,6 +1072,8 @@ void ArtSaber::SaberLeft(int x, int y, Color* c, Graphics & gfx)
 	unsigned char r = c[1].GetR();
 	unsigned char b = c[1].GetB();
 	unsigned char g = c[1].GetG();
+	x = x - 75;
+	y = y + 45;
 	gfx.PutPixel(x + 0, y + 0, c[0]);
 	gfx.PutPixel(x + 0, y + 1, c[0]);
 	gfx.PutPixel(x + 0, y + 2, c[0]);
@@ -1602,6 +1604,7 @@ void ArtSaber::SaberRight(int x, int y, Color* c, Graphics & gfx)
 	unsigned char r = c[1].GetR();
 	unsigned char b = c[1].GetB();
 	unsigned char g = c[1].GetG();
+	y = y + 45;
 	gfx.PutPixel(x + 0, y + 0, c[0]);
 	gfx.PutPixel(x + 0, y + 1, c[0]);
 	gfx.PutPixel(x + 0, y + 2, c[0]);

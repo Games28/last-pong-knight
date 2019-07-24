@@ -2,23 +2,27 @@
 
 Jedi::Jedi(Vec2& loc, Vec2& saber, Vec2& head) : Character(loc)
 {
-	Loc.Artcharacter = loc;
-	Loc.ArtSaber = saber;
-	Loc.Arthead = head;
+	ArtPosiition.Artcharacter = loc;
+	ArtPosiition.ArtSaber = saber;
+	ArtPosiition.Arthead = head;
 	DrawHead = 0;
 	DrawSaber = 0;
 	DrawRobe = 0;
-
+	SaberCol = 0;
 }
 
 void Jedi::Draw(Graphics& gfx)
 {
 	
-	(gfx.head.*(DrawHead))((int)Loc.Arthead.x, (int)Loc.Arthead.y, gfx);
-	(gfx.character.*(DrawRobe))((int)Loc.Artcharacter.x, (int)Loc.Artcharacter.y, gfx);
-	(gfx.saber.*(DrawSaber))((int)Loc.ArtSaber.x, (int)Loc.ArtSaber.y,color, gfx);
+		(gfx.character.*(DrawRobe))((int)ArtPosiition.Artcharacter.x, (int)ArtPosiition.Artcharacter.y, gfx);
+		(gfx.saber.*(DrawSaber))((int)ArtPosiition.ArtSaber.x, (int)ArtPosiition.ArtSaber.y, color, gfx);
+		if (DrawHead != NULL)
+		{
+			(gfx.head.*(DrawHead))((int)ArtPosiition.Arthead.x, (int)ArtPosiition.Arthead.y, gfx);
+		}
 
 	collider.DrawBox(gfx, Colors::Blue);
+	SaberCollider.DrawBox(gfx, Colors::Magenta);
 }
 
 void Jedi::Update(Graphics& gfx, Keyboard& kbd)
@@ -28,6 +32,8 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 	{
 		DrawRobe = &ArtCharacter::RobeLeft;
 		DrawSaber = &ArtSaber::SaberLeft;
+		
+		SaberCollider.Init(ArtPosiition.ArtSaber + Vec2{ -75,45 }, Sabersidesize);
 		//artcharacter.RobeLeft((int)Loc.Artcharacter.x - 5, (int)Loc.Artcharacter.y - 10, gfx);
 		//artsaber.SaberLeft((int)Loc.ArtSaber.x - 70, (int)Loc.ArtSaber.y + 52, color, gfx);
 
@@ -36,15 +42,14 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 	{
 		DrawRobe = &ArtCharacter::RobeRight;
 		DrawSaber = &ArtSaber::SaberRight;
-		//artcharacter.RobeRight((int)Loc.Artcharacter.x - 5, (int)Loc.Artcharacter.y - 10, gfx);
-		//artsaber.SaberRight((int)Loc.ArtSaber.x, (int)Loc.ArtSaber.y + 52, color, gfx);
-	
+		
+		SaberCollider.Init(ArtPosiition.ArtSaber + Vec2{ 0,45 }, Sabersidesize);
 	}
 	else {
 		DrawRobe = &ArtCharacter::RobeFront;
 		DrawSaber = &ArtSaber::SaberFront;
-		//artsaber.SaberFront((int)Loc.ArtSaber.x, (int)Loc.ArtSaber.y, color, gfx);
-		//artcharacter.RobeFront((int)Loc.Artcharacter.x, (int)Loc.Artcharacter.y, gfx);
+		SaberCollider.Init(ArtPosiition.ArtSaber, Sabersize);
+		
 	}
 
 	if (kbd.KeyIsPressed('F'))

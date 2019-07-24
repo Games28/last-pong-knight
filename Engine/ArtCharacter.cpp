@@ -5767,6 +5767,8 @@ void ArtCharacter::Statue(int x, int y, Graphics & gfx)
 
 void ArtCharacter::RobeLeft(int x, int y, Graphics & gfx)
 {
+	x = x - 5;
+	y = y - 10;
 	gfx.PutPixel(x + 0, y + 0, 0, 0, 0);
 	gfx.PutPixel(x + 0, y + 1, 0, 0, 0);
 	gfx.PutPixel(x + 0, y + 2, 0, 0, 0);
@@ -18492,6 +18494,8 @@ void ArtCharacter::RobeLeft(int x, int y, Graphics & gfx)
 
 void ArtCharacter::RobeRight(int x, int y, Graphics & gfx)
 {
+	x = x - 5;
+	y = y - 10;
 	gfx.PutPixel(x + 0, y + 0, 0, 0, 0);
 	gfx.PutPixel(x + 0, y + 1, 0, 0, 0);
 	gfx.PutPixel(x + 0, y + 2, 0, 0, 0);
