@@ -20,6 +20,7 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include <iostream>
 
 Game::Game(MainWindow& wnd)
 	:
@@ -27,33 +28,32 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	player(Vec2(300, 470), Vec2(345, 420), Vec2(327, 470)),
 	rng(std::random_device()())
-	
 
 {
-	Vec2 T(105, 40);
-	int i = 0;
-	//inits the troopers
-	for (int y = 0; y < nTrooperDown; y++)
-	{
-		
-		for (int x = 0; x < nTrooperAcross; x++)
-		{
-			troopers[i].loc = Vec2(T.x + (x * trooperwidth), T.y + (y * trooperheight));
-			troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth, trooperheight) * 0.5f;
-			troopers[i].Bolt.Init(troopers[i].loc, rng);
-			i++;
-		}
-		
-	}
-	Vec2 Playersaberboxpos = player.ArtPosiition.ArtSaber;
-	Vec2 Playersaberboxsize = player.Sabersize;
-	player.SaberCollider.Init(Playersaberboxpos, Playersaberboxsize);
-	Vec2 Playerboxpos = player.ArtPosiition.Artcharacter - Vec2(40, 10);
-	Vec2 Playerboxsize = player.charactersize;
-	player.collider.Init(Playerboxpos, Playerboxsize);
-	Vec2 BackBoxpos = Vec2(1, 1);
-	Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
-	back.collider.Init(BackBoxpos, BackBoxsize);
+	//Vec2 T(105, 40);
+	//int i = 0;
+	////inits the troopers
+	//for (int y = 0; y < nTrooperDown; y++)
+	//{
+	//	
+	//	for (int x = 0; x < nTrooperAcross; x++)
+	//	{
+	//		troopers[i].loc = Vec2(T.x + (x * trooperwidth), T.y + (y * trooperheight));
+	//		troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth, trooperheight) * 0.5f;
+	//		troopers[i].Bolt.Init(troopers[i].loc, rng);
+	//		i++;
+	//	}
+	//	
+	//}
+	//Vec2 Playersaberboxpos = player.ArtPosiition.ArtSaber;
+	//Vec2 Playersaberboxsize = player.Sabersize;
+	//player.SaberCollider.Init(Playersaberboxpos, Playersaberboxsize);
+	//Vec2 Playerboxpos = player.ArtPosiition.Artcharacter - Vec2(40, 10);
+	//Vec2 Playerboxsize = player.charactersize;
+	//player.collider.Init(Playerboxpos, Playerboxsize);
+	//Vec2 BackBoxpos = Vec2(1, 1);
+	//Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
+	//back.collider.Init(BackBoxpos, BackBoxsize);
 	
 }
 
@@ -81,26 +81,27 @@ void Game::UpdateModel()
 			}
 			
 			//reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
-			for (int i = 0; i < trooperMax; i++)
-			{
-
-				troopers[i].Bolt.Update();
-				reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
-				
-				if (reflection.GetLengthSq())
-				{
-					//troopers[i].Bolt.vel = reflection;
-					troopers[i].Bolt.Move(reflection);
-					if (reflection.x)
-					{
-						troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
-					}
-					if (reflection.y)
-					{
-						troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
-					}
-				}
-			}
+			//for (int i = 0; i < trooperMax; i++)
+			//{
+			//
+			//	troopers[i].Bolt.Update();
+			//	reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
+			//	
+			//	if (reflection.GetLengthSq())
+			//	{
+			//		//troopers[i].Bolt.vel = reflection;
+			//		troopers[i].Bolt.Move(reflection);
+			//		troopers[i].Bolt.collider.Move(reflection);
+			//		if (reflection.x)
+			//		{
+			//			troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+			//		}
+			//		if (reflection.y)
+			//		{
+			//			troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+			//		}
+			//	}
+			//}
 			
 }
 
@@ -169,10 +170,10 @@ void Game::ComposeFrame()
 	
 	//player.Draw(gfx);
 	
-	for (int i = 0; i < trooperMax; i++)
-	{
-		troopers[i].DrawTrooper(gfx);
-   }
+	//for (int i = 0; i < trooperMax; i++)
+    //{
+	//	 troopers[i].DrawTrooper(gfx);
+	//}
 		
 	
 	SaberColorSelect();
@@ -194,4 +195,26 @@ void Game::ComposeFrame()
 	//	laser[i].Draw(gfx);
 	//	i++;
 	//}
+	//int sum = 0;
+	//for (int i = 0; (i * 3) < 1000; i++)
+	//{
+	//	sum += (i * 3);
+	//	if((i * 3) >= 999)
+	//	std::cout << i * 3 << " " << sum << std::endl;
+	//}
+	//for (int i = 0; i * 5 < 1000; i++)
+	//{
+	//	sum += (i * 5);
+	//	std::cout << i * 5 << " " << sum << std::endl;
+	//
+	//
+	//}
+	//for (int i = 0; i * 3 * 5 < 1000; i++)
+	//{
+	//	sum -= (i * 3 * 5);
+	//	std::cout << i * 5 << " " << sum << std::endl;
+	//
+	//
+	//}
+	//std::cout <<  sum << std::endl;
 }

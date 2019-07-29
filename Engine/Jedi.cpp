@@ -1,24 +1,30 @@
 #include "Jedi.h"
-
-Jedi::Jedi(Vec2& loc, Vec2& saber, Vec2& head) : Character(loc)
+#include "Saber.h"
+         // body       saber        head
+Jedi::Jedi(Vec2& loc, Vec2& saber, Vec2& head)
+	:
+	saber(saber)
 {
-	ArtPosiition.Artcharacter = loc;
-	ArtPosiition.ArtSaber = saber;
-	ArtPosiition.Arthead = head;
+	//ArtPosiition.Artcharacter = loc;
+	//ArtPosiition.ArtSaber = saber;
+	//ArtPosiition.Arthead = head;
+	this->loc = loc;
 	DrawHead = 0;
 	DrawSaber = 0;
 	DrawRobe = 0;
 	SaberCol = 0;
+	Head = head;
+	
 }
 
 void Jedi::Draw(Graphics& gfx)
 {
 	
-		(gfx.character.*(DrawRobe))((int)ArtPosiition.Artcharacter.x, (int)ArtPosiition.Artcharacter.y, gfx);
-		(gfx.saber.*(DrawSaber))((int)ArtPosiition.ArtSaber.x, (int)ArtPosiition.ArtSaber.y, color, gfx);
+		(gfx.character.*(DrawRobe))((int)loc.x, (int)loc.y, gfx);
+		(gfx.saber.*(DrawSaber))((int)saber.x, (int)saber.y, color, gfx);
 		if (DrawHead != NULL)
 		{
-			(gfx.head.*(DrawHead))((int)ArtPosiition.Arthead.x, (int)ArtPosiition.Arthead.y, gfx);
+			(gfx.head.*(DrawHead))((int)Head.x, (int)Head.y, gfx);
 		}
 
 	collider.DrawBox(gfx, Colors::Blue);
@@ -30,26 +36,32 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 	
 	if (kbd.KeyIsPressed('A'))
 	{
-		DrawRobe = &ArtCharacter::RobeLeft;
-		DrawSaber = &ArtSaber::SaberLeft;
+		if (DrawRobe != &ArtCharacter::RobeLeft)
+		{
+			DrawRobe = &ArtCharacter::RobeLeft;
+			DrawSaber = &ArtSaber::SaberLeft;
+			//collider init pointer for left pointing saber.
+
+			SaberCollider.Init(saber + Vec2{ -75,45 }, Sabersidesize);
+		}
 		
-		SaberCollider.Init(ArtPosiition.ArtSaber + Vec2{ -75,45 }, Sabersidesize);
-		//artcharacter.RobeLeft((int)Loc.Artcharacter.x - 5, (int)Loc.Artcharacter.y - 10, gfx);
-		//artsaber.SaberLeft((int)Loc.ArtSaber.x - 70, (int)Loc.ArtSaber.y + 52, color, gfx);
 
 	}
-	else if (kbd.KeyIsPressed('D'))
+	else if (kbd.KeyIsPressed('D') )
 	{
-		DrawRobe = &ArtCharacter::RobeRight;
-		DrawSaber = &ArtSaber::SaberRight;
-		
-		SaberCollider.Init(ArtPosiition.ArtSaber + Vec2{ 0,45 }, Sabersidesize);
+		if (DrawRobe != &ArtCharacter::RobeRight)
+		{
+			DrawRobe = &ArtCharacter::RobeRight;
+			DrawSaber = &ArtSaber::SaberRight;
+			//collider init pointer for right pointing saber
+			SaberCollider.Init(saber + Vec2{ 0,45 }, Sabersidesize);
+		}
 	}
-	else {
+	else if (DrawRobe != &ArtCharacter::RobeFront){
 		DrawRobe = &ArtCharacter::RobeFront;
 		DrawSaber = &ArtSaber::SaberFront;
-		SaberCollider.Init(ArtPosiition.ArtSaber, Sabersize);
-		
+		SaberCollider.Init(saber, Sabersize);
+		//pointer for defualt saber position.
 	}
 
 	if (kbd.KeyIsPressed('F'))
@@ -73,4 +85,11 @@ void Jedi::GenderSelect()
 	{
 		DrawHead = &Arthead::MaleHead;
 	}
+}
+
+void Jedi::Move(Vec2& moveamount)
+{
+	loc += moveamount;
+	Head += moveamount;
+	saber += moveamount;
 }

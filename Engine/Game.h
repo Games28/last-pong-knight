@@ -69,8 +69,8 @@ private:
 	static constexpr int nTrooperAcross = 7;
 	static constexpr int nTrooperDown = 2;
 	static constexpr int trooperMax = nTrooperAcross * nTrooperDown; 
-	Trooper troopers[trooperMax];
-	Laser bolt;
+	//Trooper troopers[trooperMax];
+	//Laser bolt;
 	
 	
 	/********************************/

@@ -6,7 +6,7 @@
 
 Laser::Laser(Vec2& loc)
 {
-	artloc.troper = loc;
+	this->loc = loc;
 }
 
 Laser::Laser(Vec2& loc, std::mt19937& rng)
@@ -52,11 +52,7 @@ void Laser::Respawn(Vec2& loc, std::mt19937& rng)
 
 }
 
-void Laser::Move(Vec2& MoveAmount)
-{
-	loc += MoveAmount;
-	artloc.troper += MoveAmount;
-}
+
 
 void Laser::Update()
 {

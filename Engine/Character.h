@@ -18,8 +18,8 @@ public:
 	//Character(Vec2& loc, Vec2& saber, Vec2& head);
 
 	
-	void DrawTrooper(Graphics& gfx);
-	void Move(Vec2& MoveAmount);
+	//void DrawTrooper(Graphics& gfx);
+	//void Move(Vec2& MoveAmount);
 	void SaberBackColorChange();
 public:
 	Vec2 charactersize{ 180, 100 };
@@ -35,11 +35,11 @@ public:
 	Collider collider;
 	ArtCharacter artcharacter;
 	Arthead arthead;
-	ArtSaber artsaber;
+	
 	ArtLoc ArtPosiition;
 	Vec2 loc;
 	Color color[2];
-	Laser Bolt;
+	
 	Collider SaberCollider;
 	bool ColorIncreasing = false;
 };

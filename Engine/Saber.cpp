@@ -1,45 +1,33 @@
-#include "Character.h"
+#include "Saber.h"
+#include "Graphics.h"
+#include "Jedi.h"
 
-#include "Collider.h"
-
-
-
-
-
-Character::Character(Vec2& loc)
+Saber::Saber(Vec2& loc)
 {
-	ArtPosiition.Artcharacter - loc;
+	this->loc = loc;
 }
 
-/*Character::Character(Vec2& loc, Vec2& saber, Vec2& head)
-	:
-	color{ { 0,0,0 },{ 0,0,0 } }
+void Saber::DrawLeft(Graphics& gfx)
 {
-	Loc.Artcharacter = loc;
-	Loc.ArtSaber = saber;
-	Loc.Arthead = head;
-	
-}*/
+	art.SaberLeft(loc.x, loc.y, color, gfx);
+}
 
+void Saber::DrawRight(Graphics& gfx)
+{
+	art.SaberRight(loc.x, loc.y, color, gfx);
+}
 
+void Saber::DrawFront(Graphics& gfx)
+{
+	art.SaberFront(loc.x, loc.y, color, gfx);
+}
 
-//void Character::DrawTrooper(Graphics& gfx)
-//{
-//	artcharacter.StormTrooper(loc.x, loc.y, gfx);
-//	Bolt.Draw(gfx); 
-//}
+void Saber::Move(Vec2& moveamount)
+{
+	loc += moveamount;
+}
 
-//void Character::Move(Vec2 & MoveAmount)
-//{
-//	ArtPosiition.Artcharacter += MoveAmount;
-//	ArtPosiition.Arthead += MoveAmount;
-//	ArtPosiition.ArtSaber += MoveAmount;
-//	collider.Move(MoveAmount);
-//	SaberCollider.Move(MoveAmount);
-//	
-//}
-
-void Character::SaberBackColorChange()
+void Saber::saberColorChange()
 {
 	float Red = 1.0f / (255.0f / (1 + color[1].GetR()));
 	float Blue = 1.0f / (255.0f / (1 + color[1].GetB()));
