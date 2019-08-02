@@ -78,7 +78,7 @@ public:
 	
 	Arthead head;
 	ArtLaser laser;
-	ArtSaber saber;
+	ArtSaber Asaber;
 	ArtCharacter character;
 	void PstartPosition(int x, int y);
 

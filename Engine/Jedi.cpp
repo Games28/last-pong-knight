@@ -1,19 +1,18 @@
 #include "Jedi.h"
-#include "Saber.h"
+#include "Graphics.h"
+
          // body       saber        head
-Jedi::Jedi(Vec2& loc, Vec2& saber, Vec2& head)
+Jedi::Jedi(Vec2& loc)
 	:
-	saber(saber)
+	Character(loc),
+	saber(loc)
+	
 {
-	//ArtPosiition.Artcharacter = loc;
-	//ArtPosiition.ArtSaber = saber;
-	//ArtPosiition.Arthead = head;
-	this->loc = loc;
 	DrawHead = 0;
 	DrawSaber = 0;
 	DrawRobe = 0;
 	SaberCol = 0;
-	Head = head;
+	
 	
 }
 
@@ -21,14 +20,14 @@ void Jedi::Draw(Graphics& gfx)
 {
 	
 		(gfx.character.*(DrawRobe))((int)loc.x, (int)loc.y, gfx);
-		(gfx.saber.*(DrawSaber))((int)saber.x, (int)saber.y, color, gfx);
+		
 		if (DrawHead != NULL)
 		{
 			(gfx.head.*(DrawHead))((int)Head.x, (int)Head.y, gfx);
 		}
 
-	collider.DrawBox(gfx, Colors::Blue);
-	SaberCollider.DrawBox(gfx, Colors::Magenta);
+	//collider.DrawBox(gfx, Colors::Blue);
+	//SaberCollider.DrawBox(gfx, Colors::Magenta);
 }
 
 void Jedi::Update(Graphics& gfx, Keyboard& kbd)
@@ -39,12 +38,8 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 		if (DrawRobe != &ArtCharacter::RobeLeft)
 		{
 			DrawRobe = &ArtCharacter::RobeLeft;
-			DrawSaber = &ArtSaber::SaberLeft;
-			//collider init pointer for left pointing saber.
-
-			SaberCollider.Init(saber + Vec2{ -75,45 }, Sabersidesize);
+			saber.DrawLeft(gfx);
 		}
-		
 
 	}
 	else if (kbd.KeyIsPressed('D') )
@@ -52,16 +47,14 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 		if (DrawRobe != &ArtCharacter::RobeRight)
 		{
 			DrawRobe = &ArtCharacter::RobeRight;
-			DrawSaber = &ArtSaber::SaberRight;
-			//collider init pointer for right pointing saber
-			SaberCollider.Init(saber + Vec2{ 0,45 }, Sabersidesize);
+			saber.DrawRight(gfx);
+			
 		}
 	}
 	else if (DrawRobe != &ArtCharacter::RobeFront){
 		DrawRobe = &ArtCharacter::RobeFront;
-		DrawSaber = &ArtSaber::SaberFront;
-		SaberCollider.Init(saber, Sabersize);
-		//pointer for defualt saber position.
+		saber.DrawFront(gfx);
+		
 	}
 
 	if (kbd.KeyIsPressed('F'))
@@ -91,5 +84,5 @@ void Jedi::Move(Vec2& moveamount)
 {
 	loc += moveamount;
 	Head += moveamount;
-	saber += moveamount;
+	saber.loc += moveamount;
 }

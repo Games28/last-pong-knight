@@ -1,17 +1,23 @@
 #pragma once
 #include "Character.h"
-class Saber;
+#include "Saber.h"
+#include"Keyboard.h"
+#include "Arthead.h"
+#include "PlayerSelect.h"
+#include "Colors.h"
+class Graphics;
 
 class Jedi : public Character
 {
 public:
 	Jedi() = default;
-	Jedi(Vec2& loc, Vec2& saber, Vec2& head);
+	Jedi(Vec2& loc);
 	void Draw(Graphics& gfx);
 	void Update(Graphics& gfx, Keyboard& kbd);
 	void GenderSelect();
 	void Move(Vec2& moveamount);
 public:
+	Vec2 charactersize{ 180, 100 };
 	void(Arthead::* DrawHead)(int, int, Graphics&);
 	void(ArtCharacter::* DrawRobe)(int, int, Graphics&);
 	void(ArtSaber::* DrawSaber)(int, int, Color*, Graphics&);

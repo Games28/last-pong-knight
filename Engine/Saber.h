@@ -3,14 +3,14 @@
 #include "Vec2.h"
 #include "Colors.h"
 #include "Collider.h"
-class Jedi;
+
 class Graphics;
 
 
-class Saber : public Jedi
+class Saber
 {
 public: 
-	Saber() = default;
+	//Saber() = default;
 	Saber(Vec2& loc);
 	void DrawLeft(Graphics& gfx);
 	void DrawRight(Graphics& gfx);
@@ -19,7 +19,10 @@ public:
 	void saberColorChange();
 
 public:
-	
+	Vec2 saberLeft{ -75,45 };
+	Vec2 saberRight{ 0,45 };
+	Vec2 saberFront;
+	Vec2 loc;
 	ArtSaber art;
 	Color color[2];
 	Collider collider;

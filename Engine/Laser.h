@@ -22,7 +22,7 @@ public:
 	void (ArtLaser::* DrawLaser)(int, int, Graphics&);
 	
 	Vec2 vel;
-	
+	Collider collider;
 	ArtLaser Art;
 };
 

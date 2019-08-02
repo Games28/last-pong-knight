@@ -1,25 +1,27 @@
 #include "Saber.h"
 #include "Graphics.h"
-#include "Jedi.h"
+
 
 Saber::Saber(Vec2& loc)
+	:
+	loc(loc)
 {
-	this->loc = loc;
+	
 }
 
 void Saber::DrawLeft(Graphics& gfx)
 {
-	art.SaberLeft(loc.x, loc.y, color, gfx);
+	art.SaberLeft(loc.x + saberLeft.x, loc.y + saberLeft.y, color, gfx);
 }
 
 void Saber::DrawRight(Graphics& gfx)
 {
-	art.SaberRight(loc.x, loc.y, color, gfx);
+	art.SaberRight(loc.x + saberRight.x, loc.y + saberRight.y, color, gfx);
 }
 
 void Saber::DrawFront(Graphics& gfx)
 {
-	art.SaberFront(loc.x, loc.y, color, gfx);
+	art.SaberFront(loc.x + saberFront.x, loc.y + saberFront.y, color, gfx);
 }
 
 void Saber::Move(Vec2& moveamount)

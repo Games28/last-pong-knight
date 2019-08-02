@@ -1,6 +1,6 @@
 #pragma once
 class Graphics;
-#include "Colors.h"
+class Color;
 
 class ArtSaber
 {

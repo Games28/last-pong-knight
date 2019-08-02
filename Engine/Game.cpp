@@ -26,7 +26,7 @@ Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
 	gfx(wnd),
-	player(Vec2(300, 470), Vec2(345, 420), Vec2(327, 470)),
+	player(Vec2(300, 470)),
 	rng(std::random_device()())
 
 {
@@ -126,25 +126,25 @@ void Game::SaberColorSelect()
 	unsigned char ColorValue = 127;
 	if (wnd.kbd.KeyIsPressed('1'))
 	{
-		player.color[0] = Color{ 0,0,0 };
-		player.color[1] = Color{ 0,0,ColorValue };
+		player.saber.color[0] = Color{ 0,0,0 };
+		player.saber.color[1] = Color{ 0,0,ColorValue };
 	}
 	if (wnd.kbd.KeyIsPressed('2'))
 	{
-		player.color[0] = Color{ 0,0,0 };
-		player.color[1] = Color{ 0,ColorValue,0 };
+		player.saber.color[0] = Color{ 0,0,0 };
+		player.saber.color[1] = Color{ 0,ColorValue,0 };
 		
 	}
 	if (wnd.kbd.KeyIsPressed('3'))
 	{
-		player.color[0] = Color{ 0,0,0 };
-		player.color[1] = Color{ ColorValue,0,0 };
+		player.saber.color[0] = Color{ 0,0,0 };
+		player.saber.color[1] = Color{ ColorValue,0,0 };
 		
 	}
 	if (wnd.kbd.KeyIsPressed('4'))
 	{
-		player.color[0] = Color{ 0,0,0 };
-		player.color[1] = Color{ ColorValue,0,ColorValue };
+		player.saber.color[0] = Color{ 0,0,0 };
+		player.saber.color[1] = Color{ ColorValue,0,ColorValue };
 		
 	}
 }
@@ -177,7 +177,7 @@ void Game::ComposeFrame()
 		
 	
 	SaberColorSelect();
-	player.SaberBackColorChange();
+	player.saber.saberColorChange();
 	//player.GenderSelect();
 	//if (headselect == PlayerSelect::FEMALE)
 	//{
