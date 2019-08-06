@@ -1,5 +1,6 @@
 #include "Collider.h"
 #include "Graphics.h"
+#include "Colors.h"
 
 Collider::Collider(const Vec2& loc, const Vec2& size)
 {

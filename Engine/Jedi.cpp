@@ -1,13 +1,14 @@
 #include "Jedi.h"
 #include "Graphics.h"
 
-         // body       saber        head
+         
 Jedi::Jedi(Vec2& loc)
 	:
 	Character(loc),
-	saber(loc)
-	
+	saber(loc),
+	collider(loc, charactersize)
 {
+	
 	DrawHead = 0;
 	DrawSaber = 0;
 	DrawRobe = 0;
@@ -18,14 +19,14 @@ Jedi::Jedi(Vec2& loc)
 
 void Jedi::Draw(Graphics& gfx)
 {
-	
-		(gfx.character.*(DrawRobe))((int)loc.x, (int)loc.y, gfx);
-		
-		if (DrawHead != NULL)
-		{
-			(gfx.head.*(DrawHead))((int)Head.x, (int)Head.y, gfx);
-		}
 
+	(gfx.character.*(DrawRobe))((int)loc.x, (int)loc.y, gfx);
+
+	if (DrawHead != NULL)
+	{
+		(gfx.head.*(DrawHead))((int)loc.x + (int)headloc.x, (int)loc.y + (int)headloc.y, gfx);
+	}
+	(saber.*(DrawSaber))(gfx);
 	//collider.DrawBox(gfx, Colors::Blue);
 	//SaberCollider.DrawBox(gfx, Colors::Magenta);
 }
@@ -38,7 +39,7 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 		if (DrawRobe != &ArtCharacter::RobeLeft)
 		{
 			DrawRobe = &ArtCharacter::RobeLeft;
-			saber.DrawLeft(gfx);
+			DrawSaber = &Saber::DrawLeft;
 		}
 
 	}
@@ -47,13 +48,12 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 		if (DrawRobe != &ArtCharacter::RobeRight)
 		{
 			DrawRobe = &ArtCharacter::RobeRight;
-			saber.DrawRight(gfx);
-			
+			DrawSaber = &Saber::DrawRight;
 		}
 	}
 	else if (DrawRobe != &ArtCharacter::RobeFront){
 		DrawRobe = &ArtCharacter::RobeFront;
-		saber.DrawFront(gfx);
+		DrawSaber = &Saber::DrawFront;
 		
 	}
 
@@ -85,4 +85,10 @@ void Jedi::Move(Vec2& moveamount)
 	loc += moveamount;
 	Head += moveamount;
 	saber.loc += moveamount;
+	//collider.Move(moveamount);
+}
+
+void Jedi::collision(Collider& collide)
+{
+
 }

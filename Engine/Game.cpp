@@ -166,7 +166,7 @@ void Game::ComposeFrame()
 	back.Draw(gfx);
 	
 	player.Draw(gfx);
-	
+	player.Update(gfx, wnd.kbd);
 	
 	//player.Draw(gfx);
 	

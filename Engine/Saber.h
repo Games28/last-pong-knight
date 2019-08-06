@@ -19,9 +19,9 @@ public:
 	void saberColorChange();
 
 public:
-	Vec2 saberLeft{ -75,45 };
-	Vec2 saberRight{ 0,45 };
-	Vec2 saberFront;
+	Vec2 saberLeft{ 45,-50 };
+	Vec2 saberRight{ 35,-50 };
+	Vec2 saberFront{ 42,-55 };
 	Vec2 loc;
 	ArtSaber art;
 	Color color[2];

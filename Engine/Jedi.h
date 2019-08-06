@@ -16,11 +16,12 @@ public:
 	void Update(Graphics& gfx, Keyboard& kbd);
 	void GenderSelect();
 	void Move(Vec2& moveamount);
+	void collision(Collider& collide);
 public:
-	Vec2 charactersize{ 180, 100 };
+	Vec2 charactersize{ 50, 50 };
 	void(Arthead::* DrawHead)(int, int, Graphics&);
 	void(ArtCharacter::* DrawRobe)(int, int, Graphics&);
-	void(ArtSaber::* DrawSaber)(int, int, Color*, Graphics&);
+	void(Saber::* DrawSaber)(Graphics&);
 	void(Collider::* SaberCol)(const Vec2&, const Vec2&);
 	Saber saber;
 	PlayerSelect headselect;
@@ -29,6 +30,7 @@ public:
 	//tried this to allow for overriding when doing the different saber positions but do not seem to get the values?
 	//Vec2 SaberLocation = ArtPosiition.ArtSaber;
 	Vec2 Head;
-	
+	Vec2 headloc{ 25,0};
+	Collider collider;
 };
 

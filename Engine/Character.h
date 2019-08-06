@@ -2,6 +2,7 @@
 #include "Vec2.h"
 #include "ArtCharacter.h"
 #include "Collider.h"
+#include "CollisionManager.h"
 
 
 class Character
@@ -12,11 +13,11 @@ public:
 	
 public:
 	
-	Collider collider;
+
 	ArtCharacter artcharacter;
 	Vec2 loc;
 	
-	
+
 	
 };
 

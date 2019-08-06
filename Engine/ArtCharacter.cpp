@@ -1,9 +1,16 @@
 #include "ArtCharacter.h"
 #include "Graphics.h"
+#include "Colors.h"
 
 
+ArtCharacter::ArtCharacter()
+{
+	c = new Color[2];
+	c[0] =  Colors::MakeRGB(250, 180, 80);
+	c[1] = Colors::MakeRGB(190, 50, 0);
+}
 
-void ArtCharacter::Statue(int x, int y, Graphics & gfx) 
+void ArtCharacter::Statue(int x, int y, Graphics & gfx)
 {
 	gfx.PutPixel(x + 0, y + 0, c[0]);
 	gfx.PutPixel(x + 0, y + 1, c[0]);
