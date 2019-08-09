@@ -5,8 +5,8 @@
 Jedi::Jedi(Vec2& loc)
 	:
 	Character(loc),
-	saber(loc),
-	collider(loc, charactersize)
+	saber(loc)
+	//collider(loc, charactersize)
 {
 	
 	DrawHead = 0;

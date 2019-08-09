@@ -27,6 +27,7 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	player(Vec2(300, 470)),
+	trooper(Vec2(105, 40)),
 	rng(std::random_device()())
 
 {
@@ -73,6 +74,7 @@ void Game::UpdateModel()
 			
 			player.GenderSelect();
 			player.Update(gfx, wnd.kbd);
+			//trooper.Update();
 			
 			Vec2 reflection = collidemanager.GetInnerReflection(player.collider, back.collider);
 			if (reflection.GetLengthSq())
@@ -170,6 +172,7 @@ void Game::ComposeFrame()
 	
 	//player.Draw(gfx);
 	
+	trooper.Draw(gfx);
 	//for (int i = 0; i < trooperMax; i++)
     //{
 	//	 troopers[i].DrawTrooper(gfx);

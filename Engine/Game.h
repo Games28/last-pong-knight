@@ -25,7 +25,6 @@
 #include "Graphics.h"
 #include "BackGround.h"
 #include "Vec2.h"
-//#include "Character.h"
 #include "Jedi.h"
 #include "Trooper.h"
 #include "CollisionManager.h"
@@ -69,7 +68,7 @@ private:
 	static constexpr int nTrooperAcross = 7;
 	static constexpr int nTrooperDown = 2;
 	static constexpr int trooperMax = nTrooperAcross * nTrooperDown; 
-	//Trooper troopers[trooperMax];
+	Trooper trooper;
 	//Laser bolt;
 	
 	

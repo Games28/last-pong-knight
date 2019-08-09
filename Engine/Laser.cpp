@@ -5,8 +5,10 @@
 
 
 Laser::Laser(Vec2& loc)
+	:
+	loc(loc)
 {
-	this->loc = loc;
+	
 }
 
 Laser::Laser(Vec2& loc, std::mt19937& rng)
