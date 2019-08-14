@@ -35,6 +35,7 @@ void Trooper::Draw(Graphics& gfx)
 		for (int x = 0; x < numberAcrossMax; x++)
 		{
 			troopers[arraytracker].artcharacter.StormTrooper(loc.x + (x * trooperwidth), loc.y + (y * trooperheight), gfx);
+			(bolts[arraytracker].*(DrawBolt))(gfx);
 			arraytracker++;
 		}
 
@@ -50,12 +51,7 @@ void Trooper::Update()
 
 void Trooper::Rebound()
 {
-	for (int y = 0; y < numberDownMax; y++)
-	{
-
-		for (int x = 0; x < numberAcrossMax; x++)
-		{
-			//bolts[arraytracker].loc += bolts[arraytracker].vel * 3.0f;
+	
 			if (bolts[arraytracker].vel.y < 0.0f)
 			{
 				DrawBolt = &Laser::DrawLaserUp;
@@ -64,11 +60,7 @@ void Trooper::Rebound()
 				DrawBolt = &Laser::DrawLaserDown;
 			}
 			//bolts[arraytracker].collider.loc = loc;
-			arraytracker++;
-		}
-
-	}
-
+			
 }
 
 void Trooper::Collision(Collider& collide)
