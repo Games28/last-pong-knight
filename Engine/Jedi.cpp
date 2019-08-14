@@ -5,8 +5,8 @@
 Jedi::Jedi(Vec2& loc)
 	:
 	Character(loc),
-	saber(loc)
-	//collider(loc, charactersize)
+	saber(loc),
+	collider(loc + Vec2(-35, 0), charactersize)
 {
 	
 	DrawHead = 0;
@@ -27,7 +27,7 @@ void Jedi::Draw(Graphics& gfx)
 		(gfx.head.*(DrawHead))((int)loc.x + (int)headloc.x, (int)loc.y + (int)headloc.y, gfx);
 	}
 	(saber.*(DrawSaber))(gfx);
-	//collider.DrawBox(gfx, Colors::Blue);
+	collider.DrawBox(gfx, Colors::Blue);
 	//SaberCollider.DrawBox(gfx, Colors::Magenta);
 }
 
@@ -85,10 +85,14 @@ void Jedi::Move(Vec2& moveamount)
 	loc += moveamount;
 	Head += moveamount;
 	saber.loc += moveamount;
-	//collider.Move(moveamount);
+	collider.Move(moveamount);
 }
 
 void Jedi::collision(Collider& collide)
 {
-
+	Vec2 reflection = collidemanage.GetInnerReflection(collider, collide);
+	if (reflection.GetLengthSq())
+	{
+		Move(reflection);
+	}
 }

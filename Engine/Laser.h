@@ -15,7 +15,8 @@ public:
 	void Draw(Graphics& gfx);
 	void Init(Vec2& loc, std::mt19937& rng);
 	void Respawn(Vec2& loc, std::mt19937& rng);
-	
+	void DrawLaserUp(Graphics& gfx);
+	void DrawLaserDown(Graphics& gfx);
 	void Update();
 public:
 	
@@ -23,6 +24,6 @@ public:
 	Vec2 loc;
 	Vec2 vel;
 	Collider collider;
-	//ArtLaser Art;
+	ArtLaser Art;
 };
 

@@ -52,9 +52,9 @@ Game::Game(MainWindow& wnd)
 	//Vec2 Playerboxpos = player.ArtPosiition.Artcharacter - Vec2(40, 10);
 	//Vec2 Playerboxsize = player.charactersize;
 	//player.collider.Init(Playerboxpos, Playerboxsize);
-	//Vec2 BackBoxpos = Vec2(1, 1);
-	//Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
-	//back.collider.Init(BackBoxpos, BackBoxsize);
+	Vec2 BackBoxpos = Vec2(1, 1);
+	Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
+	back.collider.Init(BackBoxpos, BackBoxsize);
 	
 }
 
@@ -74,13 +74,10 @@ void Game::UpdateModel()
 			
 			player.GenderSelect();
 			player.Update(gfx, wnd.kbd);
+			player.collision(back.collider);
 			//trooper.Update();
 			
-			Vec2 reflection = collidemanager.GetInnerReflection(player.collider, back.collider);
-			if (reflection.GetLengthSq())
-			{
-				player.Move(reflection);
-			}
+			
 			
 			//reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
 			//for (int i = 0; i < trooperMax; i++)
@@ -166,9 +163,9 @@ void Game::GenderSelect()
 void Game::ComposeFrame()
 {
 	back.Draw(gfx);
-	
-	player.Draw(gfx);
 	player.Update(gfx, wnd.kbd);
+	player.Draw(gfx);
+	
 	
 	//player.Draw(gfx);
 	

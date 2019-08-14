@@ -54,6 +54,16 @@ void Laser::Respawn(Vec2& loc, std::mt19937& rng)
 
 }
 
+void Laser::DrawLaserUp(Graphics& gfx)
+{
+	Art.DrawLaserUp(loc.x, loc.y, gfx);
+}
+
+void Laser::DrawLaserDown(Graphics& gfx)
+{
+	Art.DrawLaserDown(loc.x, loc.y, gfx);
+}
+
 
 
 void Laser::Update()

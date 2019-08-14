@@ -6,6 +6,19 @@ Trooper::Trooper(Vec2& loc)
 	Character(loc)
 {
 	
+	
+	for (int y = 0; y < numberDownMax; y++)
+	{
+
+		for (int x = 0; x < numberAcrossMax; x++)
+		{
+			bolts[arraytracker].loc = troopers[arraytracker].loc + Vec2(trooperwidth, trooperheight) * 0.5f;
+
+			arraytracker++;
+		}
+
+	}
+	DrawBolt = 0;
 }
 
 void Trooper::Draw(Graphics& gfx)
@@ -14,25 +27,48 @@ void Trooper::Draw(Graphics& gfx)
 	//{
 	//	troopers[i].artcharacter.StormTrooper(loc.x, loc.y, gfx);
 	//}
-	int i = 0;
-	//inits the troopers
-	for (int y = 0; y < nTrooperDown; y++)
+	
+
+	for (int y = 0; y < numberDownMax; y++)
 	{
 
-		for (int x = 0; x < nTrooperAcross; x++)
+		for (int x = 0; x < numberAcrossMax; x++)
 		{
-			troopers[i].artcharacter.StormTrooper(loc.x + (x * trooperwidth), loc.y + (y * trooperheight), gfx);
-			//troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth, trooperheight) * 0.5f;
-			//troopers[i].Bolt.Init(troopers[i].loc, rng);
-			i++;
+			troopers[arraytracker].artcharacter.StormTrooper(loc.x + (x * trooperwidth), loc.y + (y * trooperheight), gfx);
+			arraytracker++;
 		}
 
 	}
+	(laserBolt.*(DrawBolt))(gfx);
+	
 }
 
 void Trooper::Update()
 {
 	
+}
+
+void Trooper::Rebound()
+{
+	for (int y = 0; y < numberDownMax; y++)
+	{
+
+		for (int x = 0; x < numberAcrossMax; x++)
+		{
+			//bolts[arraytracker].loc += bolts[arraytracker].vel * 3.0f;
+			if (bolts[arraytracker].vel.y < 0.0f)
+			{
+				DrawBolt = &Laser::DrawLaserUp;
+			}
+			else {
+				DrawBolt = &Laser::DrawLaserDown;
+			}
+			//bolts[arraytracker].collider.loc = loc;
+			arraytracker++;
+		}
+
+	}
+
 }
 
 void Trooper::Collision(Collider& collide)
