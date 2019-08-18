@@ -27,31 +27,25 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	player(Vec2(300, 470)),
-	trooper(Vec2(105, 40)),
 	rng(std::random_device()())
 
 {
-	//Vec2 T(105, 40);
-	//int i = 0;
-	////inits the troopers
-	//for (int y = 0; y < nTrooperDown; y++)
-	//{
-	//	
-	//	for (int x = 0; x < nTrooperAcross; x++)
-	//	{
-	//		troopers[i].loc = Vec2(T.x + (x * trooperwidth), T.y + (y * trooperheight));
-	//		troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth, trooperheight) * 0.5f;
-	//		troopers[i].Bolt.Init(troopers[i].loc, rng);
-	//		i++;
-	//	}
-	//	
-	//}
-	//Vec2 Playersaberboxpos = player.ArtPosiition.ArtSaber;
-	//Vec2 Playersaberboxsize = player.Sabersize;
-	//player.SaberCollider.Init(Playersaberboxpos, Playersaberboxsize);
-	//Vec2 Playerboxpos = player.ArtPosiition.Artcharacter - Vec2(40, 10);
-	//Vec2 Playerboxsize = player.charactersize;
-	//player.collider.Init(Playerboxpos, Playerboxsize);
+	Vec2 Trooper(105, 40);
+	int i = 0;
+	//inits the troopers
+	for (int y = 0; y < nTrooperDown; y++)
+	{
+		
+		for (int x = 0; x < nTrooperAcross; x++)
+		{
+			troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
+			//troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth, trooperheight) * 0.5f;
+			//troopers[i].Bolt.Init(troopers[i].loc, rng);
+			i++;
+		}
+		
+	}
+	
 	Vec2 BackBoxpos = Vec2(1, 1);
 	Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
 	back.collider.Init(BackBoxpos, BackBoxsize);
@@ -75,7 +69,7 @@ void Game::UpdateModel()
 			player.GenderSelect();
 			player.Update(gfx, wnd.kbd);
 			player.collision(back.collider);
-			//trooper.Update();
+			
 			
 			
 			
@@ -163,17 +157,15 @@ void Game::GenderSelect()
 void Game::ComposeFrame()
 {
 	back.Draw(gfx);
+	//Draws player character
 	player.Update(gfx, wnd.kbd);
 	player.Draw(gfx);
 	
-	
-	//player.Draw(gfx);
-	
-	trooper.Draw(gfx);
-	//for (int i = 0; i < trooperMax; i++)
-    //{
-	//	 troopers[i].DrawTrooper(gfx);
-	//}
+	//Draws array of troopers
+	for (int i = 0; i < trooperMax; i++)
+    {
+		 troopers[i].Draw(gfx);
+	}
 		
 	
 	SaberColorSelect();

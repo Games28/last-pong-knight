@@ -14,7 +14,7 @@ public:
 	void Collision(Collider& collide);
 public:
 	
-	void(Laser::* DrawBolt)(Graphics&);
+	//void(Laser::* DrawBolt)(Graphics&);
 	static const int lasermax = 3;
 	static constexpr float laserseparation = 70.0f;
 	
@@ -24,8 +24,8 @@ public:
 	static constexpr int numberDownMax = 2;
 	static constexpr int amountMax = numberAcrossMax * numberDownMax;
 	Character troopers[amountMax];
-	Laser bolts[amountMax];
-	Laser laserBolt;
+	//Laser bolts[amountMax];
+	//Laser laserBolt;
 	int arraytracker = 0;
 	
 };

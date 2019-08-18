@@ -68,7 +68,7 @@ private:
 	static constexpr int nTrooperAcross = 7;
 	static constexpr int nTrooperDown = 2;
 	static constexpr int trooperMax = nTrooperAcross * nTrooperDown; 
-	Trooper trooper;
+	Trooper troopers[trooperMax];
 	//Laser bolt;
 	
 	

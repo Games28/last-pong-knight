@@ -1,10 +1,9 @@
 #pragma once
-class Graphics;
 class ArtLaser;
+class Graphics;
 #include <random>
 #include <math.h>
 #include "Collider.h"
-#include "Trooper.h"
 #include "Vec2.h"
 class Laser 
 {
@@ -24,6 +23,6 @@ public:
 	Vec2 loc;
 	Vec2 vel;
 	Collider collider;
-	ArtLaser Art;
+	//ArtLaser Art;
 };
 
