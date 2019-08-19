@@ -3,7 +3,8 @@
 
 Trooper::Trooper(Vec2& loc)
 	:
-	Character(loc)
+	Character(loc),
+	Bolt(loc)
 {
 	
 	
@@ -13,18 +14,16 @@ void Trooper::Draw(Graphics& gfx)
 {	
 	
 		artcharacter.StormTrooper(loc.x, loc.y, gfx);
+		Bolt.Draw(gfx);
 	
 	
 
 	
-	//(laserBolt.*(DrawBolt))(gfx);
+	(laserBolt.*(DrawBolt))(gfx);
 	
 }
 
-void Trooper::Update()
-{
-	
-}
+
 
 void Trooper::Rebound()
 {

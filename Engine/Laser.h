@@ -1,5 +1,5 @@
 #pragma once
-class ArtLaser;
+#include "ArtLaser.h"
 class Graphics;
 #include <random>
 #include <math.h>
@@ -23,6 +23,6 @@ public:
 	Vec2 loc;
 	Vec2 vel;
 	Collider collider;
-	//ArtLaser Art;
+	ArtLaser Art;
 };
 

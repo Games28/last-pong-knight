@@ -47,6 +47,7 @@ private:
 	Vec2 GetMoveDirection(float moveAmount);
 	void SaberColorSelect();
 	void GenderSelect();
+	void Boltrebound();
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -69,7 +70,7 @@ private:
 	static constexpr int nTrooperDown = 2;
 	static constexpr int trooperMax = nTrooperAcross * nTrooperDown; 
 	Trooper troopers[trooperMax];
-	//Laser bolt;
+	Laser bolt;
 	
 	
 	/********************************/

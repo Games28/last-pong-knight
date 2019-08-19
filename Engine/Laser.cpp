@@ -1,6 +1,6 @@
 #include "Laser.h"
 #include "Graphics.h"
-#include "ArtLaser.h"
+
 
 
 
@@ -21,6 +21,7 @@ Laser::Laser(Vec2& loc, std::mt19937& rng)
 
 void Laser::Draw(Graphics & gfx)
 {
+	//Art.DrawLaserDown(loc.x, loc.y, gfx);
 	(gfx.laser.*(DrawLaser))((int)loc.x, (int)loc.y, gfx);
 	collider.DrawBox(gfx, Colors::Magenta);
 }
@@ -56,12 +57,12 @@ void Laser::Respawn(Vec2& loc, std::mt19937& rng)
 
 void Laser::DrawLaserUp(Graphics& gfx)
 {
-	//Art.DrawLaserUp(loc.x, loc.y, gfx);
+	Art.DrawLaserUp(loc.x, loc.y, gfx);
 }
 
 void Laser::DrawLaserDown(Graphics& gfx)
 {
-	//Art.DrawLaserDown(loc.x, loc.y, gfx);
+	Art.DrawLaserDown(loc.x, loc.y, gfx);
 }
 
 

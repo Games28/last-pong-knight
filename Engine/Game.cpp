@@ -39,8 +39,8 @@ Game::Game(MainWindow& wnd)
 		for (int x = 0; x < nTrooperAcross; x++)
 		{
 			troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
-			//troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth, trooperheight) * 0.5f;
-			//troopers[i].Bolt.Init(troopers[i].loc, rng);
+		   troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
+			troopers[i].Bolt.Init(troopers[i].Bolt.loc, rng);
 			i++;
 		}
 		
@@ -73,28 +73,29 @@ void Game::UpdateModel()
 			
 			
 			
-			//reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
-			//for (int i = 0; i < trooperMax; i++)
-			//{
-			//
-			//	troopers[i].Bolt.Update();
-			//	reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
-			//	
-			//	if (reflection.GetLengthSq())
-			//	{
-			//		//troopers[i].Bolt.vel = reflection;
-			//		troopers[i].Bolt.Move(reflection);
-			//		troopers[i].Bolt.collider.Move(reflection);
-			//		if (reflection.x)
-			//		{
-			//			troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
-			//		}
-			//		if (reflection.y)
-			//		{
-			//			troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
-			//		}
-			//	}
-			//}
+			//Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
+			for (int i = 0; i < trooperMax; i++)
+			{
+			
+				
+				 Vec2 reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
+				 troopers[i].Bolt.Update();
+				if (reflection.GetLengthSq())
+				{
+					troopers[i].Bolt.vel = reflection;
+					//troopers[i].Move(reflection);
+					troopers[i].Bolt.collider.Move(reflection);
+					if (reflection.x)
+					{
+						troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+					}
+					if (reflection.y)
+					{
+						troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+					}
+				}
+				
+			}
 			
 }
 
@@ -154,6 +155,18 @@ void Game::GenderSelect()
 	}
 }
 
+void Game::Boltrebound()
+{
+	//if (bolts[arraytracker].vel.y < 0.0f)
+	//{
+	//	DrawBolt = &Laser::DrawLaserUp;
+	//}
+	//else {
+	//	DrawBolt = &Laser::DrawLaserDown;
+	//}
+	//bolts[arraytracker].collider.loc = loc;
+}
+
 void Game::ComposeFrame()
 {
 	back.Draw(gfx);
@@ -170,15 +183,7 @@ void Game::ComposeFrame()
 	
 	SaberColorSelect();
 	player.saber.saberColorChange();
-	//player.GenderSelect();
-	//if (headselect == PlayerSelect::FEMALE)
-	//{
-	//	player.DrawHead = &Arthead::FemaleHead;
-	//}
-	//if (headselect == PlayerSelect::MALE)
-	//{
-	//	player.DrawHead = &Arthead::MaleHead;
-	//}
+	
 
 	
 	//int l = 0;
