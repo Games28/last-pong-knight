@@ -3,8 +3,8 @@
 
 Trooper::Trooper(Vec2& loc)
 	:
-	Character(loc),
-	Bolt(loc)
+	Character(loc)
+	//Bolt(loc)
 {
 	
 	
@@ -19,7 +19,7 @@ void Trooper::Draw(Graphics& gfx)
 	
 
 	
-	(laserBolt.*(DrawBolt))(gfx);
+	//(laserBolt.*(DrawBolt))(gfx);
 	
 }
 

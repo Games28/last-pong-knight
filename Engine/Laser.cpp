@@ -29,7 +29,7 @@ void Laser::Draw(Graphics & gfx)
 void Laser::Init(Vec2& loc, std::mt19937& rng)	
 {
 	collider.loc = loc; 
-	collider.size = Vec2(15, 40);
+	collider.size = Vec2(14, 37);
 	Respawn(loc, rng);
 	DrawLaser = 0;
 }

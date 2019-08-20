@@ -21,7 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include <iostream>
-
+// this is most recent build
 Game::Game(MainWindow& wnd)
 	:
 	wnd(wnd),
@@ -79,12 +79,13 @@ void Game::UpdateModel()
 			
 				
 				 Vec2 reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
-				 troopers[i].Bolt.Update();
+				
 				if (reflection.GetLengthSq())
 				{
 					troopers[i].Bolt.vel = reflection;
 					//troopers[i].Move(reflection);
-					troopers[i].Bolt.collider.Move(reflection);
+					
+					//troopers[i].Bolt.collider.Move(reflection);
 					if (reflection.x)
 					{
 						troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
@@ -94,7 +95,7 @@ void Game::UpdateModel()
 						troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
 					}
 				}
-				
+				troopers[i].Bolt.Update();
 			}
 			
 }
