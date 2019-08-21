@@ -77,15 +77,15 @@ void Game::UpdateModel()
 			for (int i = 0; i < trooperMax; i++)
 			{
 			
-				
+				troopers[i].Bolt.Update();
 				 reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
-				 troopers[i].Bolt.Update();
+				 
 				if (reflection.GetLengthSq())
 				{
-					//troopers[i].Bolt.vel = reflection;
+					
 					troopers[i].Move(reflection);
 					
-				 troopers[i].Bolt.collider.Move(reflection);
+				   troopers[i].Bolt.collider.Move(reflection);
 					if (reflection.x)
 					{
 						troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
