@@ -82,7 +82,7 @@ void Game::UpdateModel()
 				 troopers[i].Bolt.Update();
 				if (reflection.GetLengthSq())
 				{
-					troopers[i].Bolt.vel = reflection;
+					//troopers[i].Bolt.vel = reflection;
 					troopers[i].Move(reflection);
 					
 				 troopers[i].Bolt.collider.Move(reflection);
