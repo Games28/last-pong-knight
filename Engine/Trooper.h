@@ -9,7 +9,7 @@ public:
 	Trooper() = default;
 	Trooper(Vec2& loc);
 	void Draw(Graphics& gfx);
-	
+	void Move(Vec2& moveamount);
 	void Rebound();
 	void Collision(Collider& collide);
 public:

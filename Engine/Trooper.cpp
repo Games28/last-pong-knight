@@ -23,6 +23,11 @@ void Trooper::Draw(Graphics& gfx)
 	
 }
 
+void Trooper::Move(Vec2& moveamount)
+{
+	Bolt.loc += moveamount;
+}
+
 
 
 void Trooper::Rebound()

@@ -73,19 +73,19 @@ void Game::UpdateModel()
 			
 			
 			
-			//Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
+			Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
 			for (int i = 0; i < trooperMax; i++)
 			{
 			
 				
-				 Vec2 reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
-				
+				 reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
+				 troopers[i].Bolt.Update();
 				if (reflection.GetLengthSq())
 				{
 					troopers[i].Bolt.vel = reflection;
-					//troopers[i].Move(reflection);
+					troopers[i].Move(reflection);
 					
-					//troopers[i].Bolt.collider.Move(reflection);
+				 troopers[i].Bolt.collider.Move(reflection);
 					if (reflection.x)
 					{
 						troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
@@ -95,7 +95,7 @@ void Game::UpdateModel()
 						troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
 					}
 				}
-				troopers[i].Bolt.Update();
+				
 			}
 			
 }
