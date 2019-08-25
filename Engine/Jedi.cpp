@@ -7,12 +7,13 @@ Jedi::Jedi(Vec2& loc)
 	Character(loc),
 	saber(loc),
 	collider(loc + Vec2(-35, 0), charactersize)
+	
 {
 	
 	DrawHead = 0;
 	DrawSaber = 0;
 	DrawRobe = 0;
-	SaberCol = 0;
+	
 	
 	
 }
@@ -28,7 +29,8 @@ void Jedi::Draw(Graphics& gfx)
 	}
 	(saber.*(DrawSaber))(gfx);
 	collider.DrawBox(gfx, Colors::Blue);
-	//SaberCollider.DrawBox(gfx, Colors::Magenta);
+	saber.collider.DrawBox(gfx, Colors::Magenta);
+	
 }
 
 void Jedi::Update(Graphics& gfx, Keyboard& kbd)
@@ -40,6 +42,7 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 		{
 			DrawRobe = &ArtCharacter::RobeLeft;
 			DrawSaber = &Saber::DrawLeft;
+			saber.collider.Init(saber.loc + Vec2(-20,-5), saber.SaberhorizontalSize);
 		}
 
 	}
@@ -49,12 +52,13 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 		{
 			DrawRobe = &ArtCharacter::RobeRight;
 			DrawSaber = &Saber::DrawRight;
+			saber.collider.Init(saber.loc + Vec2(30,-5), saber.SaberhorizontalSize);
 		}
 	}
-	else if (DrawRobe != &ArtCharacter::RobeFront){
+	else if(DrawRobe != &ArtCharacter::RobeFront){
 		DrawRobe = &ArtCharacter::RobeFront;
 		DrawSaber = &Saber::DrawFront;
-		
+		saber.collider.Init(saber.loc + Vec2(40, -50), saber.SaberVerticalSize);
 	}
 
 	if (kbd.KeyIsPressed('F'))
@@ -86,6 +90,7 @@ void Jedi::Move(Vec2& moveamount)
 	Head += moveamount;
 	saber.loc += moveamount;
 	collider.Move(moveamount);
+	saber.collider.Move(moveamount);
 }
 
 void Jedi::collision(Collider& collide)

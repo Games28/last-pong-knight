@@ -40,32 +40,42 @@ Vec2 CollisionManager::GetInnerReflection(Collider& inner, Collider& outer)
 	return reflection;
 }
 
-bool CollisionManager::ReboundX(Collider& object1, Collider& object2)
+//Vec2 CollisionManager::Rebound(Collider& object1, Collider& object2)
+//{
+//	Vec2 reflection = Vec2(0.0f, 0.0f);
+//	//LEFT
+//	if (object1.loc.x < object2.loc.x + object2.size.x)
+//	{
+//		reflection += Vec2((object2.loc.x + object2.size.x) + object1.loc.x, 0.0f);
+//	}
+//	//RIGHT
+//	if (object1.loc.x + object1.size.x > object2.loc.x)
+//	{
+//		reflection += Vec2((object2.loc.x + object2.size.x) - object1.loc.x, 0.0f);
+//	}
+//	//TOP
+//	if (object1.loc.y + object1.size.y > object2.loc.y)
+//	{
+//		reflection += Vec2(0.0f, (object2.loc.y + object2.size.y) - (object1.loc.y));
+//	}
+//	return reflection;
+//}
+
+bool CollisionManager::ReboundTestbool(Collider& object1, Collider& object2)
 {
-	bool isColliding = false;
-	if (object1.loc.x + object1.size.x > object2.loc.x)
-	{
-		isColliding = true;
-	}
-	else if (object1.loc.x < object2.loc.x + object2.size.x)
-	{
-		isColliding = true;
-	}
-	return isColliding;
+	return object1.loc.x + object1.size.x >= object2.loc.x &&
+		object1.loc.x <= object2.loc.x + object2.size.x &&
+		object1.loc.y + object1.size.y >= object2.loc.y;
 }
 
-bool CollisionManager::ReboundY(Collider& object1, Collider& object2)
+Vec2 CollisionManager::ReboundY(Collider& object1, Collider& object2)
 {
-	bool isCollding = false;
-	if (object1.loc.y + object1.size.y > object2.loc.y)
-	{
-		isCollding = true;
-	}
-	else if (object1.loc.y < object2.loc.y + object2.size.y)
-	{
-		isCollding = true;
-	}
-	return isCollding;
+	Vec2 reflection = Vec2(0.0f, 0.0f);
+	//if (object1.loc.y + object1.size.y > object2.loc.y)
+	//{
+	//	reflection += Vec2(0.0f, (object2.loc.y + object2.size.y) - (object1.loc.y ));
+	//}
+	return reflection;
 }
 
 /*void CollisionManager::Rebound(Collider& object1, Collider& object2)

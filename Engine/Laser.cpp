@@ -70,7 +70,7 @@ void Laser::DrawLaserDown(Graphics& gfx)
 void Laser::Update()
 {
 	
-	loc += vel * 3.0f;
+	loc += vel * 5.0f;
 	if (vel.y < 0.0f)
 	{
 		DrawLaser = &ArtLaser::DrawLaserUp;

@@ -22,7 +22,7 @@ public:
 	void(Arthead::* DrawHead)(int, int, Graphics&);
 	void(ArtCharacter::* DrawRobe)(int, int, Graphics&);
 	void(Saber::* DrawSaber)(Graphics&);
-	void(Collider::* SaberCol)(const Vec2&, const Vec2&);
+	
 	Saber saber;
 	PlayerSelect headselect;
 	Vec2 Sabersize{7, 50};
@@ -30,6 +30,7 @@ public:
 	Vec2 Head;
 	Vec2 headloc{ 25,0};
 	Collider collider;
+	
 	CollisionManager collidemanage;
 };
 

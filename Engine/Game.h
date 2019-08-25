@@ -31,7 +31,7 @@
 #include "PlayerSelect.h"
 #include "Laser.h"
 #include <random>
-//#include "Collider.h"
+#include "Collider.h"
 
 class Game
 {

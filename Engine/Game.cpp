@@ -63,40 +63,68 @@ void Game::Go()
 void Game::UpdateModel()
 {
 	float movementspeed = 10.0f;
-			Vec2 moveAmount = GetMoveDirection(movementspeed);
-			player.Move(moveAmount);
-			
-			player.GenderSelect();
-			player.Update(gfx, wnd.kbd);
-			player.collision(back.collider);
-			
-			
-			
-			
-			Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
-			for (int i = 0; i < trooperMax; i++)
+	Vec2 moveAmount = GetMoveDirection(movementspeed);
+	player.Move(moveAmount);
+
+	player.GenderSelect();
+	player.Update(gfx, wnd.kbd);
+	player.collision(back.collider);
+
+
+
+
+	Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
+	//bolt deflection and movement code
+	for (int i = 0; i < trooperMax; i++)
+	{
+
+		troopers[i].Bolt.Update();
+		reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
+
+		if (reflection.GetLengthSq())
+		{
+
+			troopers[i].Move(reflection);
+
+			troopers[i].Bolt.collider.Move(reflection);
+			if (reflection.x)
 			{
-			
-				troopers[i].Bolt.Update();
-				 reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
-				 
-				if (reflection.GetLengthSq())
-				{
-					
-					troopers[i].Move(reflection);
-					
-				   troopers[i].Bolt.collider.Move(reflection);
-					if (reflection.x)
-					{
-						troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
-					}
-					if (reflection.y)
-					{
-						troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
-					}
-				}
-				
+				troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
 			}
+			if (reflection.y)
+			{
+				troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+			}
+		}
+
+	}
+	//lightsaber and bolt deflection
+
+	for (int i = 0; i < trooperMax; i++)
+	{
+
+		bool Redirection = collidemanager.ReboundTestbool(troopers[i].Bolt.collider, player.saber.collider);
+		if (Redirection)
+		{
+			troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+			troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+		}
+	}
+			//	Vec2 Redirection = collidemanager.Rebound(troopers[i].Bolt.collider,player.saber.collider);
+			//	if (Redirection.GetLengthSq())
+			//	{
+			//	
+			//		troopers[i].Move(reflection);
+			//	
+			//		troopers[i].Bolt.collider.Move(reflection);
+			//		
+			//		if (Redirection.y)
+			//		{
+			//			troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+			//		}
+			//	}
+			//
+		
 			
 }
 

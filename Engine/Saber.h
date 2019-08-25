@@ -22,6 +22,8 @@ public:
 	Vec2 saberLeft{ 45,-50 };
 	Vec2 saberRight{ 35,-50 };
 	Vec2 saberFront{ 42,-55 };
+	Vec2 SaberhorizontalSize{ 87,7 };
+	Vec2 SaberVerticalSize{ 7,50 };
 	Vec2 loc;
 	ArtSaber art;
 	Color color[2];
