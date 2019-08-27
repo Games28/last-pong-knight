@@ -30,7 +30,9 @@ Game::Game(MainWindow& wnd)
 	rng(std::random_device()())
 
 {
+	std::uniform_int_distribution<int> random(1, trooperMax);
 	Vec2 Trooper(105, 40);
+	//int randombolt = random;
 	int i = 0;
 	//inits the troopers
 	for (int y = 0; y < nTrooperDown; y++)
@@ -39,11 +41,16 @@ Game::Game(MainWindow& wnd)
 		for (int x = 0; x < nTrooperAcross; x++)
 		{
 			troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
-		   troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
+			troopers[i].collider.Init(Vec2(Trooper.x,Trooper.y), Vec2(x* trooperwidth, y*trooperheight));
+		    troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
+		  	//
 			troopers[i].Bolt.Init(troopers[i].Bolt.loc, rng);
+			//if(wnd.kbd.KeyIsPressed('R') && i == random)
+				// or
+			//for(int c = i; c == random; )
 			i++;
 		}
-		
+		 
 	}
 	
 	Vec2 BackBoxpos = Vec2(1, 1);
@@ -186,16 +193,9 @@ void Game::GenderSelect()
 
 void Game::Boltrebound()
 {
-	//if (bolts[arraytracker].vel.y < 0.0f)
-	//{
-	//	DrawBolt = &Laser::DrawLaserUp;
-	//}
-	//else {
-	//	DrawBolt = &Laser::DrawLaserDown;
-	//}
-	//bolts[arraytracker].collider.loc = loc;
-}
+	
 
+}
 void Game::ComposeFrame()
 {
 	back.Draw(gfx);
@@ -215,32 +215,5 @@ void Game::ComposeFrame()
 	
 
 	
-	//int l = 0;
-	//for (int y = 0; y < lasermax; y++)
-	//{
-	//	laser[i].Draw(gfx);
-	//	i++;
-	//}
-	//int sum = 0;
-	//for (int i = 0; (i * 3) < 1000; i++)
-	//{
-	//	sum += (i * 3);
-	//	if((i * 3) >= 999)
-	//	std::cout << i * 3 << " " << sum << std::endl;
-	//}
-	//for (int i = 0; i * 5 < 1000; i++)
-	//{
-	//	sum += (i * 5);
-	//	std::cout << i * 5 << " " << sum << std::endl;
-	//
-	//
-	//}
-	//for (int i = 0; i * 3 * 5 < 1000; i++)
-	//{
-	//	sum -= (i * 3 * 5);
-	//	std::cout << i * 5 << " " << sum << std::endl;
-	//
-	//
-	//}
-	//std::cout <<  sum << std::endl;
+
 }

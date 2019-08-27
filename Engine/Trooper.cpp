@@ -4,7 +4,6 @@
 Trooper::Trooper(Vec2& loc)
 	:
 	Character(loc)
-	//Bolt(loc)
 {
 	
 	
@@ -15,6 +14,7 @@ void Trooper::Draw(Graphics& gfx)
 	
 		artcharacter.StormTrooper(loc.x, loc.y, gfx);
 		Bolt.Draw(gfx);
+		collider.DrawBox(gfx, Colors::Red);
 	
 	
 

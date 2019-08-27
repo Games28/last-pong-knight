@@ -17,14 +17,14 @@ public:
 	
 	static const int lasermax = 3;
 	static constexpr float laserseparation = 70.0f;
-	
+	Vec2 troopersize{ 82.0f, 82.0f };
 	static constexpr float trooperwidth = 82.0f;
 	static constexpr float trooperheight = 82.0f;
 	static constexpr int numberAcrossMax = 7;
 	static constexpr int numberDownMax = 2;
 	static constexpr int amountMax = numberAcrossMax * numberDownMax;
 	Laser Bolt;
-
+	Collider collider;
 	
 };
 
