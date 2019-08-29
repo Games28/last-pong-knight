@@ -11,15 +11,29 @@ Trooper::Trooper(Vec2& loc)
 
 void Trooper::Draw(Graphics& gfx)
 {	
-	
-		artcharacter.StormTrooper(loc.x, loc.y, gfx);
+	trooperCounter++;
+	//artcharacter.StormTrooper(loc.x, loc.y, gfx);
+	artcharacter.TrooperRightFootFront(loc.x, loc.y, gfx);
+	if (trooperCounter >= trooperCounterReset)
+	{
+		trooperCounter = 0;
+	}
+	if (trooperCounter > 20)
+	{
+		artcharacter.TrooperLeftFootFront(loc.x, loc.y, gfx);
+	}
+	else if (trooperCounter < 20)
+	{
+		artcharacter.TrooperRightFootFront(loc.x, loc.y, gfx);
+	}
+		
 		Bolt.Draw(gfx);
 		collider.DrawBox(gfx, Colors::Red);
 	
 	
 
 	
-	//(laserBolt.*(DrawBolt))(gfx);
+	
 	
 }
 

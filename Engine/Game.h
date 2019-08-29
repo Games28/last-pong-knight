@@ -81,6 +81,7 @@ private:
 	int AnimatedStarCounter = 0;
 	int AnimatedStarreset = 100;
 	bool gameStarted = false;
+	
 	/********************************/
 	/*  User Variables              */
 	/********************************/
