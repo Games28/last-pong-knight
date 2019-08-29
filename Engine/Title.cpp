@@ -40,3 +40,13 @@ void Title::DrawPrview(Graphics& gfx)
 {
 	art.Drawtitlepreview(loc.x - 100, loc.y + 200, gfx);
 }
+
+void Title::DrawYoda(Graphics& gfx)
+{
+	art.YodaArt(loc.x - 180, loc.y, gfx);
+}
+
+void Title::DrawYodaSpeaks(Graphics& gfx)
+{
+	art.YodaSpeaks(loc.x, loc.y, gfx);
+}

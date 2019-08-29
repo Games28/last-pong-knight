@@ -81,7 +81,7 @@ private:
 	int AnimatedStarCounter = 0;
 	int AnimatedStarreset = 100;
 	bool gameStarted = false;
-	
+	bool SelectingScreen = false;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

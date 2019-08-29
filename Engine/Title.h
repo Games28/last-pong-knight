@@ -14,6 +14,8 @@ public:
 	void DrawBrightStar(Graphics& gfx);
 	void DrawTitle(Graphics& gfx);
 	void DrawPrview(Graphics& gfx);
+	void DrawYoda(Graphics& gfx);
+	void DrawYodaSpeaks(Graphics& gfx);
 public:
 	Vec2 loc;
 	titleart art;

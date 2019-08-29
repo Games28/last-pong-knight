@@ -80,7 +80,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (!gameStarted)
+	if (!SelectingScreen)
 	{
 		AnimatedStarCounter++;
 		if (AnimatedStarCounter >= AnimatedStarreset)
@@ -89,11 +89,25 @@ void Game::UpdateModel()
 		}
 		if (wnd.kbd.KeyIsPressed(VK_RETURN))
 		{
-			gameStarted = true;
+			SelectingScreen = true;
 		}
 	}
-	
-	if (gameStarted)
+	else if (!gameStarted)
+	{
+		AnimatedStarCounter++;
+		if (AnimatedStarCounter >= AnimatedStarreset)
+		{
+			AnimatedStarCounter = 0;
+		}
+		if (wnd.kbd.KeyIsPressed(VK_SHIFT))
+		{
+			if (wnd.kbd.KeyIsPressed(VK_RETURN))
+			{
+				gameStarted = true;
+			}
+		}
+	}
+	if (gameStarted && SelectingScreen)
 	{
 		float movementspeed = 10.0f;
 		Vec2 moveAmount = GetMoveDirection(movementspeed);
@@ -222,7 +236,7 @@ void Game::Boltrebound()
 }
 void Game::ComposeFrame()
 {
-	if (!gameStarted)
+	if (!SelectingScreen)
 	{
 		
 		for (int i = 0; i < nRegularStars; i++)
@@ -244,7 +258,28 @@ void Game::ComposeFrame()
 		title.DrawTitle(gfx);
 		title.DrawPrview(gfx);
 	}
-	else if (gameStarted)
+	else if (!gameStarted)
+	{
+		for (int i = 0; i < nRegularStars; i++)
+		{
+			RegularStars[i].DrawRegularStar(gfx);
+		}
+		for (int i = 0; i < nAnimatedStars; i++)
+		{
+			if (AnimatedStarCounter > 50)
+			{
+				animatedStars[i].DrawDimStar(gfx);
+			}
+			else if (AnimatedStarCounter < 50)
+			{
+				animatedStars[i].DrawBrightStar(gfx);
+
+			}
+		}
+		title.DrawYoda(gfx);
+		title.DrawYodaSpeaks(gfx);
+	}
+	if (gameStarted && SelectingScreen)
 	{
 		back.Draw(gfx);
 		//Draws player character
