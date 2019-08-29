@@ -32,14 +32,15 @@
 #include "Laser.h"
 #include <random>
 #include "Collider.h"
+#include "Title.h"
 
 class Game
 {
-	
+
 public:
-	Game( class MainWindow& wnd );
-	Game( const Game& ) = delete;
-	Game& operator=( const Game& ) = delete;
+	Game(class MainWindow& wnd);
+	Game(const Game&) = delete;
+	Game& operator=(const Game&) = delete;
 	void Go();
 private:
 	void ComposeFrame();
@@ -58,8 +59,8 @@ private:
 	BackGround back;
 	PlayerSelect headselect;
 	Jedi player;
-	
-	
+
+
 	CollisionManager collidemanager;
 	static const int lasermax = 3;
 	static constexpr float laserseparation = 70.0f;
@@ -68,11 +69,18 @@ private:
 	static constexpr float trooperheight = 82.0f;
 	static constexpr int nTrooperAcross = 7;
 	static constexpr int nTrooperDown = 2;
-	static constexpr int trooperMax = nTrooperAcross * nTrooperDown; 
+	static constexpr int trooperMax = nTrooperAcross * nTrooperDown;
+	static constexpr int nAnimatedStars = 50;
+	static constexpr int nRegularStars = 50;
+	static constexpr int nStarsMax = 50;
 	Trooper troopers[trooperMax];
 	Laser bolt;
-	
-	
+	Title animatedStars[nStarsMax];
+	Title RegularStars[nStarsMax];
+	Title title;
+	int AnimatedStarCounter = 0;
+	int AnimatedStarreset = 100;
+	bool gameStarted = false;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

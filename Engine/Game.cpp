@@ -27,10 +27,13 @@ Game::Game(MainWindow& wnd)
 	wnd(wnd),
 	gfx(wnd),
 	player(Vec2(300, 470)),
-	rng(std::random_device()())
+	rng(std::random_device()()),
+	title(Vec2(300,200))
 
 {
-	std::uniform_int_distribution<int> random(1, trooperMax);
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<int> Boltrandomized(1, trooperMax);
 	Vec2 Trooper(105, 40);
 	//int randombolt = random;
 	int i = 0;
@@ -42,17 +45,25 @@ Game::Game(MainWindow& wnd)
 		{
 			troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
 			troopers[i].collider.Init(Vec2(Trooper.x,Trooper.y), Vec2(x* trooperwidth, y*trooperheight));
-		    troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
-		  	//
+			troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
 			troopers[i].Bolt.Init(troopers[i].Bolt.loc, rng);
-			//if(wnd.kbd.KeyIsPressed('R') && i == random)
-				// or
-			//for(int c = i; c == random; )
+			//if (i == Boltrandomized(gen))
+			//{
+			//	
+			//	
+			//}
 			i++;
 		}
 		 
 	}
-	
+	for (int i = 0; i < nStarsMax; i++)
+	{
+		animatedStars[i].Init(rng);
+	}
+	for (int i = 0; i < nStarsMax; i++)
+	{
+		RegularStars[i].Init(rng);
+	}
 	Vec2 BackBoxpos = Vec2(1, 1);
 	Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
 	back.collider.Init(BackBoxpos, BackBoxsize);
@@ -77,6 +88,11 @@ void Game::UpdateModel()
 	player.Update(gfx, wnd.kbd);
 	player.collision(back.collider);
 
+	AnimatedStarCounter++;
+	if (AnimatedStarCounter >= AnimatedStarreset)
+	{
+		AnimatedStarCounter = 0;
+	}
 
 
 

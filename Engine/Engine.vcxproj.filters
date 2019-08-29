@@ -102,6 +102,12 @@
     <ClInclude Include="Saber.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="titleart.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DXErr.cpp">
@@ -171,6 +177,12 @@
       <Filter>objects</Filter>
     </ClCompile>
     <ClCompile Include="Saber.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="titleart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
