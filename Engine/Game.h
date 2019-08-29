@@ -72,7 +72,7 @@ private:
 	static constexpr int trooperMax = nTrooperAcross * nTrooperDown;
 	static constexpr int nAnimatedStars = 50;
 	static constexpr int nRegularStars = 50;
-	static constexpr int nStarsMax = 50;
+	static constexpr int nStarsMax = 100;
 	Trooper troopers[trooperMax];
 	Laser bolt;
 	Title animatedStars[nStarsMax];

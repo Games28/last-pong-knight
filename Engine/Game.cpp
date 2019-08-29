@@ -28,7 +28,7 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	player(Vec2(300, 470)),
 	rng(std::random_device()()),
-	title(Vec2(300,200))
+	title(Vec2(300,80))
 
 {
 	std::random_device rd;
@@ -80,74 +80,82 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	float movementspeed = 10.0f;
-	Vec2 moveAmount = GetMoveDirection(movementspeed);
-	player.Move(moveAmount);
-
-	player.GenderSelect();
-	player.Update(gfx, wnd.kbd);
-	player.collision(back.collider);
-
-	AnimatedStarCounter++;
-	if (AnimatedStarCounter >= AnimatedStarreset)
+	if (!gameStarted)
 	{
-		AnimatedStarCounter = 0;
+		AnimatedStarCounter++;
+		if (AnimatedStarCounter >= AnimatedStarreset)
+		{
+			AnimatedStarCounter = 0;
+		}
+		if (wnd.kbd.KeyIsPressed(VK_RETURN))
+		{
+			gameStarted = true;
+		}
 	}
-
-
-
-	Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
-	//bolt deflection and movement code
-	for (int i = 0; i < trooperMax; i++)
+	
+	if (gameStarted)
 	{
+		float movementspeed = 10.0f;
+		Vec2 moveAmount = GetMoveDirection(movementspeed);
+		player.Move(moveAmount);
 
-		troopers[i].Bolt.Update();
-		reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
+		player.GenderSelect();
+		player.Update(gfx, wnd.kbd);
+		player.collision(back.collider);
 
-		if (reflection.GetLengthSq())
+	
+		Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
+		//bolt deflection and movement code
+		for (int i = 0; i < trooperMax; i++)
 		{
 
-			troopers[i].Move(reflection);
+			troopers[i].Bolt.Update();
+			reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
 
-			troopers[i].Bolt.collider.Move(reflection);
-			if (reflection.x)
+			if (reflection.GetLengthSq())
 			{
-				troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+
+				troopers[i].Move(reflection);
+
+				troopers[i].Bolt.collider.Move(reflection);
+				if (reflection.x)
+				{
+					troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+				}
+				if (reflection.y)
+				{
+					troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+				}
 			}
-			if (reflection.y)
+
+		}
+		//lightsaber and bolt deflection
+
+		for (int i = 0; i < trooperMax; i++)
+		{
+
+			bool Redirection = collidemanager.ReboundTestbool(troopers[i].Bolt.collider, player.saber.collider);
+			if (Redirection)
 			{
 				troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+				troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
 			}
 		}
-
+		//	Vec2 Redirection = collidemanager.Rebound(troopers[i].Bolt.collider,player.saber.collider);
+		//	if (Redirection.GetLengthSq())
+		//	{
+		//	
+		//		troopers[i].Move(reflection);
+		//	
+		//		troopers[i].Bolt.collider.Move(reflection);
+		//		
+		//		if (Redirection.y)
+		//		{
+		//			troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+		//		}
+		//	}
+		//
 	}
-	//lightsaber and bolt deflection
-
-	for (int i = 0; i < trooperMax; i++)
-	{
-
-		bool Redirection = collidemanager.ReboundTestbool(troopers[i].Bolt.collider, player.saber.collider);
-		if (Redirection)
-		{
-			troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
-			troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
-		}
-	}
-			//	Vec2 Redirection = collidemanager.Rebound(troopers[i].Bolt.collider,player.saber.collider);
-			//	if (Redirection.GetLengthSq())
-			//	{
-			//	
-			//		troopers[i].Move(reflection);
-			//	
-			//		troopers[i].Bolt.collider.Move(reflection);
-			//		
-			//		if (Redirection.y)
-			//		{
-			//			troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
-			//		}
-			//	}
-			//
-		
 			
 }
 
@@ -214,22 +222,46 @@ void Game::Boltrebound()
 }
 void Game::ComposeFrame()
 {
-	back.Draw(gfx);
-	//Draws player character
-	player.Update(gfx, wnd.kbd);
-	player.Draw(gfx);
-	
-	//Draws array of troopers
-	for (int i = 0; i < trooperMax; i++)
-    {
-		 troopers[i].Draw(gfx);
-	}
+	if (!gameStarted)
+	{
 		
-	
-	SaberColorSelect();
-	player.saber.saberColorChange();
-	
+		for (int i = 0; i < nRegularStars; i++)
+		{
+			RegularStars[i].DrawRegularStar(gfx);
+		}
+		for (int i = 0; i < nAnimatedStars; i++)
+		{
+			if (AnimatedStarCounter > 50)
+			{
+				animatedStars[i].DrawDimStar(gfx);
+			}
+			else if (AnimatedStarCounter < 50)
+			{
+				animatedStars[i].DrawBrightStar(gfx);
 
+			}
+		}
+		title.DrawTitle(gfx);
+		title.DrawPrview(gfx);
+	}
+	else if (gameStarted)
+	{
+		back.Draw(gfx);
+		//Draws player character
+		player.Update(gfx, wnd.kbd);
+		player.Draw(gfx);
+
+		//Draws array of troopers
+		for (int i = 0; i < trooperMax; i++)
+		{
+			troopers[i].Draw(gfx);
+		}
+
+
+		SaberColorSelect();
+		player.saber.saberColorChange();
+
+	}
 	
 
 }

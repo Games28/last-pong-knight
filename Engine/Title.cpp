@@ -38,5 +38,5 @@ void Title::DrawTitle(Graphics& gfx)
 
 void Title::DrawPrview(Graphics& gfx)
 {
-	art.Drawtitlepreview(loc.x, loc.y, gfx);
+	art.Drawtitlepreview(loc.x - 100, loc.y + 200, gfx);
 }
