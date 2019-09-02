@@ -33,11 +33,16 @@
 #include <random>
 #include "Collider.h"
 #include "Title.h"
-
+#include <list>
 class Game
 {
-
+	
 public:
+	enum MenuSelection
+	{
+		Playerchoice,
+		Saberchoice
+	};
 	Game(class MainWindow& wnd);
 	Game(const Game&) = delete;
 	Game& operator=(const Game&) = delete;
@@ -48,7 +53,9 @@ private:
 	Vec2 GetMoveDirection(float moveAmount);
 	void SaberColorSelect();
 	void GenderSelect();
-	void Boltrebound();
+	void MenuSaber();
+	void seed(std::mt19937* gen);
+	int random(int start, int end, std::mt19937 gen);
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -73,15 +80,19 @@ private:
 	static constexpr int nAnimatedStars = 50;
 	static constexpr int nRegularStars = 50;
 	static constexpr int nStarsMax = 100;
+	Vec2 SetLocation{ 70, 358};
+	Laser *ActiveBolt;
 	Trooper troopers[trooperMax];
 	Laser bolt;
 	Title animatedStars[nStarsMax];
 	Title RegularStars[nStarsMax];
 	Title title;
+	
 	int AnimatedStarCounter = 0;
 	int AnimatedStarreset = 100;
 	bool gameStarted = false;
 	bool SelectingScreen = false;
+	
 	/********************************/
 	/*  User Variables              */
 	/********************************/

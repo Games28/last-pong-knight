@@ -50,3 +50,20 @@ void Title::DrawYodaSpeaks(Graphics& gfx)
 {
 	art.YodaSpeaks(loc.x, loc.y, gfx);
 }
+
+void Title::DrawJediMenu(Graphics& gfx)
+{
+	art.Jedichoice(loc.x - 280, loc.y + 200, gfx);
+}
+
+void Title::DrawSaberMenu(Graphics& gfx)
+{
+	art.Saberchoice(loc.x + 50, loc.y + 200 , gfx);
+}
+
+void Title::DrawSaberSelect0r1(Graphics& gfx)
+{
+	art.SelectingSaber1(loc.x, loc.y, gfx);
+}
+
+

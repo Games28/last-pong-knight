@@ -65,7 +65,8 @@ bool CollisionManager::ReboundTestbool(Collider& object1, Collider& object2)
 {
 	return object1.loc.x + object1.size.x >= object2.loc.x &&
 		object1.loc.x <= object2.loc.x + object2.size.x &&
-		object1.loc.y + object1.size.y >= object2.loc.y;
+		object1.loc.y + object1.size.y >= object2.loc.y &&
+		object1.loc.y <= object2.loc.y + object2.size.y;
 }
 
 Vec2 CollisionManager::ReboundY(Collider& object1, Collider& object2)

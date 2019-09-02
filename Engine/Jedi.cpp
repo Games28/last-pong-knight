@@ -84,6 +84,16 @@ void Jedi::GenderSelect()
 	}
 }
 
+void Jedi::FemaleJedi(Graphics& gfx)
+{
+	headart.FemaleHead((int)loc.x + (int)headloc.x, (int)loc.y + (int)headloc.y, gfx);
+}
+
+void Jedi::MaleJedi(Graphics& gfx)
+{
+	headart.MaleHead((int)loc.x + (int)headloc.x, (int)loc.y + (int)headloc.y, gfx);
+}
+
 void Jedi::Move(Vec2& moveamount)
 {
 	loc += moveamount;

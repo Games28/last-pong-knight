@@ -15,7 +15,7 @@ Laser::Laser(Vec2& loc, std::mt19937& rng)
 	:
 	collider(loc, Vec2(15,40))
 {
-	Respawn(loc, rng);
+	Spawn(loc, rng);
 	DrawLaser = 0;
 }
 
@@ -26,16 +26,18 @@ void Laser::Draw(Graphics & gfx)
 	collider.DrawBox(gfx, Colors::Magenta);
 }
 
-void Laser::Init(Vec2& loc, std::mt19937& rng)	
+void Laser::Init(Vec2& loc)	
 {
 	collider.loc = loc; 
 	collider.size = Vec2(14, 37);
-	Respawn(loc, rng);
+	//Spawn(loc, rng);
 	DrawLaser = 0;
+	
 }
 
-void Laser::Respawn(Vec2& loc, std::mt19937& rng)
+void Laser::Spawn(Vec2& loc, std::mt19937& rng)
 {
+	IsActive = true;
 	float Pi = 3.14159;
 	float LeftDown = Pi * 5.0f * 0.25f;
 	float RightDown = Pi * 7.0f * 0.25f;
@@ -69,16 +71,23 @@ void Laser::DrawLaserDown(Graphics& gfx)
 
 void Laser::Update()
 {
-	
-	loc += vel * 5.0f;
-	if (vel.y < 0.0f)
+	if (IsActive)
 	{
-		DrawLaser = &ArtLaser::DrawLaserUp;
+		loc += vel * speed;
+		if (vel.y < 0.0f)
+		{
+			DrawLaser = &ArtLaser::DrawLaserUp;
+		}
+		else {
+			DrawLaser = &ArtLaser::DrawLaserDown;
+		}
+		collider.loc = loc;
 	}
-	else {
-		DrawLaser = &ArtLaser::DrawLaserDown;
-	}
-	collider.loc = loc;
 }
+
+//void Laser::Dispersed()
+//{
+//	IsActive = false;
+//}
 
 

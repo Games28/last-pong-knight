@@ -12,17 +12,20 @@ public:
 	Laser(Vec2& loc);
 	Laser(Vec2& loc, std::mt19937& rng);
 	void Draw(Graphics& gfx);
-	void Init(Vec2& loc, std::mt19937& rng);
-	void Respawn(Vec2& loc, std::mt19937& rng);
+	void Init(Vec2& loc);
+	void Spawn(Vec2& loc, std::mt19937& rng);
 	void DrawLaserUp(Graphics& gfx);
 	void DrawLaserDown(Graphics& gfx);
 	void Update();
+	//void Dispersed();
 public:
 	
 	void (ArtLaser::* DrawLaser)(int, int, Graphics&);
 	Vec2 loc;
 	Vec2 vel;
+	float speed = 10.0f;
 	Collider collider;
 	ArtLaser Art;
+	bool IsActive = false;
 };
 

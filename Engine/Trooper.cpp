@@ -26,8 +26,7 @@ void Trooper::Draw(Graphics& gfx)
 	{
 		artcharacter.TrooperRightFootFront(loc.x, loc.y, gfx);
 	}
-		
-		Bolt.Draw(gfx);
+	
 		collider.DrawBox(gfx, Colors::Red);
 	
 	

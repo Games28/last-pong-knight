@@ -15,6 +15,8 @@ public:
 	void Draw(Graphics& gfx);
 	void Update(Graphics& gfx, Keyboard& kbd);
 	void GenderSelect();
+	void FemaleJedi(Graphics& gfx);
+	void MaleJedi(Graphics& gfx);
 	void Move(Vec2& moveamount);
 	void collision(Collider& collide);
 public:
@@ -22,7 +24,7 @@ public:
 	void(Arthead::* DrawHead)(int, int, Graphics&);
 	void(ArtCharacter::* DrawRobe)(int, int, Graphics&);
 	void(Saber::* DrawSaber)(Graphics&);
-	
+	Arthead headart;
 	Saber saber;
 	PlayerSelect headselect;
 	Vec2 Sabersize{7, 50};

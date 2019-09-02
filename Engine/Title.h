@@ -16,6 +16,10 @@ public:
 	void DrawPrview(Graphics& gfx);
 	void DrawYoda(Graphics& gfx);
 	void DrawYodaSpeaks(Graphics& gfx);
+	void DrawJediMenu(Graphics& gfx);
+	void DrawSaberMenu(Graphics& gfx);
+	void DrawSaberSelect0r1(Graphics& gfx);
+	
 public:
 	Vec2 loc;
 	titleart art;
