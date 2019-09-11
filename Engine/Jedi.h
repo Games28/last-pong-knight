@@ -9,6 +9,9 @@ class Graphics;
 
 class Jedi : public Character
 {
+	enum Position {
+		Current
+	};
 public:
 	Jedi() = default;
 	Jedi(Vec2& loc);
@@ -32,6 +35,8 @@ public:
 	Vec2 Head;
 	Vec2 headloc{ 25,0};
 	Collider collider;
+	Position CurrentPos;
+	
 	
 	CollisionManager collidemanage;
 };

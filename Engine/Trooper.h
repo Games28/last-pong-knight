@@ -24,6 +24,7 @@ public:
 	static constexpr int numberDownMax = 2;
 	static constexpr int amountMax = numberAcrossMax * numberDownMax;
 	Laser Bolt;
+	bool isVaporized = false;
 	Collider collider;
 	int trooperCounter = 0;
 	int trooperCounterReset = 40;

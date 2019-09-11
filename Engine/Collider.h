@@ -16,7 +16,7 @@ public:
 public:
 	Vec2 loc;
 	Vec2 size;
-	
+	bool isVaporized = false;
 };
 
 

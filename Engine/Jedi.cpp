@@ -38,28 +38,56 @@ void Jedi::Update(Graphics& gfx, Keyboard& kbd)
 	
 	if (kbd.KeyIsPressed('A'))
 	{
-		if (DrawRobe != &ArtCharacter::RobeLeft)
-		{
-			DrawRobe = &ArtCharacter::RobeLeft;
-			DrawSaber = &Saber::DrawLeft;
-			saber.collider.Init(saber.loc + Vec2(-20,-5), saber.SaberhorizontalSize);
-		}
-
+		
+			if (DrawRobe != &ArtCharacter::RobeLeft)
+			{
+				DrawRobe = &ArtCharacter::RobeLeft;
+				DrawSaber = &Saber::DrawLeft;
+				saber.collider.Init(saber.loc + Vec2(-20, -5), saber.SaberhorizontalSize);
+				
+			}
+		
 	}
 	else if (kbd.KeyIsPressed('D') )
 	{
-		if (DrawRobe != &ArtCharacter::RobeRight)
+		
+			if (DrawRobe != &ArtCharacter::RobeRight)
+			{
+				
+					DrawRobe = &ArtCharacter::RobeRight;
+				DrawSaber = &Saber::DrawRight;
+				saber.collider.Init(saber.loc + Vec2(30, -5), saber.SaberhorizontalSize);
+				
+			}
+		
+	}
+	else if (kbd.KeyIsPressed('W'))
+	{
+		if (DrawRobe != &ArtCharacter::RobeReady)
 		{
-			DrawRobe = &ArtCharacter::RobeRight;
-			DrawSaber = &Saber::DrawRight;
-			saber.collider.Init(saber.loc + Vec2(30,-5), saber.SaberhorizontalSize);
+			DrawRobe = &ArtCharacter::RobeReady;
+			DrawSaber = &Saber::DrawUp;
+			saber.collider.Init(saber.loc + Vec2(38, -45), saber.SaberVecticalSize2);
+
 		}
 	}
-	else if(DrawRobe != &ArtCharacter::RobeFront){
-		DrawRobe = &ArtCharacter::RobeFront;
-		DrawSaber = &Saber::DrawFront;
-		saber.collider.Init(saber.loc + Vec2(40, -50), saber.SaberVerticalSize);
+	else 
+	{
+		if (DrawRobe != &ArtCharacter::RobeFront)
+		{
+			DrawRobe = &ArtCharacter::RobeFront;
+			DrawSaber = &Saber::DrawFront;
+			saber.collider.Init(saber.loc + Vec2(40, -50), saber.SaberVerticalSize);
+		}
 	}
+	//else {
+	//	
+	//		DrawRobe = &ArtCharacter::RobeFront;
+	//		DrawSaber = &Saber::DrawFront;
+	//		saber.collider.Init(saber.loc + Vec2(40, -50), saber.SaberVerticalSize);
+	//	
+	//
+	//}
 
 	if (kbd.KeyIsPressed('F'))
 	{

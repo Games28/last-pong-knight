@@ -41736,6 +41736,11 @@ void ArtCharacter::RobeFront(int x, int y, Graphics & gfx)
 
 }
 
+void ArtCharacter::RobeReady(int x, int y, Graphics& gfx)
+{
+	RobeFront(x, y, gfx);
+}
+
 void ArtCharacter::StormTrooper(int x, int y, Graphics & gfx)
 {
 	gfx.PutPixel(x + 0, y + 0, 0, 0, 0);

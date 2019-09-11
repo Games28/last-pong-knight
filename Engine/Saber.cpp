@@ -24,6 +24,11 @@ void Saber::DrawFront(Graphics& gfx)
 	art.SaberFront(loc.x + saberFront.x, loc.y + saberFront.y, color, gfx);
 }
 
+void Saber::DrawUp(Graphics& gfx)
+{
+	art.SaberUp(loc.x + SaberUp.x, loc.y + SaberUp.y, color, gfx);
+}
+
 void Saber::Move(Vec2& moveamount)
 {
 	loc += moveamount;

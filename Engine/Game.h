@@ -40,8 +40,12 @@ class Game
 public:
 	enum MenuSelection
 	{
-		Playerchoice,
-		Saberchoice
+		PlayerchoiceMale,
+		PlayerchoiceFemale,
+		Saberchoiceblue,
+		Saberchoicegreen,
+		Saberchoicepurple,
+		Saberchoicered
 	};
 	Game(class MainWindow& wnd);
 	Game(const Game&) = delete;
@@ -53,7 +57,8 @@ private:
 	Vec2 GetMoveDirection(float moveAmount);
 	void SaberColorSelect();
 	void GenderSelect();
-	void MenuSaber();
+	void MenuSaberSelecting();
+	void DrawSelectionSaber();
 	void seed(std::mt19937* gen);
 	int random(int start, int end, std::mt19937 gen);
 	/********************************/
@@ -87,12 +92,18 @@ private:
 	Title animatedStars[nStarsMax];
 	Title RegularStars[nStarsMax];
 	Title title;
-	
+	MenuSelection selectSaber;
+	MenuSelection selectCharacter;
 	int AnimatedStarCounter = 0;
 	int AnimatedStarreset = 100;
 	bool gameStarted = false;
 	bool SelectingScreen = false;
-	
+	bool saberblue = false;
+	bool sabergreen = false;
+	bool saberred = false;
+	bool saberpurple = false;
+	bool characterMale = false;
+	bool characterFemale = false;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

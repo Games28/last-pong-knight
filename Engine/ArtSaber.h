@@ -11,5 +11,6 @@ public:
 	void SaberLeft(int x, int y, Color* c, Graphics& gfx);
 	void SaberRight(int x, int y, Color* c, Graphics& gfx);
 	void SaberFront(int x, int y, Color* c, Graphics& gfx);
+	void SaberUp(int x, int y, Color* c, Graphics& gfx);
 };
 

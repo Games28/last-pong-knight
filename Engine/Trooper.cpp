@@ -11,26 +11,28 @@ Trooper::Trooper(Vec2& loc)
 
 void Trooper::Draw(Graphics& gfx)
 {	
-	trooperCounter++;
-	//artcharacter.StormTrooper(loc.x, loc.y, gfx);
-	artcharacter.TrooperRightFootFront(loc.x, loc.y, gfx);
-	if (trooperCounter >= trooperCounterReset)
+	if (isVaporized == false)
 	{
-		trooperCounter = 0;
-	}
-	if (trooperCounter > 20)
-	{
-		artcharacter.TrooperLeftFootFront(loc.x, loc.y, gfx);
-	}
-	else if (trooperCounter < 20)
-	{
+		trooperCounter++;
+		//artcharacter.StormTrooper(loc.x, loc.y, gfx);
 		artcharacter.TrooperRightFootFront(loc.x, loc.y, gfx);
+		if (trooperCounter >= trooperCounterReset)
+		{
+			trooperCounter = 0;
+		}
+		if (trooperCounter > 20)
+		{
+			artcharacter.TrooperLeftFootFront(loc.x, loc.y, gfx);
+		}
+		else if (trooperCounter < 20)
+		{
+			artcharacter.TrooperRightFootFront(loc.x, loc.y, gfx);
+		}
+
+		collider.DrawBox(gfx, Colors::Red);
+
 	}
 	
-		collider.DrawBox(gfx, Colors::Red);
-	
-	
-
 	
 	
 	
