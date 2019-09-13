@@ -305,38 +305,47 @@ void Game::GenderSelect()
 
 void Game::MenuSaberSelecting()
 {
-	if (wnd.kbd.KeyIsPressed('1'))
+	switch (wnd.kbd.KeyIsPressed)
 	{
+	case wnd.kbd.KeyIsPressed('1'):
+	
 		selectSaber = MenuSelection::Saberchoiceblue;
 		saberblue = true;
-	}
-	if (wnd.kbd.KeyIsPressed('2'))
-	{
-		selectSaber = MenuSelection::Saberchoicegreen;
-		sabergreen = true;
-	}
-	if (wnd.kbd.KeyIsPressed('3'))
-	{
-		selectSaber = MenuSelection::Saberchoicered;
-		saberred = true;
-	}
-	if (wnd.kbd.KeyIsPressed('4'))
-	{
-		selectSaber = MenuSelection::Saberchoicepurple;
-		saberpurple = true;
-	}
+		break;
+	
+	case wnd.kbd.KeyIsPressed('2'):
+		
+			selectSaber = MenuSelection::Saberchoicegreen;
+			sabergreen = true;
+			break;
+		
+	case wnd.kbd.KeyIsPressed('3'):
+		
+			selectSaber = MenuSelection::Saberchoicered;
+			saberred = true;
+			break;
+		
+	case wnd.kbd.KeyIsPressed('4'):
+		
+			selectSaber = MenuSelection::Saberchoicepurple;
+			saberpurple = true;
+			break;
+		
 
-	if (wnd.kbd.KeyIsPressed('F'))
-	{
-		selectCharacter = MenuSelection::PlayerchoiceFemale;
-		characterFemale = true;
+	case wnd.kbd.KeyIsPressed('F'):
+		
+			selectCharacter = MenuSelection::PlayerchoiceFemale;
+			characterFemale = true;
+			break;
+		
+	case wnd.kbd.KeyIsPressed('M'):
+		
+			selectCharacter = MenuSelection::PlayerchoiceMale;
+			characterMale = true;
+			break;
+	default:
+		break;
 	}
-	if (wnd.kbd.KeyIsPressed('M'))
-	{
-		selectCharacter = MenuSelection::PlayerchoiceMale;
-		characterMale = true;
-	}
-
 }
 void Game::DrawSelectionSaber()
 {
