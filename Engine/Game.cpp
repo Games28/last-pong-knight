@@ -38,22 +38,26 @@ Game::Game(MainWindow& wnd)
 	//int randombolt = random;
 	int i = 0;
 	//inits the troopers
-	for (int y = 0; y < nTrooperDown; y++)
-	{
-		
-		for (int x = 0; x < nTrooperAcross; x++)
+	
+		for (int y = 0; y < nTrooperDown; y++)
 		{
-			troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
-			//troopers[i].collider.Init(Vec2(Trooper.x,Trooper.y), Vec2(x* trooperwidth, y*trooperheight));
-			troopers[i].collider.Init(troopers[i].loc, Vec2(trooperwidth,trooperheight));
-			troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
-			troopers[i].Bolt.Init(troopers[i].Bolt.loc);
-			
-			i++;
-		}
-		 
-	}
 
+			for (int x = 0; x < nTrooperAcross; x++)
+			{
+
+				
+				
+					troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
+					troopers[i].collider.Init(troopers[i].loc, Vec2(trooperwidth, trooperheight));
+					troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
+					troopers[i].Bolt.Init(troopers[i].Bolt.loc);
+
+					i++;
+				
+			}
+
+		}
+	
 	for (int i = 0; i < nStarsMax; i++)
 	{
 		animatedStars[i].Init(rng);
@@ -90,16 +94,11 @@ int Game::random(int start, int end, std::mt19937 gen)
 }
 void Game::UpdateModel()
 {
-
 	//wnd.kbd.ReadChar();
-
-	
-
 	static int randomtrooper = 0;
-	for (int i = 0; i < trooperMax; i++)
+	for(int i = 0; i < trooperMax; i++)
 	{
-		if (troopers[i].isVaporized == false)
-		{
+		
 			if (randomtrooper == 0)
 			{
 				randomtrooper = random(0, trooperMax, rng);
@@ -107,20 +106,14 @@ void Game::UpdateModel()
 				{
 					troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
 					ActiveBolt = &troopers[randomtrooper].Bolt;
+					
 				}
-			}
-
-			if (troopers[randomtrooper].Bolt.IsActive == false)
-			{
 				randomtrooper = 0;
 			}
-		}
-		else if (troopers[i].isVaporized == true)
-		{
-			randomtrooper = 0;
-		}
+
+			
+		
 	}
-	
 	if (!SelectingScreen)
 	{
 		AnimatedStarCounter++;
@@ -147,12 +140,8 @@ void Game::UpdateModel()
 				gameStarted = true;
 			}
 		}
-
 		MenuSaberSelecting(&wnd.kbd.ReadKey());
 		SaberColorSelect();
-
-		//MenuSaber();
-
 	}
 	if (gameStarted && SelectingScreen)
 	{
@@ -206,31 +195,29 @@ void Game::UpdateModel()
 			}
 		}
 		
-		
+		// trooper and bolt collision
 		if (ActiveBolt->IsActive == true)
 		{
+			
 			for (int i = 0; i < trooperMax; i++)
 			{
-				bool Redirection = collidemanager.ReboundTestbool(ActiveBolt->collider, troopers[i].collider);
-				if (Redirection)
+				bool TrooperCollision = collidemanager.ReboundTestbool(ActiveBolt->collider, troopers[i].collider);
+				if (troopers[i].isVaporized == false)
 				{
-					if (ActiveBolt->vel.y < 0.0f)
+					if (TrooperCollision)
 					{
-
 						if (ActiveBolt->vel.y < 0.0f)
 						{
 							ActiveBolt->IsActive = false;
 							
-						
+						}
+						if (ActiveBolt->IsActive == false)
+						{
 							troopers[i].isVaporized = true;
 						}
-
-						ActiveBolt->IsActive = false;
-
-
 					}
+					
 				}
-
 			}
 		}
 		
@@ -259,19 +246,14 @@ Vec2 Game::GetMoveDirection(float moveAmount)
 void Game::SaberColorSelect()
 {
 	unsigned char ColorValue = 127;
-
 	switch (selectSaber)
 	{
 	case MenuSelection::Saberchoiceblue:
-
-	if (wnd.kbd.KeyIsPressed('1'))
-
 	{
 		player.saber.color[0] = Color{ 0,0,0 };
 		player.saber.color[1] = Color{ 0,0,ColorValue };
 		break;
 	}
-
 
 	case MenuSelection::Saberchoicegreen:
 	{
@@ -298,14 +280,11 @@ void Game::SaberColorSelect()
 	{
 		break;
 	}
-
-	
 	}
 }
 
 void Game::GenderSelect()
 {
-
 	switch (selectCharacter)
 	{
 	case MenuSelection::PlayerchoiceFemale:
@@ -369,12 +348,36 @@ void Game::MenuSaberSelecting(Keyboard::Event* E)
 			break;
 		}
 
-
 		}
 	}
 }
-
-
+void Game::DrawSelectionSaber()
+{
+	if (selectSaber == MenuSelection::Saberchoiceblue)
+	{
+		title.art.SelectingSaber1(400, 335, gfx);
+	}
+	if (selectSaber == MenuSelection::Saberchoicegreen)
+	{
+		title.art.SelectingSaber1(400, 385, gfx);
+	}
+	if (selectSaber == MenuSelection::Saberchoicered)
+	{
+		title.art.SelectingSaber1(400, 435, gfx);
+	}
+	if (selectSaber == MenuSelection::Saberchoicepurple)
+	{
+		title.art.SelectingSaber1(400, 500, gfx);
+	}
+	if (selectCharacter == MenuSelection::PlayerchoiceFemale)
+	{
+		title.art.SelectingSaber1(100, 430, gfx);
+	}
+	if (selectCharacter == MenuSelection::PlayerchoiceMale)
+	{
+		title.art.SelectingSaber1(100, 360, gfx);
+	}
+}
 void Game::ComposeFrame()
 {
 	if (!SelectingScreen)
@@ -421,8 +424,8 @@ void Game::ComposeFrame()
 		title.DrawYodaSpeaks(gfx);
 		title.DrawSaberMenu(gfx);
 		title.DrawJediMenu(gfx);
-	    title.DrawSaberSelect0r1(gfx);
-		
+	    //title.DrawSaberSelect0r1(gfx);
+		DrawSelectionSaber();
 	}
 	if (gameStarted && SelectingScreen)
 	{
