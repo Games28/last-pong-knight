@@ -57,7 +57,7 @@ private:
 	Vec2 GetMoveDirection(float moveAmount);
 	void SaberColorSelect();
 	void GenderSelect();
-	void MenuSaberSelecting();
+	void MenuSaberSelecting(Keyboard::Event* E);
 	void DrawSelectionSaber();
 	void seed(std::mt19937* gen);
 	int random(int start, int end, std::mt19937 gen);
@@ -98,12 +98,7 @@ private:
 	int AnimatedStarreset = 100;
 	bool gameStarted = false;
 	bool SelectingScreen = false;
-	bool saberblue = false;
-	bool sabergreen = false;
-	bool saberred = false;
-	bool saberpurple = false;
-	bool characterMale = false;
-	bool characterFemale = false;
+	
 	/********************************/
 	/*  User Variables              */
 	/********************************/

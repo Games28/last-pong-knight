@@ -21,6 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include <iostream>
+
 // this is most recent build
 Game::Game(MainWindow& wnd)
 	:
@@ -93,12 +94,11 @@ int Game::random(int start, int end, std::mt19937 gen)
 }
 void Game::UpdateModel()
 {
-
+	//wnd.kbd.ReadChar();
 	static int randomtrooper = 0;
 	for(int i = 0; i < trooperMax; i++)
 	{
-		if (troopers[i].isVaporized == false)
-		{
+		
 			if (randomtrooper == 0)
 			{
 				randomtrooper = random(0, trooperMax, rng);
@@ -106,18 +106,13 @@ void Game::UpdateModel()
 				{
 					troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
 					ActiveBolt = &troopers[randomtrooper].Bolt;
+					
 				}
-			}
-
-			if (troopers[randomtrooper].Bolt.IsActive == false)
-			{
 				randomtrooper = 0;
 			}
-		}
-		else if(troopers[i].isVaporized == true)
-		{
-			randomtrooper = 0;
-		}
+
+			
+		
 	}
 	if (!SelectingScreen)
 	{
@@ -145,7 +140,8 @@ void Game::UpdateModel()
 				gameStarted = true;
 			}
 		}
-		MenuSaberSelecting();
+		MenuSaberSelecting(&wnd.kbd.ReadKey());
+		SaberColorSelect();
 	}
 	if (gameStarted && SelectingScreen)
 	{
@@ -213,9 +209,12 @@ void Game::UpdateModel()
 						if (ActiveBolt->vel.y < 0.0f)
 						{
 							ActiveBolt->IsActive = false;
+							
+						}
+						if (ActiveBolt->IsActive == false)
+						{
 							troopers[i].isVaporized = true;
 						}
-
 					}
 					
 				}
@@ -247,96 +246,110 @@ Vec2 Game::GetMoveDirection(float moveAmount)
 void Game::SaberColorSelect()
 {
 	unsigned char ColorValue = 127;
-	if (saberblue == true)
+	switch (selectSaber)
+	{
+	case MenuSelection::Saberchoiceblue:
 	{
 		player.saber.color[0] = Color{ 0,0,0 };
 		player.saber.color[1] = Color{ 0,0,ColorValue };
+		break;
 	}
-	else {
-		saberblue = false;
-	}
-	if (sabergreen == true)
+
+	case MenuSelection::Saberchoicegreen:
 	{
 		player.saber.color[0] = Color{ 0,0,0 };
 		player.saber.color[1] = Color{ 0,ColorValue,0 };
-		
+		break;
+
 	}
-	else {
-		sabergreen = false;
-	}
-	if (saberred == true)
+	case MenuSelection::Saberchoicered:
 	{
 		player.saber.color[0] = Color{ 0,0,0 };
 		player.saber.color[1] = Color{ ColorValue,0,0 };
-		
+		break;
+
 	}
-	else {
-		saberred = false;
-	}
-	if (saberpurple == true)
+	case MenuSelection::Saberchoicepurple:
 	{
 		player.saber.color[0] = Color{ 0,0,0 };
 		player.saber.color[1] = Color{ ColorValue,0,ColorValue };
+		break;
 
 	}
-	else {
-		saberpurple = false;
+	default:
+	{
+		break;
+	}
 	}
 }
 
 void Game::GenderSelect()
 {
-	if (characterFemale == true)
+	switch (selectCharacter)
 	{
-		headselect = PlayerSelect::FEMALE;
-	}
-	else
-	{
-		characterFemale = false;
-	}
-	if (characterMale == true)
-	{
-		headselect = PlayerSelect::MALE;
-	}
-	else {
-		characterMale = false;
+	case MenuSelection::PlayerchoiceFemale:
+		{
+			headselect = PlayerSelect::FEMALE;
+			break;
+		}
+		
+	case MenuSelection::PlayerchoiceMale:
+		{
+			headselect = PlayerSelect::MALE;
+			break;
+		}
+	default:
+		{
+			break;
+		}
 	}
 }
 
-void Game::MenuSaberSelecting()
+void Game::MenuSaberSelecting(Keyboard::Event* E)
 {
-	if (wnd.kbd.KeyIsPressed('1'))
+	char C = E->GetCode();
+	if (E->IsPress())
 	{
-		selectSaber = MenuSelection::Saberchoiceblue;
-		saberblue = true;
-	}
-	if (wnd.kbd.KeyIsPressed('2'))
-	{
-		selectSaber = MenuSelection::Saberchoicegreen;
-		sabergreen = true;
-	}
-	if (wnd.kbd.KeyIsPressed('3'))
-	{
-		selectSaber = MenuSelection::Saberchoicered;
-		saberred = true;
-	}
-	if (wnd.kbd.KeyIsPressed('4'))
-	{
-		selectSaber = MenuSelection::Saberchoicepurple;
-		saberpurple = true;
-	}
+		switch (C)
+		{
+		case '1':
+		{
+			selectSaber = MenuSelection::Saberchoiceblue;
+			break;
+		}
+		case '2':
+		{
+			selectSaber = MenuSelection::Saberchoicegreen;
+			break;
+		}
+		case '3':
+		{
+			selectSaber = MenuSelection::Saberchoicered;
+			break;
+		}
+		case '4':
+		{
+			selectSaber = MenuSelection::Saberchoicepurple;
+			break;
+		}
 
-	if (wnd.kbd.KeyIsPressed('F'))
-	{
-		selectCharacter = MenuSelection::PlayerchoiceFemale;
-		characterFemale = true;
-	}
-	if (wnd.kbd.KeyIsPressed('M'))
-	{
-		selectCharacter = MenuSelection::PlayerchoiceMale;
-		characterMale = true;
-	}
+		case 'F':
+		{
+			selectCharacter = MenuSelection::PlayerchoiceFemale;
+			break;
+		}
+		case 'M':
+		{
+			selectCharacter = MenuSelection::PlayerchoiceMale;
+			break;
+		}
+		default:
+		{
+			break;
+		}
 
+		}
+	}
 }
 void Game::DrawSelectionSaber()
 {
@@ -434,7 +447,7 @@ void Game::ComposeFrame()
 			}
 		}
 
-		SaberColorSelect();
+		
 		player.saber.saberColorChange();
 		if (headselect == PlayerSelect::FEMALE)
 		{
