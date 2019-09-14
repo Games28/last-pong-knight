@@ -38,26 +38,22 @@ Game::Game(MainWindow& wnd)
 	//int randombolt = random;
 	int i = 0;
 	//inits the troopers
-	
-		for (int y = 0; y < nTrooperDown; y++)
+	for (int y = 0; y < nTrooperDown; y++)
+	{
+		
+		for (int x = 0; x < nTrooperAcross; x++)
 		{
-
-			for (int x = 0; x < nTrooperAcross; x++)
-			{
-
-				
-				
-					troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
-					troopers[i].collider.Init(troopers[i].loc, Vec2(trooperwidth, trooperheight));
-					troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
-					troopers[i].Bolt.Init(troopers[i].Bolt.loc);
-
-					i++;
-				
-			}
-
+			troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
+			//troopers[i].collider.Init(Vec2(Trooper.x,Trooper.y), Vec2(x* trooperwidth, y*trooperheight));
+			troopers[i].collider.Init(troopers[i].loc, Vec2(trooperwidth,trooperheight));
+			troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
+			troopers[i].Bolt.Init(troopers[i].Bolt.loc);
+			
+			i++;
 		}
-	
+		 
+	}
+
 	for (int i = 0; i < nStarsMax; i++)
 	{
 		animatedStars[i].Init(rng);
@@ -94,10 +90,15 @@ int Game::random(int start, int end, std::mt19937 gen)
 }
 void Game::UpdateModel()
 {
+<<<<<<< HEAD
 	//wnd.kbd.ReadChar();
+=======
+	
+>>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
 	static int randomtrooper = 0;
-	for(int i = 0; i < trooperMax; i++)
+	if (randomtrooper == 0)
 	{
+<<<<<<< HEAD
 		
 			if (randomtrooper == 0)
 			{
@@ -113,7 +114,21 @@ void Game::UpdateModel()
 
 			
 		
+=======
+		randomtrooper = random(0, trooperMax -1, rng);
+		if (troopers[randomtrooper].Bolt.IsActive == false)
+		{
+			troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
+			ActiveBolt = &troopers[randomtrooper].Bolt;
+		}
+>>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
 	}
+	
+	if (troopers[randomtrooper].Bolt.IsActive == false)
+	{
+		randomtrooper = 0;
+	}
+	
 	if (!SelectingScreen)
 	{
 		AnimatedStarCounter++;
@@ -140,8 +155,12 @@ void Game::UpdateModel()
 				gameStarted = true;
 			}
 		}
+
 		MenuSaberSelecting(&wnd.kbd.ReadKey());
 		SaberColorSelect();
+
+		MenuSaber();
+
 	}
 	if (gameStarted && SelectingScreen)
 	{
@@ -150,7 +169,7 @@ void Game::UpdateModel()
 		player.Move(moveAmount);
 
 		//player.GenderSelect();
-		GenderSelect();
+		//GenderSelect();
 		player.Update(gfx, wnd.kbd);
 		player.collision(back.collider);
 
@@ -195,29 +214,31 @@ void Game::UpdateModel()
 			}
 		}
 		
-		// trooper and bolt collision
+		
 		if (ActiveBolt->IsActive == true)
 		{
-			
 			for (int i = 0; i < trooperMax; i++)
 			{
-				bool TrooperCollision = collidemanager.ReboundTestbool(ActiveBolt->collider, troopers[i].collider);
-				if (troopers[i].isVaporized == false)
+				bool Redirection = collidemanager.ReboundTestbool(ActiveBolt->collider, troopers[i].collider);
+				if (Redirection)
 				{
-					if (TrooperCollision)
+					if (ActiveBolt->vel.y < 0.0f)
 					{
+
 						if (ActiveBolt->vel.y < 0.0f)
 						{
 							ActiveBolt->IsActive = false;
 							
-						}
-						if (ActiveBolt->IsActive == false)
-						{
+						
 							troopers[i].isVaporized = true;
 						}
+=======
+						ActiveBolt->IsActive = false;
+
+>>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
 					}
-					
 				}
+
 			}
 		}
 		
@@ -246,14 +267,19 @@ Vec2 Game::GetMoveDirection(float moveAmount)
 void Game::SaberColorSelect()
 {
 	unsigned char ColorValue = 127;
+<<<<<<< HEAD
 	switch (selectSaber)
 	{
 	case MenuSelection::Saberchoiceblue:
+=======
+	if (wnd.kbd.KeyIsPressed('1'))
+>>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
 	{
 		player.saber.color[0] = Color{ 0,0,0 };
 		player.saber.color[1] = Color{ 0,0,ColorValue };
 		break;
 	}
+<<<<<<< HEAD
 
 	case MenuSelection::Saberchoicegreen:
 	{
@@ -280,11 +306,31 @@ void Game::SaberColorSelect()
 	{
 		break;
 	}
+=======
+	if (wnd.kbd.KeyIsPressed('2'))
+	{
+		player.saber.color[0] = Color{ 0,0,0 };
+		player.saber.color[1] = Color{ 0,ColorValue,0 };
+		
+	}
+	if (wnd.kbd.KeyIsPressed('3'))
+	{
+		player.saber.color[0] = Color{ 0,0,0 };
+		player.saber.color[1] = Color{ ColorValue,0,0 };
+		
+	}
+	if (wnd.kbd.KeyIsPressed('4'))
+	{
+		player.saber.color[0] = Color{ 0,0,0 };
+		player.saber.color[1] = Color{ ColorValue,0,ColorValue };
+		
+>>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
 	}
 }
 
 void Game::GenderSelect()
 {
+<<<<<<< HEAD
 	switch (selectCharacter)
 	{
 	case MenuSelection::PlayerchoiceFemale:
@@ -347,35 +393,50 @@ void Game::MenuSaberSelecting(Keyboard::Event* E)
 		{
 			break;
 		}
-
-		}
+=======
+	if (wnd.kbd.KeyIsPressed('F'))
+	{
+		headselect = PlayerSelect::FEMALE;
+	}
+	if (wnd.kbd.KeyIsPressed('M'))
+	{
+		headselect = PlayerSelect::MALE;
 	}
 }
-void Game::DrawSelectionSaber()
+
+void Game::MenuSaber()
 {
-	if (selectSaber == MenuSelection::Saberchoiceblue)
+	if (wnd.kbd.KeyIsPressed('1'))
 	{
-		title.art.SelectingSaber1(400, 335, gfx);
+		
 	}
-	if (selectSaber == MenuSelection::Saberchoicegreen)
+	if (wnd.kbd.KeyIsPressed('2'))
 	{
-		title.art.SelectingSaber1(400, 385, gfx);
+		
+
 	}
-	if (selectSaber == MenuSelection::Saberchoicered)
+	if (wnd.kbd.KeyIsPressed('3'))
 	{
-		title.art.SelectingSaber1(400, 435, gfx);
+		
+
 	}
-	if (selectSaber == MenuSelection::Saberchoicepurple)
+	if (wnd.kbd.KeyIsPressed('4'))
 	{
-		title.art.SelectingSaber1(400, 500, gfx);
+		
+
 	}
-	if (selectCharacter == MenuSelection::PlayerchoiceFemale)
+
+	if (wnd.kbd.KeyIsPressed('F'))
 	{
-		title.art.SelectingSaber1(100, 430, gfx);
+		SetLocation = Vec2{ 70, 358 };
 	}
-	if (selectCharacter == MenuSelection::PlayerchoiceMale)
+	if (wnd.kbd.KeyIsPressed('M'))
 	{
-		title.art.SelectingSaber1(100, 360, gfx);
+		SetLocation = Vec2{ 70, 378 };
+	}
+>>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
+
+		}
 	}
 }
 void Game::ComposeFrame()
@@ -424,8 +485,8 @@ void Game::ComposeFrame()
 		title.DrawYodaSpeaks(gfx);
 		title.DrawSaberMenu(gfx);
 		title.DrawJediMenu(gfx);
-	    //title.DrawSaberSelect0r1(gfx);
-		DrawSelectionSaber();
+	    title.DrawSaberSelect0r1(gfx);
+		
 	}
 	if (gameStarted && SelectingScreen)
 	{
