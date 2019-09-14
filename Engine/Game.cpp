@@ -90,16 +90,16 @@ int Game::random(int start, int end, std::mt19937 gen)
 }
 void Game::UpdateModel()
 {
-<<<<<<< HEAD
+
 	//wnd.kbd.ReadChar();
-=======
+
 	
->>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
+
 	static int randomtrooper = 0;
-	if (randomtrooper == 0)
+	for (int i = 0; i < trooperMax; i++)
 	{
-<<<<<<< HEAD
-		
+		if (troopers[i].isVaporized == false)
+		{
 			if (randomtrooper == 0)
 			{
 				randomtrooper = random(0, trooperMax, rng);
@@ -107,26 +107,18 @@ void Game::UpdateModel()
 				{
 					troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
 					ActiveBolt = &troopers[randomtrooper].Bolt;
-					
 				}
-				randomtrooper = 0;
 			}
 
-			
-		
-=======
-		randomtrooper = random(0, trooperMax -1, rng);
-		if (troopers[randomtrooper].Bolt.IsActive == false)
-		{
-			troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
-			ActiveBolt = &troopers[randomtrooper].Bolt;
+			if (troopers[randomtrooper].Bolt.IsActive == false)
+			{
+				randomtrooper = 0;
+			}
 		}
->>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
-	}
-	
-	if (troopers[randomtrooper].Bolt.IsActive == false)
-	{
-		randomtrooper = 0;
+		else if (troopers[i].isVaporized == true)
+		{
+			randomtrooper = 0;
+		}
 	}
 	
 	if (!SelectingScreen)
@@ -159,7 +151,7 @@ void Game::UpdateModel()
 		MenuSaberSelecting(&wnd.kbd.ReadKey());
 		SaberColorSelect();
 
-		MenuSaber();
+		//MenuSaber();
 
 	}
 	if (gameStarted && SelectingScreen)
@@ -169,7 +161,7 @@ void Game::UpdateModel()
 		player.Move(moveAmount);
 
 		//player.GenderSelect();
-		//GenderSelect();
+		GenderSelect();
 		player.Update(gfx, wnd.kbd);
 		player.collision(back.collider);
 
@@ -232,10 +224,10 @@ void Game::UpdateModel()
 						
 							troopers[i].isVaporized = true;
 						}
-=======
+
 						ActiveBolt->IsActive = false;
 
->>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
+
 					}
 				}
 
@@ -267,19 +259,19 @@ Vec2 Game::GetMoveDirection(float moveAmount)
 void Game::SaberColorSelect()
 {
 	unsigned char ColorValue = 127;
-<<<<<<< HEAD
+
 	switch (selectSaber)
 	{
 	case MenuSelection::Saberchoiceblue:
-=======
+
 	if (wnd.kbd.KeyIsPressed('1'))
->>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
+
 	{
 		player.saber.color[0] = Color{ 0,0,0 };
 		player.saber.color[1] = Color{ 0,0,ColorValue };
 		break;
 	}
-<<<<<<< HEAD
+
 
 	case MenuSelection::Saberchoicegreen:
 	{
@@ -306,31 +298,14 @@ void Game::SaberColorSelect()
 	{
 		break;
 	}
-=======
-	if (wnd.kbd.KeyIsPressed('2'))
-	{
-		player.saber.color[0] = Color{ 0,0,0 };
-		player.saber.color[1] = Color{ 0,ColorValue,0 };
-		
-	}
-	if (wnd.kbd.KeyIsPressed('3'))
-	{
-		player.saber.color[0] = Color{ 0,0,0 };
-		player.saber.color[1] = Color{ ColorValue,0,0 };
-		
-	}
-	if (wnd.kbd.KeyIsPressed('4'))
-	{
-		player.saber.color[0] = Color{ 0,0,0 };
-		player.saber.color[1] = Color{ ColorValue,0,ColorValue };
-		
->>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
+
+	
 	}
 }
 
 void Game::GenderSelect()
 {
-<<<<<<< HEAD
+
 	switch (selectCharacter)
 	{
 	case MenuSelection::PlayerchoiceFemale:
@@ -393,52 +368,13 @@ void Game::MenuSaberSelecting(Keyboard::Event* E)
 		{
 			break;
 		}
-=======
-	if (wnd.kbd.KeyIsPressed('F'))
-	{
-		headselect = PlayerSelect::FEMALE;
-	}
-	if (wnd.kbd.KeyIsPressed('M'))
-	{
-		headselect = PlayerSelect::MALE;
-	}
-}
 
-void Game::MenuSaber()
-{
-	if (wnd.kbd.KeyIsPressed('1'))
-	{
-		
-	}
-	if (wnd.kbd.KeyIsPressed('2'))
-	{
-		
-
-	}
-	if (wnd.kbd.KeyIsPressed('3'))
-	{
-		
-
-	}
-	if (wnd.kbd.KeyIsPressed('4'))
-	{
-		
-
-	}
-
-	if (wnd.kbd.KeyIsPressed('F'))
-	{
-		SetLocation = Vec2{ 70, 358 };
-	}
-	if (wnd.kbd.KeyIsPressed('M'))
-	{
-		SetLocation = Vec2{ 70, 378 };
-	}
->>>>>>> parent of 0084757... got menu and character/saber selection with menu and then display working mostly
 
 		}
 	}
 }
+
+
 void Game::ComposeFrame()
 {
 	if (!SelectingScreen)
