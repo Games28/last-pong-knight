@@ -117,6 +117,42 @@ void Game::UpdateModel()
 	{
 		randomtrooper = -1;
 	}
+
+
+	//static bool haswapped = false;
+	//if (haswapped == false)
+	//{
+	//	int numberofshuffles = random(1, 11, rng);
+	//	for (int i = 0; i < numberofshuffles; i++)
+	//	{
+	//		suffle();
+	//	}
+	//	troopercount_it = shuffledtroopers.begin();
+	//	haswapped = true;
+	//}
+	//
+	//static bool hasfire = false;
+	//if (hasfire == false)
+	//{
+	//	if ((*troopercount_it)->Bolt.IsActive == false)
+	//	{
+	//		(*troopercount_it)->Bolt.Spawn((*troopercount_it)->loc, rng);
+	//		ActiveBolt = &(*troopercount_it)->Bolt;
+	//
+	//		hasfire = true;
+	//	}
+	//}
+	//if ((*troopercount_it)->Bolt.IsActive == false)
+	//{
+	//	troopercount_it++;
+	//	if (troopercount_it > shuffledtroopers.end())
+	//	{
+	//		suffle();
+	//		troopercount_it = shuffledtroopers.begin();
+	//	}
+	//	hasfire = false;
+	//
+	//}
 	if (!SelectingScreen)
 	{
 		AnimatedStarCounter++;
