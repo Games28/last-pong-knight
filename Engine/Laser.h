@@ -10,7 +10,7 @@ class Laser
 public:
 	Laser() = default;
 	Laser(Vec2& loc);
-	//Laser(Vec2& loc, std::mt19937& rng);
+	Laser(Vec2& loc, std::mt19937& rng);
 	void Draw(Graphics& gfx);
 	void Init(Vec2& loc);
 	void Spawn(Vec2& loc, std::mt19937& rng);

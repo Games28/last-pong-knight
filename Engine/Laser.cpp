@@ -11,13 +11,13 @@ Laser::Laser(Vec2& loc)
 	
 }
 
-//Laser::Laser(Vec2& loc, std::mt19937& rng)
-//	:
-//	collider(loc, Vec2(15,40))
-//{
-//	Spawn(loc, rng);
-//	DrawLaser = 0;
-//}
+Laser::Laser(Vec2& loc, std::mt19937& rng)
+	:
+	collider(loc, Vec2(15,40))
+{
+	Spawn(loc, rng);
+	DrawLaser = 0;
+}
 
 void Laser::Draw(Graphics & gfx)
 {
@@ -38,24 +38,23 @@ void Laser::Init(Vec2& loc)
 void Laser::Spawn(Vec2& loc, std::mt19937& rng)
 {
 	IsActive = true;
+	float Pi = 3.14159;
+	float LeftDown = Pi * 5.0f * 0.25f;
+	float RightDown = Pi * 7.0f * 0.25f;
+
+	this->loc = loc;
 	
-		float Pi = 3.14159;
-		float LeftDown = Pi * 5.0f * 0.25f;
-		float RightDown = Pi * 7.0f * 0.25f;
+	std::uniform_real_distribution<float> Angle;
+	Angle = std::uniform_real_distribution<float>(LeftDown, RightDown);
+	float angle = Angle(rng);
+	Vec2 newVel;
+	newVel.x = cos(angle);
+	newVel.y = -sin(angle);
 
-		this->loc = loc;
+	vel = newVel;
+	loc += vel;
 
-		std::uniform_real_distribution<float> Angle;
-		Angle = std::uniform_real_distribution<float>(LeftDown, RightDown);
-		float angle = Angle(rng);
-		Vec2 newVel;
-		newVel.x = cos(angle);
-		newVel.y = -sin(angle);
 
-		vel = newVel;
-		loc += vel;
-
-	
 }
 
 void Laser::DrawLaserUp(Graphics& gfx)
