@@ -95,24 +95,27 @@ int Game::random(int start, int end, std::mt19937 gen)
 void Game::UpdateModel()
 {
 	//wnd.kbd.ReadChar();
-	static int randomtrooper = 0;
-	for(int i = 0; i < trooperMax; i++)
+	static int randomtrooper = -1;
+	//for (int i = 0; i < trooperMax; i++)
+	//{
+	if (randomtrooper == -1)
 	{
-		
-			if (randomtrooper == 0)
-			{
-				randomtrooper = random(0, trooperMax, rng);
-				if (troopers[randomtrooper].Bolt.IsActive == false)
-				{
-					troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
-					ActiveBolt = &troopers[randomtrooper].Bolt;
-					
-				}
-				randomtrooper = 0;
-			}
+		do
+		{
+			randomtrooper = random(0, trooperMax - 1, rng);
 
-			
-		
+
+		} while (troopers[randomtrooper].isVaporized == true);
+		if (troopers[randomtrooper].Bolt.IsActive == false)
+		{
+			troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
+			ActiveBolt = &troopers[randomtrooper].Bolt;
+		}
+	}
+	//}
+	if (troopers[randomtrooper].Bolt.IsActive == false)
+	{
+		randomtrooper = -1;
 	}
 	if (!SelectingScreen)
 	{
@@ -209,12 +212,9 @@ void Game::UpdateModel()
 						if (ActiveBolt->vel.y < 0.0f)
 						{
 							ActiveBolt->IsActive = false;
-							
-						}
-						if (ActiveBolt->IsActive == false)
-						{
 							troopers[i].isVaporized = true;
 						}
+						
 					}
 					
 				}
