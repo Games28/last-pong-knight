@@ -84,36 +84,39 @@ void Game::seed(std::mt19937* gen)
 {
 	std::random_device rd;
 	gen->seed(rd());
-	
+
 }
-int Game::random(int start, int end, std::mt19937 gen)
+int Game::random(int start, int end, std::mt19937& gen)
 {
-	
+
 	std::uniform_int_distribution<int> Number(start, end);
 	return Number(gen);
 }
 void Game::UpdateModel()
 {
-	//wnd.kbd.ReadChar();
-	static int randomtrooper = 0;
-	for(int i = 0; i < trooperMax; i++)
-	{
-		
-			if (randomtrooper == 0)
+	static int randomtrooper = -1;
+	//for (int i = 0; i < trooperMax; i++)
+	//{
+		if (randomtrooper == -1)
+		{
+			do 
 			{
-				randomtrooper = random(0, trooperMax, rng);
-				if (troopers[randomtrooper].Bolt.IsActive == false)
-				{
-					troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
-					ActiveBolt = &troopers[randomtrooper].Bolt;
-					
-				}
-				randomtrooper = 0;
-			}
+				randomtrooper = random(0, trooperMax - 1, rng);
 
-			
-		
+				
+			} while (troopers[randomtrooper].isVaporized == true);
+			if (troopers[randomtrooper].Bolt.IsActive == false)
+			{
+				troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
+				ActiveBolt = &troopers[randomtrooper].Bolt;
+			}
+		}
+	//}
+	if (troopers[randomtrooper].Bolt.IsActive == false)
+	{
+		randomtrooper = -1;
 	}
+	
 	if (!SelectingScreen)
 	{
 		AnimatedStarCounter++;
@@ -154,9 +157,9 @@ void Game::UpdateModel()
 		player.Update(gfx, wnd.kbd);
 		player.collision(back.collider);
 
-	
+
 		Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
-		//bolt deflection and movement code
+		//bolt deflection with wall and respawning
 		for (int i = 0; i < trooperMax; i++)
 		{
 
@@ -165,10 +168,10 @@ void Game::UpdateModel()
 
 			if (reflection.GetLengthSq())
 			{
-				
-				
+
+
 				troopers[i].Move(reflection);
-				
+
 				troopers[i].Bolt.collider.Move(reflection);
 				if (reflection.x)
 				{
@@ -190,15 +193,31 @@ void Game::UpdateModel()
 			bool Redirection = collidemanager.ReboundTestbool(troopers[i].Bolt.collider, player.saber.collider);
 			if (Redirection)
 			{
-				troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
-				troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+				
+				if (wnd.kbd.KeyIsPressed('A'))
+				{
+					troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+					troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+				}
+				else if (wnd.kbd.KeyIsPressed('D'))
+				{
+					troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+					//troopers[i].Bolt.vel.x = troopers[i].Bolt.vel.x;
+				}
+				else if (wnd.kbd.KeyIsPressed('W'))
+				{
+					troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+					troopers[i].Bolt.vel.x = 0;
+				}
+				
+
 			}
 		}
-		
+
 		// trooper and bolt collision
 		if (ActiveBolt->IsActive == true)
 		{
-			
+
 			for (int i = 0; i < trooperMax; i++)
 			{
 				bool TrooperCollision = collidemanager.ReboundTestbool(ActiveBolt->collider, troopers[i].collider);
@@ -209,29 +228,30 @@ void Game::UpdateModel()
 						if (ActiveBolt->vel.y < 0.0f)
 						{
 							ActiveBolt->IsActive = false;
+							//troopers[i].Bolt.loc = troopers[i].loc;
+							troopers[i].isVaporized = true;
 							
 						}
-						if (ActiveBolt->IsActive == false)
-						{
-							troopers[i].isVaporized = true;
-						}
+						
+							
+						
 					}
-					
+
 				}
 			}
 		}
-		
-		
-		
+
+
+
 	}
-			
+
 }
 
 Vec2 Game::GetMoveDirection(float moveAmount)
 {
 	Vec2 finalMoveAmount = Vec2(0.0f, 0.0f);
 
-	
+
 	if (wnd.kbd.KeyIsPressed('A'))
 	{
 		finalMoveAmount += Vec2(-moveAmount, 0);
@@ -288,20 +308,20 @@ void Game::GenderSelect()
 	switch (selectCharacter)
 	{
 	case MenuSelection::PlayerchoiceFemale:
-		{
-			headselect = PlayerSelect::FEMALE;
-			break;
-		}
-		
+	{
+		headselect = PlayerSelect::FEMALE;
+		break;
+	}
+
 	case MenuSelection::PlayerchoiceMale:
-		{
-			headselect = PlayerSelect::MALE;
-			break;
-		}
+	{
+		headselect = PlayerSelect::MALE;
+		break;
+	}
 	default:
-		{
-			break;
-		}
+	{
+		break;
+	}
 	}
 }
 
@@ -382,7 +402,7 @@ void Game::ComposeFrame()
 {
 	if (!SelectingScreen)
 	{
-		
+
 		for (int i = 0; i < nRegularStars; i++)
 		{
 			RegularStars[i].DrawRegularStar(gfx);
@@ -424,7 +444,7 @@ void Game::ComposeFrame()
 		title.DrawYodaSpeaks(gfx);
 		title.DrawSaberMenu(gfx);
 		title.DrawJediMenu(gfx);
-	    //title.DrawSaberSelect0r1(gfx);
+		//title.DrawSaberSelect0r1(gfx);
 		DrawSelectionSaber();
 	}
 	if (gameStarted && SelectingScreen)
@@ -447,7 +467,7 @@ void Game::ComposeFrame()
 			}
 		}
 
-		
+
 		player.saber.saberColorChange();
 		if (headselect == PlayerSelect::FEMALE)
 		{
@@ -458,6 +478,6 @@ void Game::ComposeFrame()
 			player.MaleJedi(gfx);
 		}
 	}
-	
+
 
 }

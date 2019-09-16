@@ -60,7 +60,7 @@ private:
 	void MenuSaberSelecting(Keyboard::Event* E);
 	void DrawSelectionSaber();
 	void seed(std::mt19937* gen);
-	int random(int start, int end, std::mt19937 gen);
+	int random(int start, int end, std::mt19937& gen);
 	/********************************/
 	/*  User Functions              */
 	/********************************/
