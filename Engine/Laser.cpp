@@ -59,12 +59,12 @@ void Laser::Spawn(Vec2& loc, std::mt19937& rng)
 
 void Laser::DrawLaserUp(Graphics& gfx)
 {
-	Art.DrawLaserUp(loc.x, loc.y, gfx);
+	Art.DrawLaserUp((int)loc.x, (int)loc.y, gfx);
 }
 
 void Laser::DrawLaserDown(Graphics& gfx)
 {
-	Art.DrawLaserDown(loc.x, loc.y, gfx);
+	Art.DrawLaserDown((int)loc.x, (int)loc.y, gfx);
 }
 
 

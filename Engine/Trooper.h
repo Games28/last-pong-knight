@@ -10,9 +10,7 @@ public:
 	Trooper(Vec2& loc);
 	void Draw(Graphics& gfx);
 	void Move(Vec2& moveamount);
-	void Rebound();
-	void Collision(Collider& collide);
-public:
+	public:
 	
 	
 	static const int lasermax = 3;

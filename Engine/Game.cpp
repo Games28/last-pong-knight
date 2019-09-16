@@ -86,6 +86,24 @@ void Game::seed(std::mt19937* gen)
 	gen->seed(rd());
 	
 }
+
+void Game::swap(Trooper* one, Trooper* two)
+{
+	Trooper* temp = one;
+	one = two;
+	two = temp;
+}
+//void Game::suffle()
+//{
+//	
+//	for (int i = 0; i < trooperMax / 2; i++)
+//	{
+//		int randompick = random(trooperMax / 2, trooperMax - 1, rng);
+//		swap(troopers[i],troopers[randompick]);
+//		
+//	}
+//}
+
 int Game::random(int start, int end, std::mt19937 gen)
 {
 	
@@ -94,10 +112,9 @@ int Game::random(int start, int end, std::mt19937 gen)
 }
 void Game::UpdateModel()
 {
-	//wnd.kbd.ReadChar();
+	
 	static int randomtrooper = -1;
-	//for (int i = 0; i < trooperMax; i++)
-	//{
+	
 	if (randomtrooper == -1)
 	{
 		do
@@ -112,47 +129,14 @@ void Game::UpdateModel()
 			ActiveBolt = &troopers[randomtrooper].Bolt;
 		}
 	}
-	//}
+	
 	if (troopers[randomtrooper].Bolt.IsActive == false)
 	{
 		randomtrooper = -1;
 	}
 
 
-	//static bool haswapped = false;
-	//if (haswapped == false)
-	//{
-	//	int numberofshuffles = random(1, 11, rng);
-	//	for (int i = 0; i < numberofshuffles; i++)
-	//	{
-	//		suffle();
-	//	}
-	//	troopercount_it = shuffledtroopers.begin();
-	//	haswapped = true;
-	//}
-	//
-	//static bool hasfire = false;
-	//if (hasfire == false)
-	//{
-	//	if ((*troopercount_it)->Bolt.IsActive == false)
-	//	{
-	//		(*troopercount_it)->Bolt.Spawn((*troopercount_it)->loc, rng);
-	//		ActiveBolt = &(*troopercount_it)->Bolt;
-	//
-	//		hasfire = true;
-	//	}
-	//}
-	//if ((*troopercount_it)->Bolt.IsActive == false)
-	//{
-	//	troopercount_it++;
-	//	if (troopercount_it > shuffledtroopers.end())
-	//	{
-	//		suffle();
-	//		troopercount_it = shuffledtroopers.begin();
-	//	}
-	//	hasfire = false;
-	//
-	//}
+	
 	if (!SelectingScreen)
 	{
 		AnimatedStarCounter++;

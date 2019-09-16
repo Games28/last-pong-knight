@@ -11,22 +11,22 @@ Saber::Saber(Vec2& loc)
 
 void Saber::DrawLeft(Graphics& gfx)
 {
-	art.SaberLeft(loc.x + saberLeft.x, loc.y + saberLeft.y, color, gfx);
+	art.SaberLeft((int)loc.x + (int)saberLeft.x, (int)loc.y + (int)saberLeft.y, color, gfx);
 }
 
 void Saber::DrawRight(Graphics& gfx)
 {
-	art.SaberRight(loc.x + saberRight.x, loc.y + saberRight.y, color, gfx);
+	art.SaberRight((int)loc.x + (int)saberRight.x, (int)loc.y + (int)saberRight.y, color, gfx);
 }
 
 void Saber::DrawFront(Graphics& gfx)
 {
-	art.SaberFront(loc.x + saberFront.x, loc.y + saberFront.y, color, gfx);
+	art.SaberFront((int)loc.x + (int)saberFront.x, (int)loc.y + (int)saberFront.y, color, gfx);
 }
 
 void Saber::DrawUp(Graphics& gfx)
 {
-	art.SaberUp(loc.x + SaberUp.x, loc.y + SaberUp.y, color, gfx);
+	art.SaberUp((int)loc.x + (int)SaberUp.x, (int)loc.y + (int)SaberUp.y, color, gfx);
 }
 
 void Saber::Move(Vec2& moveamount)
