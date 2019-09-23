@@ -15,20 +15,20 @@ void Trooper::Draw(Graphics& gfx)
 	{
 		trooperCounter++;
 		
-		artcharacter.TrooperRightFootFront((int)loc.x, (int)loc.y, gfx);
-		if (trooperCounter >= trooperCounterReset)
-		{
-			trooperCounter = 0;
-		}
+		//artcharacter.StormTrooper((int)loc.x, (int)loc.y, gfx);
+	
 		if (trooperCounter > 20)
 		{
 			artcharacter.TrooperLeftFootFront((int)loc.x, (int)loc.y, gfx);
 		}
-		else if (trooperCounter < 20)
-		{
+		else {
 			artcharacter.TrooperRightFootFront((int)loc.x, (int)loc.y, gfx);
 		}
-
+		
+		 if (trooperCounter >= trooperCounterReset)
+		 {
+			 trooperCounter = 0;
+		 }
 		collider.DrawBox(gfx, Colors::Red);
 
 	}
@@ -38,7 +38,13 @@ void Trooper::Draw(Graphics& gfx)
 	
 }
 
-void Trooper::Move(Vec2& moveamount)
+void Trooper::Move(Vec2& movement)
+{
+	loc += movement;
+	collider.Move(movement);
+}
+
+void Trooper::boltMove(Vec2& moveamount)
 {
 	Bolt.loc += moveamount;
 }

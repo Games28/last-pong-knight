@@ -48701,7 +48701,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 3, y + 28, 141, 17, 21);
 	gfx.PutPixel(x + 3, y + 29, 0, 0, 0);
 	gfx.PutPixel(x + 3, y + 30, 0, 0, 0);
 	gfx.PutPixel(x + 3, y + 31, 0, 0, 0);
@@ -48715,6 +48715,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 3, y + 39, 0, 0, 0);
 	gfx.PutPixel(x + 3, y + 40, 0, 0, 0);
 	gfx.PutPixel(x + 3, y + 41, 0, 0, 0);
+	gfx.PutPixel(x + 3, y + 42, 89, 11, 14);
 
 
 
@@ -48776,8 +48777,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
-
+	gfx.PutPixel(x + 4, y + 23, 141, 17, 21);
 	gfx.PutPixel(x + 4, y + 24, 0, 0, 0);
 	gfx.PutPixel(x + 4, y + 25, 255, 255, 255);
 	gfx.PutPixel(x + 4, y + 26, 255, 255, 255);
@@ -48800,6 +48800,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 4, y + 43, 255, 255, 255);
 	gfx.PutPixel(x + 4, y + 44, 0, 0, 0);
 	gfx.PutPixel(x + 4, y + 45, 0, 0, 0);
+	gfx.PutPixel(x + 4, y + 46, 126, 15, 19);
 
 
 
@@ -48856,8 +48857,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
-
+	gfx.PutPixel(x + 5, y + 22, 141, 17, 21);
 	gfx.PutPixel(x + 5, y + 23, 0, 0, 0);
 	gfx.PutPixel(x + 5, y + 24, 0, 0, 0);
 	gfx.PutPixel(x + 5, y + 25, 255, 255, 255);
@@ -49018,7 +49018,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 7, y + 19, 238, 28, 36);
 
-
+	gfx.PutPixel(x + 7, y + 21, 141, 17, 21);
 	gfx.PutPixel(x + 7, y + 22, 0, 0, 0);
 	gfx.PutPixel(x + 7, y + 23, 0, 0, 0);
 	gfx.PutPixel(x + 7, y + 24, 0, 0, 0);
@@ -49179,7 +49179,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 9, y + 17, 238, 28, 36);
 
 
-
+	gfx.PutPixel(x + 9, y + 20, 141, 17, 21);
 	gfx.PutPixel(x + 9, y + 21, 0, 0, 0);
 	gfx.PutPixel(x + 9, y + 22, 0, 0, 0);
 	gfx.PutPixel(x + 9, y + 23, 255, 255, 255);
@@ -49258,7 +49258,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 10, y + 16, 238, 28, 36);
 
-
+	gfx.PutPixel(x + 10, y + 18, 141, 17, 21);
 	gfx.PutPixel(x + 10, y + 19, 0, 0, 0);
 	gfx.PutPixel(x + 10, y + 20, 0, 0, 0);
 	gfx.PutPixel(x + 10, y + 21, 0, 0, 0);
@@ -49367,14 +49367,14 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 11, y + 43, 0, 0, 0);
 	gfx.PutPixel(x + 11, y + 44, 0, 0, 0);
 	gfx.PutPixel(x + 11, y + 45, 0, 0, 0);
+	gfx.PutPixel(x + 11, y + 46, 89, 11, 14);
 
 
 
 
 
 
-
-
+	gfx.PutPixel(x + 11, y + 53, 89, 11, 14);
 
 
 
@@ -49456,7 +49456,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 	gfx.PutPixel(x + 12, y + 53, 0, 0, 0);
-
+	gfx.PutPixel(x + 12, y + 54, 89, 11, 14);
 
 
 
@@ -49500,7 +49500,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 13, y + 14, 238, 28, 36);
 
 
-
+	gfx.PutPixel(x + 13, y + 17, 141, 17, 21);
 	gfx.PutPixel(x + 13, y + 18, 0, 0, 0);
 	gfx.PutPixel(x + 13, y + 19, 0, 0, 0);
 	gfx.PutPixel(x + 13, y + 20, 0, 0, 0);
@@ -49539,7 +49539,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 13, y + 53, 0, 0, 0);
 	gfx.PutPixel(x + 13, y + 54, 0, 0, 0);
 	gfx.PutPixel(x + 13, y + 55, 0, 0, 0);
-
+	gfx.PutPixel(x + 13, y + 56, 89, 11, 14);
 
 
 
@@ -49580,7 +49580,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 14, y + 13, 238, 28, 36);
 
 
-
+	gfx.PutPixel(x + 14, y + 16, 141, 17, 21);
 	gfx.PutPixel(x + 14, y + 17, 0, 0, 0);
 	gfx.PutPixel(x + 14, y + 18, 0, 0, 0);
 	gfx.PutPixel(x + 14, y + 19, 0, 0, 0);
@@ -49616,12 +49616,12 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 14, y + 52, 141, 17, 21);
 	gfx.PutPixel(x + 14, y + 53, 0, 0, 0);
 	gfx.PutPixel(x + 14, y + 54, 255, 255, 255);
 	gfx.PutPixel(x + 14, y + 55, 0, 0, 0);
 	gfx.PutPixel(x + 14, y + 56, 0, 0, 0);
-
+	gfx.PutPixel(x + 14, y + 57, 89, 11, 14);
 
 
 
@@ -49740,7 +49740,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 16, y + 12, 238, 28, 36);
 
-
+	gfx.PutPixel(x + 16, y + 14, 141, 17, 21);
 	gfx.PutPixel(x + 16, y + 15, 0, 0, 0);
 	gfx.PutPixel(x + 16, y + 16, 0, 0, 0);
 	gfx.PutPixel(x + 16, y + 17, 0, 0, 0);
@@ -49777,7 +49777,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 16, y + 51, 141, 17, 21);
 	gfx.PutPixel(x + 16, y + 52, 0, 0, 0);
 	gfx.PutPixel(x + 16, y + 53, 0, 0, 0);
 	gfx.PutPixel(x + 16, y + 54, 0, 0, 0);
@@ -49820,7 +49820,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 17, y + 11, 238, 28, 36);
 
-
+	gfx.PutPixel(x + 17, y + 13, 141, 17, 21);
 	gfx.PutPixel(x + 17, y + 14, 0, 0, 0);
 	gfx.PutPixel(x + 17, y + 15, 0, 0, 0);
 	gfx.PutPixel(x + 17, y + 16, 0, 0, 0);
@@ -49865,7 +49865,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 17, y + 55, 0, 0, 0);
 	gfx.PutPixel(x + 17, y + 56, 0, 0, 0);
 	gfx.PutPixel(x + 17, y + 57, 0, 0, 0);
-
+	gfx.PutPixel(x + 17, y + 58, 89, 11, 14);
 
 
 
@@ -49934,10 +49934,10 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 18, y + 43, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 44, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 45, 0, 0, 0);
+	gfx.PutPixel(x + 18, y + 46, 89, 11, 14);
 
 
-
-
+	gfx.PutPixel(x + 18, y + 49, 141, 17, 21);
 	gfx.PutPixel(x + 18, y + 50, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 51, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 52, 0, 0, 0);
@@ -49947,7 +49947,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 18, y + 56, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 57, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 58, 0, 0, 0);
-
+	gfx.PutPixel(x + 18, y + 59, 89, 11, 14);
 
 
 	gfx.PutPixel(x + 18, y + 62, 238, 28, 36);
@@ -49958,7 +49958,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 18, y + 70, 141, 17, 21);
 	gfx.PutPixel(x + 18, y + 71, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 72, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 73, 207, 25, 32);
@@ -49979,7 +49979,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 19, y + 8, 187, 22, 29);
 
-
+	gfx.PutPixel(x + 19, y + 10, 141, 17, 21);
 	gfx.PutPixel(x + 19, y + 11, 0, 0, 0);
 	gfx.PutPixel(x + 19, y + 12, 0, 0, 0);
 	gfx.PutPixel(x + 19, y + 13, 0, 0, 0);
@@ -50204,6 +50204,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 21, y + 70, 255, 255, 255);
 	gfx.PutPixel(x + 21, y + 71, 255, 255, 255);
 	gfx.PutPixel(x + 21, y + 72, 0, 0, 0);
+	gfx.PutPixel(x + 21, y + 73, 89, 11, 14);
 
 
 
@@ -50217,8 +50218,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
-
+	gfx.PutPixel(x + 22, y + 6, 141, 17, 21);
 	gfx.PutPixel(x + 22, y + 7, 0, 0, 0);
 	gfx.PutPixel(x + 22, y + 8, 0, 0, 0);
 	gfx.PutPixel(x + 22, y + 9, 0, 0, 0);
@@ -50298,7 +50298,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 23, y + 5, 141, 17, 21);
 	gfx.PutPixel(x + 23, y + 6, 0, 0, 0);
 	gfx.PutPixel(x + 23, y + 7, 0, 0, 0);
 	gfx.PutPixel(x + 23, y + 8, 0, 0, 0);
@@ -50700,7 +50700,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 28, y + 2, 141, 17, 21);
 	gfx.PutPixel(x + 28, y + 3, 223, 223, 223);
 	gfx.PutPixel(x + 28, y + 4, 0, 0, 0);
 	gfx.PutPixel(x + 28, y + 5, 0, 0, 0);
@@ -51663,9 +51663,9 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 39, y + 71, 0, 0, 0);
 	gfx.PutPixel(x + 39, y + 72, 0, 0, 0);
 	gfx.PutPixel(x + 39, y + 73, 0, 0, 0);
+	gfx.PutPixel(x + 39, y + 74, 89, 11, 14);
 
-
-
+	gfx.PutPixel(x + 39, y + 76, 141, 17, 21);
 	gfx.PutPixel(x + 39, y + 77, 0, 0, 0);
 	gfx.PutPixel(x + 39, y + 78, 0, 0, 0);
 	gfx.PutPixel(x + 39, y + 79, 255, 255, 255);
@@ -54865,7 +54865,7 @@ void ArtCharacter::TrooperLeftFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 79, y + 33, 0, 0, 0);
 	gfx.PutPixel(x + 79, y + 34, 0, 0, 0);
 	gfx.PutPixel(x + 79, y + 35, 0, 0, 0);
-
+	gfx.PutPixel(x + 79, y + 36, 89, 11, 14);
 
 
 
@@ -55186,7 +55186,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 3, y + 28, 141, 17, 21);
 	gfx.PutPixel(x + 3, y + 29, 0, 0, 0);
 	gfx.PutPixel(x + 3, y + 30, 0, 0, 0);
 	gfx.PutPixel(x + 3, y + 31, 0, 0, 0);
@@ -55200,6 +55200,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 3, y + 39, 0, 0, 0);
 	gfx.PutPixel(x + 3, y + 40, 0, 0, 0);
 	gfx.PutPixel(x + 3, y + 41, 0, 0, 0);
+	gfx.PutPixel(x + 3, y + 42, 89, 11, 14);
 
 
 
@@ -55261,8 +55262,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
-
+	gfx.PutPixel(x + 4, y + 23, 141, 17, 21);
 	gfx.PutPixel(x + 4, y + 24, 0, 0, 0);
 	gfx.PutPixel(x + 4, y + 25, 255, 255, 255);
 	gfx.PutPixel(x + 4, y + 26, 255, 255, 255);
@@ -55285,6 +55285,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 4, y + 43, 255, 255, 255);
 	gfx.PutPixel(x + 4, y + 44, 0, 0, 0);
 	gfx.PutPixel(x + 4, y + 45, 0, 0, 0);
+	gfx.PutPixel(x + 4, y + 46, 126, 15, 19);
 
 
 
@@ -55341,8 +55342,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
-
+	gfx.PutPixel(x + 5, y + 22, 141, 17, 21);
 	gfx.PutPixel(x + 5, y + 23, 0, 0, 0);
 	gfx.PutPixel(x + 5, y + 24, 0, 0, 0);
 	gfx.PutPixel(x + 5, y + 25, 255, 255, 255);
@@ -55503,7 +55503,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 7, y + 19, 238, 28, 36);
 
-
+	gfx.PutPixel(x + 7, y + 21, 141, 17, 21);
 	gfx.PutPixel(x + 7, y + 22, 0, 0, 0);
 	gfx.PutPixel(x + 7, y + 23, 0, 0, 0);
 	gfx.PutPixel(x + 7, y + 24, 0, 0, 0);
@@ -55664,7 +55664,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 9, y + 17, 238, 28, 36);
 
 
-
+	gfx.PutPixel(x + 9, y + 20, 141, 17, 21);
 	gfx.PutPixel(x + 9, y + 21, 0, 0, 0);
 	gfx.PutPixel(x + 9, y + 22, 0, 0, 0);
 	gfx.PutPixel(x + 9, y + 23, 255, 255, 255);
@@ -55743,7 +55743,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 10, y + 16, 238, 28, 36);
 
-
+	gfx.PutPixel(x + 10, y + 18, 141, 17, 21);
 	gfx.PutPixel(x + 10, y + 19, 0, 0, 0);
 	gfx.PutPixel(x + 10, y + 20, 0, 0, 0);
 	gfx.PutPixel(x + 10, y + 21, 0, 0, 0);
@@ -55852,14 +55852,14 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 11, y + 43, 0, 0, 0);
 	gfx.PutPixel(x + 11, y + 44, 0, 0, 0);
 	gfx.PutPixel(x + 11, y + 45, 0, 0, 0);
+	gfx.PutPixel(x + 11, y + 46, 89, 11, 14);
 
 
 
 
 
 
-
-
+	gfx.PutPixel(x + 11, y + 53, 89, 11, 14);
 
 
 
@@ -55941,7 +55941,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 	gfx.PutPixel(x + 12, y + 53, 0, 0, 0);
-
+	gfx.PutPixel(x + 12, y + 54, 89, 11, 14);
 
 
 
@@ -55985,7 +55985,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 13, y + 14, 238, 28, 36);
 
 
-
+	gfx.PutPixel(x + 13, y + 17, 141, 17, 21);
 	gfx.PutPixel(x + 13, y + 18, 0, 0, 0);
 	gfx.PutPixel(x + 13, y + 19, 0, 0, 0);
 	gfx.PutPixel(x + 13, y + 20, 0, 0, 0);
@@ -56024,7 +56024,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 13, y + 53, 0, 0, 0);
 	gfx.PutPixel(x + 13, y + 54, 0, 0, 0);
 	gfx.PutPixel(x + 13, y + 55, 0, 0, 0);
-
+	gfx.PutPixel(x + 13, y + 56, 89, 11, 14);
 
 
 
@@ -56065,7 +56065,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 14, y + 13, 238, 28, 36);
 
 
-
+	gfx.PutPixel(x + 14, y + 16, 141, 17, 21);
 	gfx.PutPixel(x + 14, y + 17, 0, 0, 0);
 	gfx.PutPixel(x + 14, y + 18, 0, 0, 0);
 	gfx.PutPixel(x + 14, y + 19, 0, 0, 0);
@@ -56101,12 +56101,12 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 14, y + 52, 141, 17, 21);
 	gfx.PutPixel(x + 14, y + 53, 0, 0, 0);
 	gfx.PutPixel(x + 14, y + 54, 255, 255, 255);
 	gfx.PutPixel(x + 14, y + 55, 0, 0, 0);
 	gfx.PutPixel(x + 14, y + 56, 0, 0, 0);
-
+	gfx.PutPixel(x + 14, y + 57, 89, 11, 14);
 
 
 
@@ -56210,7 +56210,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 15, y + 80, 141, 17, 21);
 
 
 
@@ -56225,7 +56225,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 16, y + 12, 238, 28, 36);
 
-
+	gfx.PutPixel(x + 16, y + 14, 141, 17, 21);
 	gfx.PutPixel(x + 16, y + 15, 0, 0, 0);
 	gfx.PutPixel(x + 16, y + 16, 0, 0, 0);
 	gfx.PutPixel(x + 16, y + 17, 0, 0, 0);
@@ -56262,7 +56262,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 16, y + 51, 141, 17, 21);
 	gfx.PutPixel(x + 16, y + 52, 0, 0, 0);
 	gfx.PutPixel(x + 16, y + 53, 0, 0, 0);
 	gfx.PutPixel(x + 16, y + 54, 0, 0, 0);
@@ -56305,7 +56305,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 17, y + 11, 238, 28, 36);
 
-
+	gfx.PutPixel(x + 17, y + 13, 141, 17, 21);
 	gfx.PutPixel(x + 17, y + 14, 0, 0, 0);
 	gfx.PutPixel(x + 17, y + 15, 0, 0, 0);
 	gfx.PutPixel(x + 17, y + 16, 0, 0, 0);
@@ -56350,6 +56350,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 17, y + 55, 0, 0, 0);
 	gfx.PutPixel(x + 17, y + 56, 0, 0, 0);
 	gfx.PutPixel(x + 17, y + 57, 0, 0, 0);
+	gfx.PutPixel(x + 17, y + 58, 89, 11, 14);
 
 
 
@@ -56370,8 +56371,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
-
+	gfx.PutPixel(x + 17, y + 79, 141, 17, 21);
 	gfx.PutPixel(x + 17, y + 80, 0, 0, 0);
 
 
@@ -56419,10 +56419,10 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 18, y + 43, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 44, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 45, 0, 0, 0);
+	gfx.PutPixel(x + 18, y + 46, 89, 11, 14);
 
 
-
-
+	gfx.PutPixel(x + 18, y + 49, 141, 17, 21);
 	gfx.PutPixel(x + 18, y + 50, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 51, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 52, 0, 0, 0);
@@ -56432,7 +56432,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 18, y + 56, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 57, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 58, 0, 0, 0);
-
+	gfx.PutPixel(x + 18, y + 59, 89, 11, 14);
 
 
 
@@ -56450,7 +56450,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 18, y + 77, 141, 17, 21);
 	gfx.PutPixel(x + 18, y + 78, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 79, 0, 0, 0);
 	gfx.PutPixel(x + 18, y + 80, 0, 0, 0);
@@ -56464,7 +56464,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 	gfx.PutPixel(x + 19, y + 8, 187, 22, 29);
 
-
+	gfx.PutPixel(x + 19, y + 10, 141, 17, 21);
 	gfx.PutPixel(x + 19, y + 11, 0, 0, 0);
 	gfx.PutPixel(x + 19, y + 12, 0, 0, 0);
 	gfx.PutPixel(x + 19, y + 13, 0, 0, 0);
@@ -56703,7 +56703,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 22, y + 6, 141, 17, 21);
 	gfx.PutPixel(x + 22, y + 7, 0, 0, 0);
 	gfx.PutPixel(x + 22, y + 8, 0, 0, 0);
 	gfx.PutPixel(x + 22, y + 9, 0, 0, 0);
@@ -56783,7 +56783,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 
 
 
-
+	gfx.PutPixel(x + 23, y + 5, 141, 17, 21);
 	gfx.PutPixel(x + 23, y + 6, 0, 0, 0);
 	gfx.PutPixel(x + 23, y + 7, 0, 0, 0);
 	gfx.PutPixel(x + 23, y + 8, 0, 0, 0);
@@ -57185,7 +57185,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 27, y + 80, 0, 0, 0);
 
 
-
+	gfx.PutPixel(x + 28, y + 2, 141, 17, 21);
 	gfx.PutPixel(x + 28, y + 3, 223, 223, 223);
 	gfx.PutPixel(x + 28, y + 4, 0, 0, 0);
 	gfx.PutPixel(x + 28, y + 5, 0, 0, 0);
@@ -61350,7 +61350,7 @@ void ArtCharacter::TrooperRightFootFront(int x, int y, Graphics& gfx)
 	gfx.PutPixel(x + 79, y + 33, 0, 0, 0);
 	gfx.PutPixel(x + 79, y + 34, 0, 0, 0);
 	gfx.PutPixel(x + 79, y + 35, 0, 0, 0);
-
+	gfx.PutPixel(x + 79, y + 36, 89, 11, 14);
 
 
 

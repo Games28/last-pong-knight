@@ -104,37 +104,7 @@ int Game::suffle(int one)
 	return randompick;
 }
 
-void Game::ScreenState(Keyboard& kbd)
-{
-	//switch (Gstate)
-	//{
-	//case gameState::selection:
-	//	if (kbd.KeyIsPressed(VK_RETURN))
-	//	{
-	//		SelectingScreen = true;
-	//		break;
-	//	}
-	//case gameState::gamestart:
-	//	if (kbd.KeyIsPressed(VK_SHIFT))
-	//	{
-	//		if (kbd.KeyIsPressed(VK_RETURN))
-	//		{
-	//			gameStarted = true;
-	//			break;
-	//		}
-	//	}
-	//case gameState::gameover:
-	//	if (Troopercounter > 2)
-	//	{
-	//		gameOver = true;
-	//		break;
-	//	}
-	//defualt:
-	//	{
-	//		break;
-	//	}
-	//}
-}
+
 
 void Game::changeState(gameState state)
 {
@@ -361,6 +331,7 @@ void Game::UpdateModel()
 	case gameState::TITLE:
 		{
 		
+		
 			if (wnd.kbd.KeyIsPressed(VK_RETURN))
 			{
 				changeState(gameState::SELECTION);
@@ -380,7 +351,21 @@ void Game::UpdateModel()
 		}
 	case gameState::GAMESTART: // main game
 		{
-
+		troopercounting++;
+		for (int i = 0; i < trooperMax; i++)
+		{
+			if (troopercounting >= 20)
+			{
+				troopers[i].Move(troopermovement);
+			}
+				
+			
+		}
+		if (troopercounting > 20)
+		{
+			troopercounting = 0;
+		}
+		
 			Randombolt();
 			float movementspeed = 10.0f;
 			Vec2 moveAmount = GetMoveDirection(movementspeed);
@@ -404,7 +389,7 @@ void Game::UpdateModel()
 				{
 
 
-					troopers[i].Move(reflection);
+					troopers[i].boltMove(reflection);
 
 					troopers[i].Bolt.collider.Move(reflection);
 					if (reflection.x)
@@ -446,7 +431,7 @@ void Game::UpdateModel()
 							if (ActiveBolt->vel.y < 0.0f)
 							{
 								ActiveBolt->IsActive = false;
-								troopers[i].isVaporized = true;
+								//troopers[i].isVaporized = true;
 						
 									Troopercounter++;
 							
@@ -465,21 +450,40 @@ void Game::UpdateModel()
 
 
 		}
-       if (Troopercounter > 0)
+		if (Troopercounter > 0)
+		{
+			HasWon = true;
+			//changeState(gameState::GAMEOVER);
+		}
+		for (int i = 0; i < trooperMax; i++)
+		{
+			bool troopervplayer = collidemanager.ReboundTestbool(troopers[i].collider, player.collider );
+			if (troopervplayer)
+			{
+				hasFailed = true;
+			}
+
+		}
+		if (HasWon == true || hasFailed == true)
 		{
 			changeState(gameState::GAMEOVER);
 		}
+       
 		
 		break;
 	case gameState::GAMEOVER: // ending
 		{
 			gameOver = true;
 		}
+		
 		Troopercounter = 0;
+		
 		for (int i = 0; i < trooperMax; i++)
 		{
 			troopers[i].isVaporized = false;
+		
 		}
+		
 		if (wnd.kbd.KeyIsPressed(VK_SPACE))
 		{
 			changeState(gameState::TITLE);
@@ -549,7 +553,17 @@ void Game::ComposeFrame()
 	case gameState::GAMEOVER:
 		{
 		StarFormation();
+		if (HasWon == true)
+		{
 			end.Yoda(gfx);
+			end.Won(gfx);
+		}
+		else if (hasFailed == true)
+		{
+			end.darkAnakin(gfx);
+			end.Failed(gfx);
+		}
+			
 		}
 		break;
 	}

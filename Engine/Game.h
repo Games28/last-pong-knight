@@ -38,7 +38,7 @@
 #include <list>
 class Game
 {
-	
+
 public:
 	enum MenuSelection
 	{
@@ -71,7 +71,6 @@ private:
 	void seed(std::mt19937* gen);
 	//int swap(int one, int two);
 	int suffle(int one);
-	void ScreenState(Keyboard& kbd);
 	void changeState(gameState state);
 	void StarFormation();
 	void Randombolt();
@@ -98,8 +97,8 @@ private:
 	static constexpr int nTrooperDown = 2;
 	static constexpr int trooperMax = nTrooperAcross * nTrooperDown;
 	gameState Gstate;
-	Vec2 SetLocation{ 70, 358};
-	Laser *ActiveBolt;
+	Vec2 SetLocation{ 70, 358 };
+	Laser* ActiveBolt;
 	Trooper troopers[trooperMax];
 	Laser bolt;
 	EndScrene end;
@@ -119,7 +118,8 @@ private:
 	static constexpr int nStarsMax = 100;
 	Stars animatedStars[nStarsMax];
 	Stars RegularStars[nStarsMax];
-	
+	Vec2 troopermovement{0, 20};
+	int troopercounting = 0;
 	/********************************/
 	/*  User Variables              */
 	/********************************/
