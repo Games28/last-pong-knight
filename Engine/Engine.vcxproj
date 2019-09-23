@@ -148,6 +148,7 @@
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Colors.h" />
     <ClInclude Include="DXErr.h" />
+    <ClInclude Include="EndScrene.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Jedi.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Saber.h" />
     <ClInclude Include="Square.h" />
+    <ClInclude Include="Stars.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="titleart.h" />
     <ClInclude Include="Trooper.h" />
@@ -175,6 +177,7 @@
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="DXErr.cpp" />
+    <ClCompile Include="EndScrene.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Jedi.cpp" />
@@ -187,6 +190,7 @@
     <ClCompile Include="RectF.cpp" />
     <ClCompile Include="Saber.cpp" />
     <ClCompile Include="Square.cpp" />
+    <ClCompile Include="Stars.cpp" />
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="titleart.cpp" />
     <ClCompile Include="Trooper.cpp" />

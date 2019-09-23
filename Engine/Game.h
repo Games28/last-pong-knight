@@ -33,6 +33,8 @@
 #include <random>
 #include "Collider.h"
 #include "Title.h"
+#include "Stars.h"
+#include "EndScrene.h"
 #include <list>
 class Game
 {
@@ -47,6 +49,13 @@ public:
 		Saberchoicepurple,
 		Saberchoicered
 	};
+	enum gameState
+	{
+		TITLE,
+		SELECTION,
+		GAMESTART,
+		GAMEOVER
+	};
 	Game(class MainWindow& wnd);
 	Game(const Game&) = delete;
 	Game& operator=(const Game&) = delete;
@@ -60,8 +69,12 @@ private:
 	void MenuSaberSelecting(Keyboard::Event* E);
 	void DrawSelectionSaber();
 	void seed(std::mt19937* gen);
-	void swap(Trooper* one, Trooper* two);
-	void suffle();
+	//int swap(int one, int two);
+	int suffle(int one);
+	void ScreenState(Keyboard& kbd);
+	void changeState(gameState state);
+	void StarFormation();
+	void Randombolt();
 	int random(int start, int end, std::mt19937 gen);
 	/********************************/
 	/*  User Functions              */
@@ -84,22 +97,28 @@ private:
 	static constexpr int nTrooperAcross = 7;
 	static constexpr int nTrooperDown = 2;
 	static constexpr int trooperMax = nTrooperAcross * nTrooperDown;
-	static constexpr int nAnimatedStars = 50;
-	static constexpr int nRegularStars = 50;
-	static constexpr int nStarsMax = 100;
+	gameState Gstate;
 	Vec2 SetLocation{ 70, 358};
 	Laser *ActiveBolt;
 	Trooper troopers[trooperMax];
 	Laser bolt;
-	Title animatedStars[nStarsMax];
-	Title RegularStars[nStarsMax];
+	EndScrene end;
 	Title title;
 	MenuSelection selectSaber;
 	MenuSelection selectCharacter;
 	int AnimatedStarCounter = 0;
 	int AnimatedStarreset = 100;
+	int Troopercounter = 0;
+	bool gameOver = false;
 	bool gameStarted = false;
 	bool SelectingScreen = false;
+	bool hasFailed = false;
+	bool HasWon = false;
+	static constexpr int nAnimatedStars = 50;
+	static constexpr int nRegularStars = 50;
+	static constexpr int nStarsMax = 100;
+	Stars animatedStars[nStarsMax];
+	Stars RegularStars[nStarsMax];
 	
 	/********************************/
 	/*  User Variables              */

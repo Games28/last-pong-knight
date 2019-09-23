@@ -8,10 +8,6 @@ class Title
 public:
 	Title() = default;
 	Title(Vec2& loc);
-	void Init(std::mt19937& rng);
-	void DrawRegularStar(Graphics& gfx);
-	void DrawDimStar(Graphics& gfx);
-	void DrawBrightStar(Graphics& gfx);
 	void DrawTitle(Graphics& gfx);
 	void DrawPrview(Graphics& gfx);
 	void DrawYoda(Graphics& gfx);
