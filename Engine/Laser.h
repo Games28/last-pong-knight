@@ -16,14 +16,14 @@ public:
 	void Spawn(Vec2& loc, std::mt19937& rng);
 	void DrawLaserUp(Graphics& gfx);
 	void DrawLaserDown(Graphics& gfx);
-	void Update();
+	void Update( float dt);
 	//void Dispersed();
 public:
 	
 	void (ArtLaser::* DrawLaser)(int, int, Graphics&);
 	Vec2 loc;
 	Vec2 vel;
-	float speed = 10.0f;
+	float speed;
 	Collider collider;
 	ArtLaser Art;
 	bool IsActive = false;

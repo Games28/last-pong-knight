@@ -14,9 +14,9 @@ void Collider::DrawBox(Graphics& gfx, Color c)
 
 }
 
-void Collider::Move(Vec2& Amount)
+void Collider::Move(Vec2& Amount, float dt)
 {
-	loc += Amount;
+	loc += Amount  * dt;
 }
 
 void Collider::Init(const Vec2& loc, const Vec2& size)

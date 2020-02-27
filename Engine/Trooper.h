@@ -9,8 +9,8 @@ public:
 	Trooper() = default;
 	Trooper(Vec2& loc);
 	void Draw(Graphics& gfx);
-	void Move(Vec2& movement);
-	void boltMove(Vec2& moveamount);
+	void Move(Vec2& movement, float dt);
+	void boltMove(Vec2& moveamount, float dt);
 	public:
 	
 	

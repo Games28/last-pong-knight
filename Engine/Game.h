@@ -35,6 +35,9 @@
 #include "Title.h"
 #include "Stars.h"
 #include "EndScrene.h"
+#include "Sound.h"
+#include "FrameTimer.h"
+#include <chrono>
 #include <list>
 class Game
 {
@@ -74,7 +77,9 @@ private:
 	void changeState(gameState state);
 	void StarFormation();
 	void Randombolt();
+	void TrooperInit();
 	int random(int start, int end, std::mt19937 gen);
+	void frameTime();
 	/********************************/
 	/*  User Functions              */
 	/********************************/
@@ -85,7 +90,15 @@ private:
 	BackGround back;
 	PlayerSelect headselect;
 	Jedi player;
-
+	Sound SaberStart;
+	Sound SaberDeflect;
+	Sound BoltStart;
+	Sound BoltDeflect;
+	//Sound ObiWan;
+	//Sound Vader;
+	//Sound R2d2;
+	Sound TrooperStep;
+	Sound TrooperHit;
 
 	CollisionManager collidemanager;
 	static const int lasermax = 3;
@@ -103,6 +116,7 @@ private:
 	Laser bolt;
 	EndScrene end;
 	Title title;
+	FrameTimer ft;
 	MenuSelection selectSaber;
 	MenuSelection selectCharacter;
 	int AnimatedStarCounter = 0;
@@ -118,8 +132,9 @@ private:
 	static constexpr int nStarsMax = 100;
 	Stars animatedStars[nStarsMax];
 	Stars RegularStars[nStarsMax];
-	Vec2 troopermovement{0, 20};
+	Vec2 troopermovement{0, 35};
 	int troopercounting = 0;
+	std::chrono::steady_clock::time_point timeStart;
 	/********************************/
 	/*  User Variables              */
 	/********************************/

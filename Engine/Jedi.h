@@ -20,8 +20,8 @@ public:
 	void GenderSelect();
 	void FemaleJedi(Graphics& gfx);
 	void MaleJedi(Graphics& gfx);
-	void Move(Vec2& moveamount);
-	void collision(Collider& collide);
+	void Move(Vec2& moveamount, float dt);
+	void collision(Vec2& moveamount);
 public:
 	Vec2 charactersize{ 160, 100 };
 	void(Arthead::* DrawHead)(int, int, Graphics&);

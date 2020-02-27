@@ -21,7 +21,7 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include <iostream>
-
+using namespace std::chrono;
 // this is most recent build
 Game::Game(MainWindow& wnd)
 	:
@@ -29,37 +29,24 @@ Game::Game(MainWindow& wnd)
 	gfx(wnd),
 	player(Vec2(300, 470)),
 	rng(std::random_device()()),
-	title(Vec2(300,80)),
-	end(Vec2(100,100))
+	title(Vec2(300, 80)),
+	end(Vec2(100, 100)),
+	BoltStart(L"Sounds\\blastershot.wav"),
+	SaberStart(L"Sounds\\lighsaberOn.wav"),
+	SaberDeflect(L"Sounds\\LightsaberClash.wav"),
+	BoltDeflect(L"Sounds\\Blaster-Ricochet.wav"),
+	//ObiWan(L"Sounds\\obiwan_theforce.wav"),
+	//Vader(L"Sounds\\darthvader_powerofthedarkside.wav"),
+	//R2d2(L"Sounds\\R2D2-SoundBible.com-460754772.wav"),
+	TrooperStep(L"Sounds\\step3.wav"),
+	TrooperHit(L"Sounds\\Grenade.wav")
 	
 
 {
 	Gstate = gameState::TITLE;
 	seed(&rng);
-	Vec2 Trooper(105, 40);
-	//int randombolt = random;
-	int i = 0;
-	//inits the troopers
 	
-		for (int y = 0; y < nTrooperDown; y++)
-		{
-
-			for (int x = 0; x < nTrooperAcross; x++)
-			{
-
-				
-				
-					troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
-					troopers[i].collider.Init(troopers[i].loc, Vec2(trooperwidth, trooperheight));
-					troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
-					troopers[i].Bolt.Init(troopers[i].Bolt.loc);
-
-					i++;
-				
-			}
-
-		}
-	
+	TrooperInit();
 		for (int i = 0; i < nStarsMax; i++)
 		{
 			animatedStars[i].Init(rng);
@@ -68,8 +55,8 @@ Game::Game(MainWindow& wnd)
 		{
 			RegularStars[i].Init(rng);
 		}
-	Vec2 BackBoxpos = Vec2(1, 1);
-	Vec2 BackBoxsize = Vec2((int)Graphics::ScreenWidth - 5, (int)Graphics::ScreenHeight - 5);
+	Vec2 BackBoxpos = Vec2(8, 8);
+	Vec2 BackBoxsize = Vec2(780, 580);
 	back.collider.Init(BackBoxpos, BackBoxsize);
 	
 }
@@ -159,6 +146,7 @@ void Game::Randombolt()
 		{
 			troopers[randomtrooper].Bolt.Spawn(troopers[randomtrooper].loc, rng);
 			ActiveBolt = &troopers[randomtrooper].Bolt;
+			BoltStart.Play();
 		}
 	}
 
@@ -166,6 +154,30 @@ void Game::Randombolt()
 	{
 		randomtrooper = -1;
 	}
+}
+void Game::TrooperInit()
+{
+	
+		Vec2 Trooper(105, 40);
+		//int randombolt = random;
+		int i = 0;
+		//inits the troopers
+
+		for (int y = 0; y < nTrooperDown; y++)
+		{
+
+			for (int x = 0; x < nTrooperAcross; x++)
+			{
+				troopers[i].loc = Vec2(Trooper.x + (x * trooperwidth), Trooper.y + (y * trooperheight));
+				troopers[i].collider.Init(troopers[i].loc, Vec2(trooperwidth, trooperheight));
+				troopers[i].Bolt.loc = troopers[i].loc + Vec2(trooperwidth * 0.4f, trooperheight) * 0.5f;
+				troopers[i].Bolt.Init(troopers[i].Bolt.loc);
+
+				i++;
+			}
+
+		}
+	
 }
 Vec2 Game::GetMoveDirection(float moveAmount)
 {
@@ -326,14 +338,17 @@ int Game::random(int start, int end, std::mt19937 gen)
 }
 void Game::UpdateModel()
 {
+	float dt = ft.Mark();
 	switch (Gstate)
 	{
 	case gameState::TITLE:
 		{
-		
-		
+		HasWon = false;
+		hasFailed = false;
+	
 			if (wnd.kbd.KeyIsPressed(VK_RETURN))
 			{
+				//R2d2.Play();
 				changeState(gameState::SELECTION);
 			}
 			break;
@@ -351,50 +366,60 @@ void Game::UpdateModel()
 		}
 	case gameState::GAMESTART: // main game
 		{
-		troopercounting++;
-		for (int i = 0; i < trooperMax; i++)
-		{
-			if (troopercounting >= 20)
+		 //timeStart = steady_clock::now();
+		 
+			troopercounting++;
+			for (int i = 0; i < trooperMax; i++)
 			{
-				troopers[i].Move(troopermovement);
-			}
+				if (troopercounting >= 20)
+				{
+					
+					troopers[i].Move(troopermovement, dt);
+					
+				}
 				
-			
-		}
-		if (troopercounting > 20)
-		{
-			troopercounting = 0;
-		}
+
+			}
+			if (troopercounting > 20)
+			{
+				TrooperStep.Play();
+				troopercounting = 0;
+			}
 		
 			Randombolt();
-			float movementspeed = 10.0f;
+			float movementspeed = 200.0f;
 			Vec2 moveAmount = GetMoveDirection(movementspeed);
-			player.Move(moveAmount);
-
+			player.Move(moveAmount, dt);
+			Vec2 reflect = collidemanager.GetInnerReflection(player.collider, back.collider);
+			if (reflect.GetLengthSq())
+			{
+				player.collision(reflect);
+			}
 			//player.GenderSelect();
 			GenderSelect();
 			player.Update(gfx, wnd.kbd);
-			player.collision(back.collider);
-
+			//player.collision(back.collider, dt);
+			
 
 			Vec2 reflection = collidemanager.GetInnerReflection(bolt.collider, back.collider);
 			//bolt deflection and movement code
 			for (int i = 0; i < trooperMax; i++)
 			{
 
-				troopers[i].Bolt.Update();
+				troopers[i].Bolt.Update(dt);
 				reflection = collidemanager.GetInnerReflection(troopers[i].Bolt.collider, back.collider);
 
 				if (reflection.GetLengthSq())
 				{
 
 
-					troopers[i].boltMove(reflection);
+					//troopers[i].boltMove(reflection, dt);
 
-					troopers[i].Bolt.collider.Move(reflection);
+					//troopers[i].Bolt.collider.Move(reflection, dt);
 					if (reflection.x)
 					{
 						troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
+						BoltDeflect.Play();
 					}
 					if (reflection.y)
 					{
@@ -413,10 +438,12 @@ void Game::UpdateModel()
 				if (Redirection)
 				{
 					troopers[i].Bolt.vel.y = -troopers[i].Bolt.vel.y;
+					//SaberDeflect.Play();
 					//troopers[i].Bolt.vel.x = -troopers[i].Bolt.vel.x;
 				}
 			}
 
+			
 			// trooper and bolt collision
 			if (ActiveBolt->IsActive == true)
 			{
@@ -431,7 +458,8 @@ void Game::UpdateModel()
 							if (ActiveBolt->vel.y < 0.0f)
 							{
 								ActiveBolt->IsActive = false;
-								//troopers[i].isVaporized = true;
+								troopers[i].isVaporized = true;
+								TrooperHit.Play();
 						
 									Troopercounter++;
 							
@@ -450,10 +478,10 @@ void Game::UpdateModel()
 
 
 		}
-		if (Troopercounter > 0)
+		if (Troopercounter > 13)
 		{
 			HasWon = true;
-			//changeState(gameState::GAMEOVER);
+			//ObiWan.Play();
 		}
 		for (int i = 0; i < trooperMax; i++)
 		{
@@ -461,26 +489,30 @@ void Game::UpdateModel()
 			if (troopervplayer)
 			{
 				hasFailed = true;
+				//Vader.Play();
 			}
 
 		}
 		if (HasWon == true || hasFailed == true)
 		{
+			
 			changeState(gameState::GAMEOVER);
+			
 		}
        
 		
 		break;
 	case gameState::GAMEOVER: // ending
-		{
-			gameOver = true;
-		}
+		
+		TrooperInit();
+		
 		
 		Troopercounter = 0;
 		
 		for (int i = 0; i < trooperMax; i++)
 		{
 			troopers[i].isVaporized = false;
+
 		
 		}
 		

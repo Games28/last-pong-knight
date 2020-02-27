@@ -29,7 +29,7 @@ void Trooper::Draw(Graphics& gfx)
 		 {
 			 trooperCounter = 0;
 		 }
-		collider.DrawBox(gfx, Colors::Red);
+		//collider.DrawBox(gfx, Colors::Red);
 
 	}
 	
@@ -38,15 +38,15 @@ void Trooper::Draw(Graphics& gfx)
 	
 }
 
-void Trooper::Move(Vec2& movement)
+void Trooper::Move(Vec2& movement, float dt)
 {
-	loc += movement;
-	collider.Move(movement);
+	loc += movement * dt;
+	collider.Move(movement, dt);
 }
 
-void Trooper::boltMove(Vec2& moveamount)
+void Trooper::boltMove(Vec2& moveamount, float dt)
 {
-	Bolt.loc += moveamount;
+	Bolt.loc += moveamount * dt;
 }
 
 

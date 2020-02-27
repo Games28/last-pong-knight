@@ -27,9 +27,10 @@ void Jedi::Draw(Graphics& gfx)
 	{
 		(gfx.head.*(DrawHead))((int)loc.x + (int)headloc.x, (int)loc.y + (int)headloc.y, gfx);
 	}
+	
 	(saber.*(DrawSaber))(gfx);
-	collider.DrawBox(gfx, Colors::Blue);
-	saber.collider.DrawBox(gfx, Colors::Magenta);
+	//collider.DrawBox(gfx, Colors::Blue);
+	//saber.collider.DrawBox(gfx, Colors::Magenta);
 	
 }
 
@@ -122,20 +123,22 @@ void Jedi::MaleJedi(Graphics& gfx)
 	headart.MaleHead((int)loc.x + (int)headloc.x, (int)loc.y + (int)headloc.y, gfx);
 }
 
-void Jedi::Move(Vec2& moveamount)
+void Jedi::Move(Vec2& moveamount, float dt)
 {
-	loc += moveamount;
-	Head += moveamount;
-	saber.loc += moveamount;
-	collider.Move(moveamount);
-	saber.collider.Move(moveamount);
+	loc += moveamount * dt;
+	Head += moveamount * dt;
+	Head += moveamount * dt;
+	saber.loc += moveamount * dt;
+	collider.Move(moveamount, dt);
+	saber.collider.Move(moveamount, dt);
 }
 
-void Jedi::collision(Collider& collide)
+void Jedi::collision(Vec2& moveamount)
 {
-	Vec2 reflection = collidemanage.GetInnerReflection(collider, collide);
-	if (reflection.GetLengthSq())
-	{
-		Move(reflection);
-	}
+ loc += moveamount;
+ Head += moveamount;
+ Head += moveamount;
+ saber.loc += moveamount;
+ collider.loc.x += moveamount.x;
+ saber.collider.loc.x += moveamount.x;
 }

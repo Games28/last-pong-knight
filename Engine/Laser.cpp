@@ -14,6 +14,7 @@ Laser::Laser(Vec2& loc)
 Laser::Laser(Vec2& loc, std::mt19937& rng)
 	:
 	collider(loc, Vec2(15,40))
+	
 {
 	Spawn(loc, rng);
 	DrawLaser = 0;
@@ -23,15 +24,14 @@ void Laser::Draw(Graphics & gfx)
 {
 	//Art.DrawLaserDown(loc.x, loc.y, gfx);
 	(gfx.laser.*(DrawLaser))((int)loc.x, (int)loc.y, gfx);
-	collider.DrawBox(gfx, Colors::Magenta);
+	//collider.DrawBox(gfx, Colors::Magenta);
 }
 
 void Laser::Init(Vec2& loc)	
 {
 	collider.loc = loc; 
 	collider.size = Vec2(14, 37);
-	//Spawn(loc, rng);
-	DrawLaser = 0;
+	this->speed = 200;
 	
 }
 
@@ -69,11 +69,11 @@ void Laser::DrawLaserDown(Graphics& gfx)
 
 
 
-void Laser::Update()
+void Laser::Update(float dt)
 {
 	if (IsActive)
 	{
-		loc += vel * speed;
+		loc += vel * speed * dt;
 		if (vel.y < 0.0f)
 		{
 			DrawLaser = &ArtLaser::DrawLaserUp;

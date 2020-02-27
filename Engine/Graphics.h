@@ -24,10 +24,10 @@
 #include "ChiliException.h"
 #include "Colors.h"
 #include "RectF.h"
-#include  "Arthead.h";
-#include  "ArtLaser.h";
-#include  "ArtCharacter.h";
-#include  "ArtSaber.h";
+#include  "Arthead.h"
+#include  "ArtLaser.h"
+#include  "ArtCharacter.h"
+#include  "ArtSaber.h"
 
 class Graphics
 {
